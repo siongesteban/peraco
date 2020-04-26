@@ -3,8 +3,9 @@ import { render } from '@testing-library/react';
 
 import { App } from './app.component';
 
-test('renders text "hola"', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/hola/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders text "Click Me" button', () => {
+  const { getByTestId } = render(<App />);
+
+  const button = getByTestId('click-me-btn');
+  expect(button).toBeInTheDocument();
 });
