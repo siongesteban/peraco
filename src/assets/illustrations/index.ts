@@ -1,1 +1,1 @@
-export { ReactComponent as SyncIllustration } from './sync.illustration.svg';
+export * from './sync';

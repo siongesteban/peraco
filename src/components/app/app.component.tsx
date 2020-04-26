@@ -6,7 +6,7 @@ import { Theme } from 'components';
 import { AuthenticationPage } from 'pages';
 
 export const App: React.FC = () => (
-  <Theme>
+  <Theme dark>
     <CssBaseline />
     <AuthenticationPage />
   </Theme>
