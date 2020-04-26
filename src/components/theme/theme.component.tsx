@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core';
 
 import { darkTheme } from 'themes';
 

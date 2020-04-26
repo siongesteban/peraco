@@ -1,4 +1,4 @@
-import { ThemeOptions } from '@material-ui/core/styles';
+import { ThemeOptions } from '@material-ui/core';
 
 export const baseTheme: ThemeOptions = {
   palette: {
