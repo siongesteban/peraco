@@ -17,7 +17,7 @@ export const baseTheme: ThemeOptions = {
     button: {
       fontWeight: 700,
       letterSpacing: '0.05857em',
-      textTransform: 'capitalize',
+      textTransform: 'initial',
     },
     fontFamily: `'IBM Plex Sans', sans-serif`,
   },
