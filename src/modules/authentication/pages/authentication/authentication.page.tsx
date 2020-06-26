@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, Box, Grid, TextField, Typography } from '@material-ui/core';
 
-import { VerticalCenter } from 'shared/components/wrappers';
+import { VerticalCenter } from 'shared/components';
 
 import { SyncIllustration } from '../../assets/illustrations';
 
