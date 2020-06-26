@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { createStyles, makeStyles, Container, Grid } from '@material-ui/core';
+import { Container, Grid } from '@material-ui/core';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 
 import { VerticalCenterItem } from './components';
 

@@ -1,5 +1,6 @@
 import { merge } from 'lodash';
-import { createMuiTheme, ThemeOptions, Theme } from '@material-ui/core';
+
+import { createMuiTheme, ThemeOptions, Theme } from '@material-ui/core/styles';
 
 import { BASE_THEME } from '../constants';
 

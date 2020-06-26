@@ -1,3 +1,5 @@
-const { override, addBabelPlugins } = require('customize-cra');
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
+const { override, useBabelRc } = require('customize-cra');
 
-module.exports = override(...addBabelPlugins('lodash'));
+module.exports = override(useBabelRc());
