@@ -1,6 +1,6 @@
-import { createTheme } from './utils';
+import { createTheme } from '../utils';
 
-export const darkTheme = createTheme({
+export const DARK_THEME = createTheme({
   palette: {
     type: 'dark',
     background: {

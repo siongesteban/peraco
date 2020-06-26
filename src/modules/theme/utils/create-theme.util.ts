@@ -1,7 +1,7 @@
 import { merge } from 'lodash';
 import { createMuiTheme, ThemeOptions } from '@material-ui/core';
 
-import { baseTheme } from '../base.theme';
+import { BASE_THEME } from '../constants';
 
 export const createTheme = (options: ThemeOptions) =>
-  createMuiTheme(merge(baseTheme, options));
+  createMuiTheme(merge(BASE_THEME, options));

@@ -1,6 +1,6 @@
-import { createTheme } from './utils';
+import { createTheme } from '../utils';
 
-export const lightTheme = createTheme({
+export const LIGHT_THEME = createTheme({
   palette: {
     type: 'light',
     background: {

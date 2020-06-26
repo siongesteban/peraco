@@ -2,9 +2,10 @@ import React from 'react';
 
 import { Box, Grid, TextField, Typography } from '@material-ui/core';
 
-import { SyncIllustration } from 'assets/illustrations/sync';
-import { VerticalCenter } from 'components/common/wrappers';
-import { Button } from 'components/common/inputs';
+import { Button } from 'shared/components/inputs';
+import { VerticalCenter } from 'shared/components/wrappers';
+
+import { SyncIllustration } from '../../assets/illustrations';
 
 export const AuthenticationPage: React.FC = () => (
   <VerticalCenter>

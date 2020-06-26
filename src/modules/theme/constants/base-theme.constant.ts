@@ -1,6 +1,6 @@
 import { ThemeOptions } from '@material-ui/core';
 
-export const baseTheme: ThemeOptions = {
+export const BASE_THEME: ThemeOptions = {
   palette: {
     primary: {
       dark: '#cb2675',
