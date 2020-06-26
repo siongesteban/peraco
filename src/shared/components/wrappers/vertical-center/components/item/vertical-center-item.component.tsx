@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { createStyles, makeStyles, Grid, Theme } from '@material-ui/core';
+import { createStyles, makeStyles, Grid } from '@material-ui/core';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     root: {
       width: '100%',
