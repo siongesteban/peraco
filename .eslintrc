@@ -14,6 +14,7 @@
     "jest": true
   },
   "rules": {
+    "arrow-body-style": "error",
     "@typescript-eslint/explicit-module-boundary-types": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "prettier/prettier": ["error", { "singleQuote": true }],
