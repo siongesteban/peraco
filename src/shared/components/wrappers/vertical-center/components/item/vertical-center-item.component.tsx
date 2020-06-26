@@ -1,18 +1,11 @@
 import React from 'react';
 
 import { Grid } from '@material-ui/core';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      width: '100%',
-    },
-  }),
-);
+import { useVerticalCenterItemStyles } from './vertical-center-item.styles';
 
 export const VerticalCenterItem: React.FC = ({ children }) => {
-  const { root } = useStyles();
+  const { root } = useVerticalCenterItemStyles();
 
   return (
     <Grid item className={root}>
