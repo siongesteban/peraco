@@ -4,9 +4,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 
 import { DARK_THEME, LIGHT_THEME } from '../../constants';
 
-interface Props {
+type Props = Readonly<{
   dark?: boolean;
-}
+}>;
 
 export const Theme: React.FC<Props> = ({ children, dark }) => (
   <ThemeProvider theme={dark ? DARK_THEME : LIGHT_THEME}>

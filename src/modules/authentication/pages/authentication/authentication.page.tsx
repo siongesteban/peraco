@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { Box, Grid, TextField, Typography } from '@material-ui/core';
+import { Button, Box, Grid, TextField, Typography } from '@material-ui/core';
 
-import { Button } from 'shared/components/inputs';
 import { VerticalCenter } from 'shared/components/wrappers';
 
 import { SyncIllustration } from '../../assets/illustrations';
