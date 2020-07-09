@@ -1,11 +1,13 @@
 import React from 'react';
 
+import { Props } from 'shared/types';
+
 import { ReactComponent as SyncDarkIllustration } from './sync.dark.illustration.svg';
 import { ReactComponent as SyncLightIllustration } from './sync.light.illustration.svg';
 
-type Props = Readonly<{
+export type SyncIllustrationProps = Props<{
   dark?: boolean;
 }>;
 
-export const SyncIllustration: React.FC<Props> = ({ dark }) =>
+export const SyncIllustration: React.FC<SyncIllustrationProps> = ({ dark }) =>
   dark ? <SyncDarkIllustration /> : <SyncLightIllustration />;
