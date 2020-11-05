@@ -10,7 +10,7 @@ export const AuthenticationPage: React.FC = () => (
   <VerticalCenter>
     <VerticalCenter.Item>
       <Grid container justify="center">
-        <SyncIllustration dark />
+        <SyncIllustration />
       </Grid>
     </VerticalCenter.Item>
     <VerticalCenter.Item>
