@@ -1,10 +1,14 @@
 import React from 'react';
 
-import { Button, Box, Grid, TextField, Typography } from '@material-ui/core';
+import { Box, Grid, Typography } from '@material-ui/core';
 
 import { VerticalCenter } from 'shared/components';
 
 import { SyncIllustration } from '../../assets/illustrations';
+import {
+  FacebookAuthButton,
+  GoogleAuthButton,
+} from '../../components/social-auth-buttons';
 
 export const SigninPage: React.FC = () => (
   <VerticalCenter>
@@ -14,28 +18,16 @@ export const SigninPage: React.FC = () => (
       </Grid>
     </VerticalCenter.Item>
     <VerticalCenter.Item>
-      <Typography gutterBottom align="center" variant="subtitle2">
+      <Typography align="center" variant="subtitle2">
         Use your registered account to enable real-time data synchronization.
       </Typography>
     </VerticalCenter.Item>
     <VerticalCenter.Item>
-      <TextField
-        fullWidth
-        id="outlined-basic"
-        label="Email"
-        placeholder="Enter your email..."
-        type="email"
-        variant="outlined"
-      />
       <Box my={2}>
-        <Button fullWidth color="primary" size="large">
-          Sign In
-        </Button>
+        <GoogleAuthButton />
       </Box>
       <Box my={2}>
-        <Button fullWidth color="secondary" size="large">
-          Sign Up
-        </Button>
+        <FacebookAuthButton />
       </Box>
     </VerticalCenter.Item>
   </VerticalCenter>
