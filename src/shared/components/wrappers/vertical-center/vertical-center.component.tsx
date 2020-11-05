@@ -9,7 +9,7 @@ interface VerticalCenter extends React.FC {
   Item: typeof VerticalCenterItem;
 }
 
-const VerticalCenter: VerticalCenter = ({ children }) => {
+export const VerticalCenter: VerticalCenter = ({ children }) => {
   const { fullHeight } = useVerticalCenterStyles();
 
   return (
@@ -29,5 +29,3 @@ const VerticalCenter: VerticalCenter = ({ children }) => {
 };
 
 VerticalCenter.Item = VerticalCenterItem;
-
-export { VerticalCenter };
