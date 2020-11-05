@@ -1,5 +1,6 @@
 html,
 body {
+  background-image: url('/assets/images/background-texture.png');
   height: 100%;
   overscroll-behavior-y: contain;
   -webkit-touch-callout: none; /* iOS Safari */
