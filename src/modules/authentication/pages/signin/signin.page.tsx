@@ -6,7 +6,7 @@ import { VerticalCenter } from 'shared/components';
 
 import { SyncIllustration } from '../../assets/illustrations';
 
-export const AuthenticationPage: React.FC = () => (
+export const SigninPage: React.FC = () => (
   <VerticalCenter>
     <VerticalCenter.Item>
       <Grid container justify="center">
@@ -35,11 +35,6 @@ export const AuthenticationPage: React.FC = () => (
       <Box my={2}>
         <Button fullWidth color="secondary" size="large">
           Sign Up
-        </Button>
-      </Box>
-      <Box my={2}>
-        <Button fullWidth color="default" variant="text" size="large">
-          Proceed without an account
         </Button>
       </Box>
     </VerticalCenter.Item>
