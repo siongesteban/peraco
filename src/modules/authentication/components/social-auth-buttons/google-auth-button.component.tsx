@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useFirebaseGoogleAuth } from 'shared/services/firebase/hooks';
 
 import { ReactComponent as GoogleLogo } from '../../assets/icons/google-logo.icon.svg';
+import { UserContext } from '../../contexts';
 import { SocialAuthButton } from './social-auth-button.component';
 
 export const useStyles = makeStyles({
@@ -18,8 +19,15 @@ export const useStyles = makeStyles({
 export const GoogleAuthButton: React.FC = () => {
   const { root } = useStyles();
   const signInWithGoogle = useFirebaseGoogleAuth();
+  const userContext = React.useContext(UserContext);
 
-  const handleClick = (): Promise<void> => signInWithGoogle();
+  const handleClick = async (): Promise<void> => {
+    const user = await signInWithGoogle();
+
+    if (user && userContext.setUser) {
+      userContext.setUser({ name: user.uid });
+    }
+  };
 
   return (
     <SocialAuthButton
