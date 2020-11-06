@@ -9,18 +9,21 @@ export type SocialAuthButtonProps = Readonly<{
   className?: string;
   icon: SvgElement;
   name: string;
+  onClick?: () => void;
 }>;
 
 export const SocialAuthButton: React.FC<SocialAuthButtonProps> = ({
   className,
   icon,
   name,
+  onClick,
 }) => (
   <Button
     fullWidth
     className={className}
     startIcon={<SocialAuthButtonIcon icon={icon} />}
     size="large"
+    onClick={onClick}
   >
     Continue with {name}
   </Button>
