@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { authenticate } from 'shared/services/firebase';
+import { FirebaseService } from 'shared/services/firebase';
 
 import { UserContext, User } from '../../contexts';
 
 export const UserProvider: React.FC = ({ children }) => {
   const [user, setUser] = React.useState<User | null>(null);
+  const firebaseService = FirebaseService.getInstance();
 
   React.useEffect(() => {
-    authenticate((user) => {
+    firebaseService.authenticate((user) => {
       if (user) {
         setUser({ name: user.uid });
       }

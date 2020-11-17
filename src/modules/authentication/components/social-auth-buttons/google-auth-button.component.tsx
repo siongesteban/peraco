@@ -3,7 +3,7 @@ import React from 'react';
 import { grey } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { signInWithGoogle } from 'shared/services/firebase/firebase.service';
+import { FirebaseService } from 'shared/services/firebase/firebase.service';
 
 import { ReactComponent as GoogleLogo } from '../../assets/icons/google-logo.icon.svg';
 import { UserContext } from '../../contexts';
@@ -19,9 +19,10 @@ export const useStyles = makeStyles({
 export const GoogleAuthButton: React.FC = () => {
   const { root } = useStyles();
   const userContext = React.useContext(UserContext);
+  const firebaseService = FirebaseService.getInstance();
 
   const handleClick = async (): Promise<void> => {
-    const user = await signInWithGoogle();
+    const user = await firebaseService.signInWithGoogle();
 
     if (user && userContext.setUser) {
       userContext.setUser({ name: user.uid });
