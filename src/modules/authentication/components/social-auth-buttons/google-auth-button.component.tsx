@@ -22,11 +22,18 @@ export const GoogleAuthButton: React.FC = () => {
   const firebaseService = FirebaseService.getInstance();
 
   const handleClick = async (): Promise<void> => {
+    userContext.setValues?.({ authenticating: true });
+
     const user = await firebaseService.signInWithGoogle();
 
-    if (user) {
-      userContext?.setValues?.({ user: { name: user.uid } });
+    if (!user) {
+      return userContext.setValues?.({ authenticating: false });
     }
+
+    userContext.setValues?.({
+      authenticating: false,
+      user: { name: user.uid },
+    });
   };
 
   return (

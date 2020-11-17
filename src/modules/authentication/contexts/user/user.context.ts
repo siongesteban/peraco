@@ -5,6 +5,7 @@ export type User = {
 };
 
 export type UserContextValues = {
+  authenticating?: boolean;
   user: User | null;
 };
 
