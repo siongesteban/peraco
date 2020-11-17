@@ -1,5 +1,5 @@
 {
-  "name": "@perako/web",
+  "name": "peraco",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
