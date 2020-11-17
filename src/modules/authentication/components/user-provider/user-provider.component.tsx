@@ -2,25 +2,25 @@ import React from 'react';
 
 import { FirebaseService } from 'shared/services/firebase';
 
-import { UserContext, User } from '../../contexts';
+import { UserContext, UserContextValues } from '../../contexts';
 
 export const UserProvider: React.FC = ({ children }) => {
-  const [user, setUser] = React.useState<User | null>(null);
+  const [values, setValues] = React.useState<UserContextValues>({
+    user: null,
+  });
   const firebaseService = FirebaseService.getInstance();
 
   React.useEffect(() => {
     firebaseService.authenticate((user) => {
       if (user) {
-        setUser({ name: user.uid });
+        setValues((prev) => ({ ...prev, user: { name: user.uid } }));
       }
     });
   }, []);
 
   const userContextProviderValue: UserContext = {
-    user,
-    setUser: (user: User) => {
-      setUser(user);
-    },
+    ...values,
+    setValues: (values) => setValues((prev) => ({ ...prev, ...values })),
   };
 
   return (

@@ -24,8 +24,8 @@ export const GoogleAuthButton: React.FC = () => {
   const handleClick = async (): Promise<void> => {
     const user = await firebaseService.signInWithGoogle();
 
-    if (user && userContext.setUser) {
-      userContext.setUser({ name: user.uid });
+    if (user) {
+      userContext?.setValues?.({ user: { name: user.uid } });
     }
   };
 

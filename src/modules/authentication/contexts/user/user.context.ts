@@ -4,12 +4,14 @@ export type User = {
   name: string;
 };
 
-export type UserContext = {
+export type UserContextValues = {
   user: User | null;
-  setUser: null | ((user: User) => void);
+};
+
+export type UserContext = UserContextValues & {
+  setValues?: (values: Partial<UserContextValues>) => void;
 };
 
 export const UserContext = React.createContext<UserContext>({
   user: null,
-  setUser: null,
 });
