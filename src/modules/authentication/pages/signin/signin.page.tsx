@@ -2,9 +2,9 @@ import React from 'react';
 
 import { Box, Grid, Typography } from '@material-ui/core';
 
+import { Logo } from 'shared/assets';
 import { VerticalCenter } from 'shared/components';
 
-import { SyncIllustration } from '../../assets/illustrations';
 import {
   FacebookAuthButton,
   GoogleAuthButton,
@@ -18,7 +18,7 @@ export const SigninPage: React.FC = () => {
     <VerticalCenter>
       <VerticalCenter.Item>
         <Grid container justify="center">
-          <SyncIllustration />
+          <Logo />
         </Grid>
       </VerticalCenter.Item>
       <VerticalCenter.Item>
