@@ -9,34 +9,32 @@ import {
   FacebookAuthButton,
   GoogleAuthButton,
 } from '../../components/social-auth-buttons';
-import { UserContext } from '../../contexts';
 
-export const SigninPage: React.FC = () => {
-  const userContext = React.useContext(UserContext);
-
-  return (
-    <VerticalCenter>
-      <VerticalCenter.Item>
-        <Grid container justify="center">
-          <Logo />
-        </Grid>
-      </VerticalCenter.Item>
-      <VerticalCenter.Item>
-        <Typography align="center" variant="subtitle2">
-          Use your registered account to enable real-time data synchronization.
-        </Typography>
-        <Typography align="center" variant="subtitle2">
-          <strong>User:</strong> {userContext.user?.name || 'none'}
-        </Typography>
-      </VerticalCenter.Item>
-      <VerticalCenter.Item>
-        <Box my={2}>
-          <GoogleAuthButton />
-        </Box>
-        <Box my={2}>
-          <FacebookAuthButton />
-        </Box>
-      </VerticalCenter.Item>
-    </VerticalCenter>
-  );
-};
+export const SigninPage: React.FC = () => (
+  <VerticalCenter>
+    <VerticalCenter.Item>
+      <Grid container justify="center">
+        <Logo />
+      </Grid>
+    </VerticalCenter.Item>
+    <VerticalCenter.Item>
+      <Typography align="center" variant="subtitle2">
+        Welcome to Peraco!
+      </Typography>
+    </VerticalCenter.Item>
+    <VerticalCenter.Item>
+      <Typography align="center" variant="subtitle1">
+        Registering an account will let you access the app across multiple
+        devices.
+      </Typography>
+    </VerticalCenter.Item>
+    <VerticalCenter.Item>
+      <Box>
+        <GoogleAuthButton />
+      </Box>
+      <Box my={2}>
+        <FacebookAuthButton />
+      </Box>
+    </VerticalCenter.Item>
+  </VerticalCenter>
+);
