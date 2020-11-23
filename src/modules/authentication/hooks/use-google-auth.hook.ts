@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { FirebaseService } from 'shared/services/firebase';
+import { AppContext } from 'modules/app/contexts';
 
 import { UserContext } from '../contexts';
 
@@ -9,6 +10,7 @@ type UseGoogleAuth = () => {
 };
 
 export const useGoogleAuth: UseGoogleAuth = () => {
+  const appContext = React.useContext(AppContext);
   const userContext = React.useContext(UserContext);
   const firebaseService = FirebaseService.getInstance();
 
@@ -18,16 +20,22 @@ export const useGoogleAuth: UseGoogleAuth = () => {
       message: 'Waiting for response...',
     });
 
-    const user = await firebaseService.signInWithGoogle();
+    try {
+      const user = await firebaseService.signInWithGoogle();
 
-    if (!user) {
-      return userContext.setValues({ authenticating: false });
+      if (!user) {
+        return;
+      }
+
+      userContext.setValues({
+        authenticating: false,
+        user: { name: user.uid },
+      });
+    } catch (e) {
+      appContext.enqueueErrorMessage(e.message);
     }
 
-    userContext.setValues({
-      authenticating: false,
-      user: { name: user.uid },
-    });
+    userContext.setValues({ authenticating: false });
   };
 
   return { signInWithGoogle };

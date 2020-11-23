@@ -34,7 +34,13 @@ export class FirebaseService {
     } catch (e) {
       console.error('google auth error', e);
 
-      return null;
+      let { message } = e;
+
+      if (e.code === 'auth/popup-closed-by-user') {
+        message = 'Authentication was cancelled.';
+      }
+
+      throw new Error(message);
     }
   }
 }
