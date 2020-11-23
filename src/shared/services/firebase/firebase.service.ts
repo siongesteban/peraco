@@ -1,7 +1,13 @@
 import { container, inject, injectable } from 'tsyringe';
 import firebase from 'firebase/app';
 
-import { googleAuthProvider, FIREBASE_CLIENT_TOKEN } from './firebase.client';
+import { AuthProvider } from 'shared/types';
+
+import {
+  facebookAuthProvider,
+  googleAuthProvider,
+  FIREBASE_CLIENT_TOKEN,
+} from './firebase.client';
 
 @injectable()
 export class FirebaseService {
@@ -22,11 +28,16 @@ export class FirebaseService {
     });
   }
 
-  public async signInWithGoogle(): Promise<firebase.User | null> {
+  public async signIn(params: {
+    with: AuthProvider;
+  }): Promise<firebase.User | null> {
+    const authProvider =
+      params.with === 'google' ? googleAuthProvider : facebookAuthProvider;
+
     try {
       const result = await this.firebaseClient
         .auth()
-        .signInWithPopup(googleAuthProvider);
+        .signInWithPopup(authProvider);
 
       console.log('google auth result', result);
 

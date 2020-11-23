@@ -6,6 +6,9 @@ import { firebaseConfig } from './firebase.config';
 
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
+export const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+facebookAuthProvider.setCustomParameters({ display: 'popup' });
+
 export const FIREBASE_CLIENT_TOKEN = 'FIREBASE_CLIENT';
 
 container.register(FIREBASE_CLIENT_TOKEN, {

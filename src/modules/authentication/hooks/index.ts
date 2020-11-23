@@ -1,1 +1,1 @@
-export * from './use-google-auth.hook';
+export * from './use-auth.hook';
