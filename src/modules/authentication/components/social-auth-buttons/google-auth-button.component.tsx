@@ -3,13 +3,13 @@ import React from 'react';
 import { grey } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { FirebaseService } from 'shared/services/firebase/firebase.service';
+import { FirebaseService } from 'shared/services/firebase';
 
 import { ReactComponent as GoogleLogo } from '../../assets/icons/google-logo.icon.svg';
 import { UserContext } from '../../contexts';
 import { SocialAuthButton } from './social-auth-button.component';
 
-export const useStyles = makeStyles({
+const useStyles = makeStyles({
   root: {
     background: '#fff',
     border: `1px solid ${grey[300]}`,
