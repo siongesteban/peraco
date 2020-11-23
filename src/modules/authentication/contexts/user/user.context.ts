@@ -9,10 +9,13 @@ export type UserContextValues = {
   user: User | null;
 };
 
-export type UserContext = UserContextValues & {
-  setValues?: (values: Partial<UserContextValues>) => void;
+export type UserContextMethods = {
+  setValues: (values: Partial<UserContextValues>) => void;
 };
+
+export type UserContext = UserContextValues & UserContextMethods;
 
 export const UserContext = React.createContext<UserContext>({
   user: null,
+  setValues: (values) => values,
 });
