@@ -31,9 +31,8 @@ export const SigninPage: React.FC = () => {
         </Typography>
       </VerticalCenter.Item>
       <VerticalCenter.Item>
-        <Typography align="center" variant="subtitle1">
-          Registering an account will let you access the app across multiple
-          devices.
+        <Typography align="center" variant="subtitle2">
+          Choose between the two options below to continue.
         </Typography>
       </VerticalCenter.Item>
       <VerticalCenter.Item>
@@ -43,6 +42,12 @@ export const SigninPage: React.FC = () => {
         <Box my={2}>
           <FacebookAuthButton />
         </Box>
+      </VerticalCenter.Item>
+      <VerticalCenter.Item>
+        <Typography align="center" variant="subtitle1">
+          Using an account, you will be able to access your data across multiple
+          devices.
+        </Typography>
       </VerticalCenter.Item>
     </VerticalCenter>
   );
