@@ -15,7 +15,7 @@ export const SigninPage: React.FC = () => {
   const userContext = React.useContext(UserContext);
 
   if (userContext.authenticating) {
-    return <PageLoader />;
+    return <PageLoader message={userContext.message} />;
   }
 
   return (

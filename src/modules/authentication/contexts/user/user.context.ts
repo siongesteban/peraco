@@ -6,6 +6,7 @@ export type User = {
 
 export type UserContextValues = {
   authenticating?: boolean;
+  message?: string;
   user: User | null;
 };
 
