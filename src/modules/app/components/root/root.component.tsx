@@ -4,10 +4,10 @@ import { SnackbarProvider } from 'notistack';
 import { CssBaseline } from '@material-ui/core';
 
 import { UserProvider } from 'modules/authentication/components';
-import { SigninPage } from 'modules/authentication/pages';
 import { Theme } from 'modules/theme/components';
 
 import { AppProvider } from '../app-provider';
+import { Router } from '../router';
 
 export const Root: React.FC = () => (
   <React.StrictMode>
@@ -18,7 +18,7 @@ export const Root: React.FC = () => (
       >
         <AppProvider>
           <UserProvider>
-            <SigninPage />
+            <Router />
           </UserProvider>
         </AppProvider>
       </SnackbarProvider>
