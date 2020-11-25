@@ -20,11 +20,11 @@ export class FirebaseService {
     return container.resolve(FirebaseService);
   }
 
-  public async authenticate(
-    callback: (user: firebase.User | null) => void,
-  ): Promise<void> {
-    this.firebaseClient.auth().onAuthStateChanged((user) => {
-      callback(user);
+  public async authenticate(): Promise<firebase.User | null> {
+    return new Promise((resolve) => {
+      this.firebaseClient.auth().onAuthStateChanged((user) => {
+        resolve(user);
+      });
     });
   }
 
@@ -53,5 +53,9 @@ export class FirebaseService {
 
       throw new Error(message);
     }
+  }
+
+  public signOut(): void {
+    this.firebaseClient.auth().signOut();
   }
 }

@@ -1,9 +1,29 @@
 import * as React from 'react';
 import { BrowserRouter, Navigate, Routes } from 'react-router-dom';
 
+import { useSignOut } from 'modules/authentication/hooks';
 import { SigninPage } from 'modules/authentication/pages';
 
 import { AppRoute, AppRouteProps } from './app-route.component';
+
+const Index: React.FC = () => {
+  const signOut = useSignOut();
+
+  return (
+    <div>
+      Hey there!
+      <div>
+        <button
+          onClick={(): void => {
+            signOut();
+          }}
+        >
+          Sign Out
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const routes: AppRouteProps[] = [
   {
@@ -14,7 +34,7 @@ const routes: AppRouteProps[] = [
   {
     path: '/',
     isPrivate: true,
-    element: <>You are in the home page!</>,
+    element: <Index />,
   },
   {
     path: '*',

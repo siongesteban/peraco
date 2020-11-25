@@ -4,7 +4,7 @@ import { grey } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { ReactComponent as GoogleLogo } from '../../assets/icons/google-logo.icon.svg';
-import { useAuth } from '../../hooks';
+import { useSignIn } from '../../hooks';
 import { SocialAuthButton } from './social-auth-button.component';
 
 const useStyles = makeStyles({
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
 export const GoogleAuthButton: React.FC = () => {
   const { root } = useStyles();
-  const { signIn } = useAuth('google');
+  const signIn = useSignIn('google');
 
   const handleClick = (): void => {
     signIn();

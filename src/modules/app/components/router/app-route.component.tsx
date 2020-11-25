@@ -4,6 +4,7 @@ import { RouteProps } from 'react-router';
 
 import { PageLoader } from 'shared/components';
 import { UserContext } from 'modules/authentication/contexts';
+import { useAuthenticate } from 'modules/authentication/hooks';
 
 export type AppRouteProps = {
   isPrivate?: boolean;
@@ -16,6 +17,11 @@ export const AppRoute: React.FC<AppRouteProps> = ({
   ...restProps
 }) => {
   const { isAuthenticating, isAuthenticated } = React.useContext(UserContext);
+  const authenticate = useAuthenticate();
+
+  React.useEffect(() => {
+    authenticate();
+  }, []);
 
   if (isAuthenticating) {
     return <PageLoader />;
