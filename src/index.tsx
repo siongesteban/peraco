@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Root } from 'modules/app/components';

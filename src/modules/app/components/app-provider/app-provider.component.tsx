@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { useSnackbar } from 'notistack';
 
 import { Button } from '@material-ui/core';
