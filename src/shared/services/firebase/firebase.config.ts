@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { object, string } from 'yup';
 
 type FirebaseConfig = {
