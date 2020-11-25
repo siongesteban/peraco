@@ -6,18 +6,23 @@ import { UserContext, UserContextValues } from '../../contexts';
 
 export const UserProvider: React.FC = ({ children }) => {
   const [values, setValues] = React.useState<UserContextValues>({
-    authenticating: true,
+    isAuthenticating: true,
     user: null,
+    isAuthenticated: false,
   });
   const firebaseService = FirebaseService.getInstance();
 
   React.useEffect(() => {
     firebaseService.authenticate((user) => {
       if (user) {
-        setValues((prev) => ({ ...prev, user: { name: user.uid } }));
+        setValues((prev) => ({
+          ...prev,
+          user: { name: user.uid },
+          isAuthenticated: true,
+        }));
       }
 
-      setValues((prev) => ({ ...prev, authenticating: false }));
+      setValues((prev) => ({ ...prev, isAuthenticating: false }));
     });
   }, []);
 

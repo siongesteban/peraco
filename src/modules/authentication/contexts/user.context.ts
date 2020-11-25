@@ -5,7 +5,8 @@ export type User = {
 };
 
 export type UserContextValues = {
-  authenticating?: boolean;
+  isAuthenticating?: boolean;
+  isAuthenticated: boolean;
   message?: string;
   user: User | null;
 };
@@ -18,5 +19,6 @@ export type UserContext = UserContextValues & UserContextMethods;
 
 export const UserContext = React.createContext<UserContext>({
   user: null,
+  isAuthenticated: false,
   setValues: (values) => values,
 });

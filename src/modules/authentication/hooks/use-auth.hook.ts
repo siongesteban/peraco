@@ -19,7 +19,7 @@ export const useAuth: UseAuth = (provider) => {
 
   const signIn = async (): Promise<void> => {
     userContext.setValues({
-      authenticating: true,
+      isAuthenticating: true,
       message: 'Waiting for response...',
     });
 
@@ -28,14 +28,15 @@ export const useAuth: UseAuth = (provider) => {
 
       if (user) {
         userContext.setValues({
-          authenticating: false,
           user: { name: user.uid },
+          isAuthenticating: false,
+          isAuthenticated: true,
         });
       }
     } catch (e) {
       appContext.enqueueErrorMessage(e.message);
     } finally {
-      userContext.setValues({ authenticating: false });
+      userContext.setValues({ isAuthenticating: false });
     }
   };
 

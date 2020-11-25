@@ -14,7 +14,7 @@ export const PageLoader: React.FC<PageLoaderProps> = ({ message }) => (
     <VerticalCenter.Item>
       <LoaderIcon height={72} />
       <Typography align="center" variant="subtitle1">
-        {message || 'Just a moment.'}
+        {message || 'Just a moment...'}
       </Typography>
     </VerticalCenter.Item>
   </VerticalCenter>
