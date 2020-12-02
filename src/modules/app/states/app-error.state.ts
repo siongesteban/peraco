@@ -12,7 +12,9 @@ type UseAppErrorAction = () => {
   setAppError: (update: SetStateAction<AppErrorAtom>) => void | Promise<void>;
 };
 
-const appErrorAtom = atom<AppErrorAtom>(null);
+export const appErrorAtom = atom<AppErrorAtom>(null);
+
+appErrorAtom.debugLabel = '@peraco/APP_ERROR';
 
 export const useAppErrorState: UseAppErrorState = () =>
   useAtom(appErrorAtom)[0];

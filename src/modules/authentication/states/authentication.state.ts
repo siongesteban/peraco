@@ -21,10 +21,12 @@ type UseAuthenticationAction = () => {
   ) => void | Promise<void>;
 };
 
-const authenticationAtom = atomWithReset<AuthenticationAtom>({
+export const authenticationAtom = atomWithReset<AuthenticationAtom>({
   message: null,
   user: null,
 });
+
+authenticationAtom.debugLabel = '@peraco/AUTHENTICATION';
 
 export const useAuthenticationState: UseAuthenticationState = () => {
   const [authentication] = useAtom(authenticationAtom);
