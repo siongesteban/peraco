@@ -9,13 +9,13 @@ import {
   FacebookAuthButton,
   GoogleAuthButton,
 } from '../../components/social-auth-buttons';
-import { UserContext } from '../../contexts';
+import { useAuthenticationState } from '../../states';
 
 export const SigninPage: React.FC = () => {
-  const userContext = React.useContext(UserContext);
+  const { isAuthenticating, message } = useAuthenticationState();
 
-  if (userContext.isAuthenticating) {
-    return <PageLoader message={userContext.message} />;
+  if (isAuthenticating) {
+    return <PageLoader message={message} />;
   }
 
   return (

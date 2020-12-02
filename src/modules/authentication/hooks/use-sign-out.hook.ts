@@ -1,14 +1,13 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { FirebaseService } from 'shared/services/firebase';
-import { AppContext } from 'modules/app/contexts';
+import { useAppErrorAction } from 'modules/app/states';
 
-import { UserContext } from '../contexts';
+import { useAuthenticationAction } from '../states';
 
 export const useSignOut = (): (() => Promise<void>) => {
-  const appContext = useContext(AppContext);
-  const userContext = useContext(UserContext);
+  const { setAppError } = useAppErrorAction();
+  const { setAuthenticationValues } = useAuthenticationAction();
 
   const navigate = useNavigate();
 
@@ -18,14 +17,13 @@ export const useSignOut = (): (() => Promise<void>) => {
     try {
       await firebaseService.signOut();
 
-      userContext.setValues({
+      setAuthenticationValues({
         user: null,
-        isAuthenticated: false,
       });
 
       navigate('/welcome');
     } catch (e) {
-      appContext.enqueueErrorMessage(e.message);
+      setAppError({ message: e.message, error: e });
     }
   };
 

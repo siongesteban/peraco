@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Routes } from 'react-router-dom';
 import { useSignOut } from 'modules/authentication/hooks';
 import { SigninPage } from 'modules/authentication/pages';
 
+import { useAppErrorEffect } from '../../hooks';
 import { AppRoute, AppRouteProps } from './app-route.component';
 
 const Index: React.FC = () => {
@@ -43,6 +44,8 @@ const routes: AppRouteProps[] = [
 ];
 
 export const Router: React.FC = () => {
+  useAppErrorEffect();
+
   const renderRoutes = (): React.ReactNode =>
     routes.map((route) => <AppRoute key={route.path} {...route} />);
 

@@ -3,8 +3,8 @@ import { Route, Navigate } from 'react-router-dom';
 import { RouteProps } from 'react-router';
 
 import { PageLoader } from 'shared/components';
-import { UserContext } from 'modules/authentication/contexts';
-import { useAuthenticate } from 'modules/authentication/hooks';
+import { useAuthenticateEffect } from 'modules/authentication/hooks';
+import { useAuthenticationState } from 'modules/authentication/states';
 
 export type AppRouteProps = {
   isPrivate?: boolean;
@@ -16,12 +16,9 @@ export const AppRoute: React.FC<AppRouteProps> = ({
   isGuestOnly,
   ...restProps
 }) => {
-  const { isAuthenticating, isAuthenticated } = React.useContext(UserContext);
-  const authenticate = useAuthenticate();
+  const { isAuthenticating, isAuthenticated } = useAuthenticationState();
 
-  React.useEffect(() => {
-    authenticate();
-  }, []);
+  useAuthenticateEffect();
 
   if (isAuthenticating) {
     return <PageLoader />;

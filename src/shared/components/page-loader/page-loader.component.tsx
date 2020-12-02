@@ -6,7 +6,7 @@ import { LoaderIcon } from 'shared/assets';
 import { VerticalCenter } from 'shared/components';
 
 export type PageLoaderProps = Readonly<{
-  message?: string;
+  message?: string | null;
 }>;
 
 export const PageLoader: React.FC<PageLoaderProps> = ({ message }) => (

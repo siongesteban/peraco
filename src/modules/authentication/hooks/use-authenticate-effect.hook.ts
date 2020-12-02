@@ -1,39 +1,29 @@
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import { FirebaseService } from 'shared/services/firebase';
-import { AuthProvider } from 'shared/types';
 import { useAppErrorAction } from 'modules/app/states';
 
 import { useAuthenticationAction } from '../states';
 
-export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
+export const useAuthenticateEffect = (): void => {
   const { setAppError } = useAppErrorAction();
   const { setAuthenticationValues } = useAuthenticationAction();
 
-  const navigate = useNavigate();
-
   const firebaseService = FirebaseService.getInstance();
 
-  const signIn = async (): Promise<void> => {
+  const authenticate = async (): Promise<void> => {
     setAuthenticationValues({
       isAuthenticating: true,
       message: 'Waiting for response...',
     });
 
     try {
-      if (!provider) {
-        throw new Error('Auth provider is not provided.');
-      }
-
-      const user = await firebaseService.signIn({ with: provider });
+      const user = await firebaseService.authenticate();
 
       if (user) {
         setAuthenticationValues({
           user: { name: user.uid },
-          isAuthenticating: false,
         });
-
-        navigate('/');
       }
     } catch (e) {
       setAppError({ message: e.message, error: e });
@@ -42,5 +32,7 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
     }
   };
 
-  return signIn;
+  useEffect(() => {
+    authenticate();
+  }, []);
 };
