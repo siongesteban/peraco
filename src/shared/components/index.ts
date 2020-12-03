@@ -1,3 +1,3 @@
 export * from './page-loader';
 export * from './page-title';
-export * from './wrappers';
+export * from './vertical-center';

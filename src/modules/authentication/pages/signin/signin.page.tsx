@@ -5,10 +5,7 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { Logo } from 'shared/assets';
 import { PageLoader, PageTitle, VerticalCenter } from 'shared/components';
 
-import {
-  FacebookAuthButton,
-  GoogleAuthButton,
-} from '../../components/social-auth-buttons';
+import { FacebookAuthButton, GoogleAuthButton } from '../../components';
 import { useAuthenticationState } from '../../states';
 
 export const SigninPage: React.FC = () => {

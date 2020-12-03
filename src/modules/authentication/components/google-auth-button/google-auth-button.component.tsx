@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { ReactComponent as GoogleLogo } from '../../assets/icons/google-logo.icon.svg';
 import { useSignIn } from '../../hooks';
-import { SocialAuthButton } from './social-auth-button.component';
+import { SocialAuthButton } from '../social-auth-button';
 
 const useStyles = makeStyles({
   root: {

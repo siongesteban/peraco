@@ -3,7 +3,14 @@ import * as React from 'react';
 import { Button } from '@material-ui/core';
 
 import { SvgElement } from 'shared/types';
-import { SocialAuthButtonIcon } from './social-auth-button-icon.component';
+
+type SocialAuthButtonIconProps = Readonly<{
+  icon: SvgElement;
+}>;
+
+const SocialAuthButtonIcon: React.FC<SocialAuthButtonIconProps> = ({
+  icon: Icon,
+}) => <Icon height={24} style={{ marginRight: 5 }} />;
 
 export type SocialAuthButtonProps = Readonly<{
   className?: string;

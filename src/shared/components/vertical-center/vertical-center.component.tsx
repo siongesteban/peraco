@@ -1,16 +1,22 @@
 import * as React from 'react';
 
 import { Container, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-import { VerticalCenterItem } from './components';
-import { useVerticalCenterStyles } from './vertical-center.styles';
+import { VerticalCenterItem } from './vertical-center-item.component';
+
+const useStyles = makeStyles({
+  fullHeight: {
+    minHeight: '100%',
+  },
+});
 
 interface VerticalCenter extends React.FC {
   Item: typeof VerticalCenterItem;
 }
 
 export const VerticalCenter: VerticalCenter = ({ children }) => {
-  const { fullHeight } = useVerticalCenterStyles();
+  const { fullHeight } = useStyles();
 
   return (
     <Container fixed className={fullHeight}>
