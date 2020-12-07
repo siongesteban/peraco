@@ -1,14 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
 import { FirebaseService } from 'shared/services/firebase';
-import { useAppErrorAction } from 'modules/app/states';
+import { useSnackbar } from 'modules/app/hooks';
 
 import { useAuthenticationAction } from '../states';
 
 export const useSignOut = (): (() => Promise<void>) => {
-  const { setAppError } = useAppErrorAction();
+  const { enqueueSnackbar } = useSnackbar();
   const { setAuthenticationValues } = useAuthenticationAction();
-
   const navigate = useNavigate();
 
   const firebaseService = FirebaseService.getInstance();
@@ -23,7 +22,7 @@ export const useSignOut = (): (() => Promise<void>) => {
 
       navigate('/welcome');
     } catch (e) {
-      setAppError({ message: e.message, error: e });
+      enqueueSnackbar({ message: e.message, variant: 'error' });
     }
   };
 

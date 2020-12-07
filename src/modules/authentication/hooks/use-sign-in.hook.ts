@@ -2,14 +2,13 @@ import { useNavigate } from 'react-router-dom';
 
 import { FirebaseService } from 'shared/services/firebase';
 import { AuthProvider } from 'shared/types';
-import { useAppErrorAction } from 'modules/app/states';
+import { useSnackbar } from 'modules/app/hooks';
 
 import { useAuthenticationAction } from '../states';
 
 export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
-  const { setAppError } = useAppErrorAction();
   const { setAuthenticationValues } = useAuthenticationAction();
-
+  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
   const firebaseService = FirebaseService.getInstance();
@@ -36,7 +35,7 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
         navigate('/');
       }
     } catch (e) {
-      setAppError({ message: e.message, error: e });
+      enqueueSnackbar({ message: e.message, variant: 'error' });
     } finally {
       setAuthenticationValues({ isAuthenticating: false });
     }

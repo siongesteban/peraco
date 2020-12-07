@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 
 import { FirebaseService } from 'shared/services/firebase';
-import { useAppErrorAction } from 'modules/app/states';
+import { useSnackbar } from 'modules/app/hooks';
 
 import { useAuthenticationAction } from '../states';
 
 export const useAuthenticateEffect = (): void => {
-  const { setAppError } = useAppErrorAction();
   const { setAuthenticationValues } = useAuthenticationAction();
+  const { enqueueSnackbar } = useSnackbar();
 
   const firebaseService = FirebaseService.getInstance();
 
@@ -26,7 +26,7 @@ export const useAuthenticateEffect = (): void => {
         });
       }
     } catch (e) {
-      setAppError({ message: e.message, error: e });
+      enqueueSnackbar({ message: e.message, variant: 'error' });
     } finally {
       setAuthenticationValues({ isAuthenticating: false });
     }
