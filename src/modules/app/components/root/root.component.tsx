@@ -4,21 +4,21 @@ import { SnackbarProvider } from 'notistack';
 
 import { CssBaseline } from '@material-ui/core';
 
-import { Theme } from 'modules/theme/components';
+import { ThemeProvider } from 'modules/theme/components';
 
 import { Router } from '../router';
 
 export const Root: React.FC = () => (
   <React.StrictMode>
     <JotaiProvider>
-      <Theme>
+      <ThemeProvider>
         <CssBaseline />
         <SnackbarProvider
           anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
         >
           <Router />
         </SnackbarProvider>
-      </Theme>
+      </ThemeProvider>
     </JotaiProvider>
   </React.StrictMode>
 );
