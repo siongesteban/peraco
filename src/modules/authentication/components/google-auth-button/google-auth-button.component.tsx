@@ -11,6 +11,9 @@ const useStyles = makeStyles({
   root: {
     background: '#fff',
     border: `1px solid ${grey[300]}`,
+    '&:hover': {
+      background: '#fff',
+    },
   },
 });
 

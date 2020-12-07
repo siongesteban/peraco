@@ -42,12 +42,6 @@ export const SigninPage: React.FC = () => {
             <FacebookAuthButton />
           </Box>
         </VerticalCenter.Item>
-        <VerticalCenter.Item>
-          <Typography align="center" variant="subtitle1">
-            Using an account, you will be able to access your data across
-            multiple devices.
-          </Typography>
-        </VerticalCenter.Item>
       </VerticalCenter>
     </>
   );

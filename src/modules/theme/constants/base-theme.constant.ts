@@ -9,22 +9,37 @@ export const BASE_THEME: ThemeOptions = {
   },
   palette: {
     primary: {
-      dark: '#cb2675',
+      // dark: '#cb2675',
+      dark: '#ea1c7f',
       light: '#f858a5',
       main: '#ea1c7f',
     },
     secondary: {
-      dark: '##1bbb77',
+      // dark: '##1bbb77',
+      dark: '#1cea93',
       light: '#5bf9b6',
       main: '#1cea93',
     },
   },
   typography: {
-    button: {
+    h6: {
       fontWeight: 700,
+    },
+    subtitle2: {
+      fontWeight: 700,
+    },
+    button: {
+      fontWeight: 800,
       letterSpacing: '0.05857em',
       textTransform: 'initial',
     },
-    fontFamily: `'IBM Plex Sans', sans-serif`,
+    fontFamily: `'Nunito', sans-serif`,
+  },
+  overrides: {
+    MuiButton: {
+      root: {
+        borderRadius: 2,
+      },
+    },
   },
 };
