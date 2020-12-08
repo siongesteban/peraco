@@ -10,7 +10,6 @@
     "@testing-library/user-event": "^7.1.2",
     "firebase": "^8.0.0",
     "history": "^5.0.0",
-    "jotai": "^0.11.2",
     "lodash": "^4.17.15",
     "notistack": "^1.0.1",
     "react": "^16.13.1",

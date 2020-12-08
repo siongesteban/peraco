@@ -4,20 +4,17 @@ import { FirebaseService } from 'shared/services/firebase';
 import { AuthProvider } from 'shared/types';
 import { useSnackbar } from 'modules/app/hooks';
 
-import { useAuthenticationAction } from '../states';
+import { useAuthenticationAction } from '../contexts';
 
 export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
-  const { setAuthenticationValues } = useAuthenticationAction();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
+  const authenticationAction = useAuthenticationAction();
 
   const firebaseService = FirebaseService.getInstance();
 
   const signIn = async (): Promise<void> => {
-    setAuthenticationValues({
-      isAuthenticating: true,
-      message: 'Waiting for response...',
-    });
+    authenticationAction.startAuthentication('Waiting for response...');
 
     try {
       if (!provider) {
@@ -26,18 +23,18 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
 
       const user = await firebaseService.signIn({ with: provider });
 
-      if (user) {
-        setAuthenticationValues({
-          user: { name: user.uid },
-          isAuthenticating: false,
-        });
-
-        navigate('/');
+      if (!user) {
+        authenticationAction.setUser(null);
+        enqueueSnackbar({ message: 'User was not found.', variant: 'error' });
+        return;
       }
+
+      authenticationAction.setUser({ name: user.uid });
+
+      navigate('/');
     } catch (e) {
+      authenticationAction.setUser(null);
       enqueueSnackbar({ message: e.message, variant: 'error' });
-    } finally {
-      setAuthenticationValues({ isAuthenticating: false });
     }
   };
 

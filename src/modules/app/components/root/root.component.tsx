@@ -1,24 +1,24 @@
 import * as React from 'react';
-import { Provider as JotaiProvider } from 'jotai';
 import { SnackbarProvider } from 'notistack';
 
 import { CssBaseline } from '@material-ui/core';
 
+import { AuthenticationProvider } from 'modules/authentication/components';
 import { ThemeProvider } from 'modules/theme/components';
 
 import { Router } from '../router';
 
 export const Root: React.FC = () => (
   <React.StrictMode>
-    <JotaiProvider>
-      <ThemeProvider>
-        <CssBaseline />
-        <SnackbarProvider
-          anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
-        >
+    <ThemeProvider>
+      <CssBaseline />
+      <SnackbarProvider
+        anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+      >
+        <AuthenticationProvider>
           <Router />
-        </SnackbarProvider>
-      </ThemeProvider>
-    </JotaiProvider>
+        </AuthenticationProvider>
+      </SnackbarProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
