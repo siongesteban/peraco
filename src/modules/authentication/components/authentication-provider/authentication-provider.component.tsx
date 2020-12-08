@@ -14,6 +14,7 @@ const useValues: UseValues = () => {
   const [state, setState] = React.useState<AuthenticationStateContext>({
     isAuthenticating: false,
     isAuthenticated: false,
+    isSigningIn: false,
     message: null,
     user: null,
   });
@@ -23,16 +24,22 @@ const useValues: UseValues = () => {
   };
 
   const action: AuthenticationActionContext = {
-    startAuthentication: (message) => {
+    startAuthentication: () => {
       updateState({
         isAuthenticating: true,
-        message: message || null,
+      });
+    },
+    startSignin: () => {
+      updateState({
+        isSigningIn: true,
+        message: 'Waiting for response...',
       });
     },
     setUser: (user) => {
       updateState({
         user,
         isAuthenticating: false,
+        isSigningIn: false,
         message: null,
         isAuthenticated: !!user,
       });

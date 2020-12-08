@@ -7,6 +7,7 @@ type User = {
 export type AuthenticationStateContext = {
   isAuthenticating: boolean;
   isAuthenticated: boolean;
+  isSigningIn: boolean;
   message: string | null;
   user: User | null;
 };
@@ -16,7 +17,8 @@ export const AuthenticationStateContext = React.createContext<
 >(undefined);
 
 export type AuthenticationActionContext = {
-  startAuthentication: (message?: string) => void;
+  startAuthentication: () => void;
+  startSignin: () => void;
   setUser: (user: User | null) => void;
 };
 

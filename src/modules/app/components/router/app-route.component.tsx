@@ -5,6 +5,8 @@ import { RouteProps } from 'react-router';
 import { PageLoader } from 'shared/components';
 import { useAuthenticationState } from 'modules/authentication/contexts';
 
+import { SplashScreen } from '../splash-screen';
+
 export type AppRouteProps = {
   isPrivate?: boolean;
   isGuestOnly?: boolean;
@@ -18,11 +20,16 @@ export const AppRoute: React.FC<AppRouteProps> = ({
   const {
     isAuthenticated,
     isAuthenticating,
+    isSigningIn,
     message,
   } = useAuthenticationState();
 
-  if (isAuthenticating) {
+  if (isSigningIn) {
     return <PageLoader message={message} />;
+  }
+
+  if (isAuthenticating) {
+    return <SplashScreen />;
   }
 
   if (isPrivate && !isAuthenticated) {

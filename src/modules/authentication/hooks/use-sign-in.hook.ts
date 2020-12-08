@@ -14,7 +14,7 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
   const firebaseService = FirebaseService.getInstance();
 
   const signIn = async (): Promise<void> => {
-    authenticationAction.startAuthentication('Waiting for response...');
+    authenticationAction.startSignin();
 
     try {
       if (!provider) {
