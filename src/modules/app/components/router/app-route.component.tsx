@@ -33,7 +33,7 @@ export const AppRoute: React.FC<AppRouteProps> = ({
   }
 
   if (isPrivate && !isAuthenticated) {
-    return <Navigate to="welcome" />;
+    return <Navigate to="/welcome" />;
   }
 
   if (isGuestOnly && isAuthenticated) {

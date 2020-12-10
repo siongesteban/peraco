@@ -9,7 +9,7 @@ export const SplashScreen: React.FC = () => (
   <VerticalCenter>
     <VerticalCenter.Item>
       <Grid container justify="center">
-        <Logo role="img" height={32} />
+        <Logo aria-label="splash-screen-logo" role="img" height={32} />
       </Grid>
     </VerticalCenter.Item>
   </VerticalCenter>

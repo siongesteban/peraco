@@ -6,24 +6,25 @@ import {
 } from '../../contexts';
 
 type UseValues = (
-  initialValues?: AuthenticationStateContext,
+  initialValues?: Partial<AuthenticationStateContext>,
 ) => {
   state: AuthenticationStateContext;
   action: AuthenticationActionContext;
 };
 
-const useValues: UseValues = (
-  initialValues = {
-    isAuthenticating: false,
-    isAuthenticated: false,
-    isSigningIn: false,
-    message: null,
-    user: null,
-  },
-) => {
-  const [state, setState] = React.useState<AuthenticationStateContext>(
-    initialValues,
-  );
+const initialValues: AuthenticationStateContext = {
+  isAuthenticating: false,
+  isAuthenticated: false,
+  isSigningIn: false,
+  message: null,
+  user: null,
+};
+
+const useValues: UseValues = (customValues) => {
+  const [state, setState] = React.useState<AuthenticationStateContext>({
+    ...initialValues,
+    ...customValues,
+  });
 
   const updateState = (values: Partial<AuthenticationStateContext>): void => {
     setState((prev) => ({ ...prev, ...values }));
@@ -56,7 +57,7 @@ const useValues: UseValues = (
 };
 
 export type AuthenticationProviderProps = {
-  value?: AuthenticationStateContext;
+  value?: Partial<AuthenticationStateContext>;
 };
 
 export const AuthenticationProvider: React.FC<AuthenticationProviderProps> = ({

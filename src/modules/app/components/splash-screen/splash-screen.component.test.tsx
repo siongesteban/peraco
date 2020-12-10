@@ -6,5 +6,7 @@ import { SplashScreen } from './splash-screen.component';
 test('Displays logo', () => {
   render(<SplashScreen />);
 
-  expect(screen.getByRole('img')).toBeInTheDocument();
+  expect(
+    screen.getByRole('img', { name: /splash-screen-logo/ }),
+  ).toBeInTheDocument();
 });

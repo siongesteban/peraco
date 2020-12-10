@@ -5,7 +5,6 @@ import { PageLoader } from './page-loader.component';
 
 test('Displays default message', () => {
   render(<PageLoader />);
-
   expect(screen.getByRole('heading')).toHaveTextContent('Just a moment...');
 });
 
