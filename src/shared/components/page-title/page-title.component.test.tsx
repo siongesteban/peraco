@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, waitForDomChange } from '@testing-library/react';
+import { render, waitForDomChange } from 'test-utils';
 
 import { PageTitle } from './page-title.component';
 
