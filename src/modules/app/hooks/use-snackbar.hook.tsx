@@ -3,7 +3,7 @@ import { useSnackbar as useNotistack, VariantType } from 'notistack';
 
 import { Button } from '@material-ui/core';
 
-type EnqueueSnackbar = (params: {
+export type EnqueueSnackbar = (params: {
   message: string;
   variant: VariantType;
 }) => void;

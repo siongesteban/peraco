@@ -1,6 +1,8 @@
 import 'reflect-metadata';
 import * as React from 'react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { SnackbarProvider } from 'notistack';
 
 import {
   AuthenticationProvider,
@@ -18,9 +20,11 @@ const customRender = (
   const { authentication, ...restOptions } = options || {};
 
   const Wrapper: React.FC = ({ children }) => (
-    <AuthenticationProvider {...authentication}>
-      {children}
-    </AuthenticationProvider>
+    <SnackbarProvider>
+      <AuthenticationProvider {...authentication}>
+        {children}
+      </AuthenticationProvider>
+    </SnackbarProvider>
   );
 
   return render(ui, { ...restOptions, wrapper: Wrapper });
@@ -28,4 +32,4 @@ const customRender = (
 
 export * from '@testing-library/react';
 
-export { customRender as render };
+export { customRender as render, userEvent };

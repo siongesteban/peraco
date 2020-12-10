@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, waitForDomChange } from 'test-utils';
+import { render, waitFor } from 'test-utils';
 
 import { PageTitle } from './page-title.component';
 
@@ -8,9 +8,9 @@ test('Shows the page title with the right suffix', async () => {
 
   render(<PageTitle title={title} />);
 
-  await waitForDomChange();
-
-  expect(document.querySelector('title')).toHaveTextContent(
-    `${title} – Peraco`,
+  await waitFor(() =>
+    expect(document.querySelector('title')).toHaveTextContent(
+      `${title} – Peraco`,
+    ),
   );
 });
