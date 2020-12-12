@@ -39,12 +39,8 @@ export class FirebaseService {
         .auth()
         .signInWithPopup(authProvider);
 
-      console.log('google auth result', result);
-
       return result.user;
     } catch (e) {
-      console.error('google auth error', e);
-
       let { message } = e;
 
       if (e.code === 'auth/popup-closed-by-user') {
