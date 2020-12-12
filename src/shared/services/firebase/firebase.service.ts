@@ -55,7 +55,7 @@ export class FirebaseService {
     }
   }
 
-  public signOut(): void {
-    this.firebaseClient.auth().signOut();
+  public async signOut(): Promise<void> {
+    await this.firebaseClient.auth().signOut();
   }
 }
