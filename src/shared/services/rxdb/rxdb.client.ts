@@ -1,0 +1,30 @@
+import { createRxDatabase, addRxPlugin } from 'rxdb';
+import pouchDbAdapterIdb from 'pouchdb-adapter-idb';
+import { container } from 'tsyringe';
+
+import { UserCollection, userSchema } from './schemas';
+
+type DbCollections = {
+  user: UserCollection;
+};
+
+addRxPlugin(pouchDbAdapterIdb);
+
+export const DB_TOKEN = 'DB';
+
+export const createDb = async (): Promise<void> => {
+  const db = await createRxDatabase<DbCollections>({
+    name: 'peraco',
+    adapter: 'idb',
+  });
+
+  db.addCollections({
+    user: {
+      schema: userSchema,
+    },
+  });
+
+  container.register(DB_TOKEN, {
+    useValue: db,
+  });
+};
