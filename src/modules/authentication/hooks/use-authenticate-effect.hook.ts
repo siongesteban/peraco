@@ -1,25 +1,23 @@
 import { useEffect } from 'react';
 
-import { FirebaseService } from 'shared/services/firebase';
-import { useSnackbar } from 'modules/app/hooks';
+import { UserService } from 'shared/services/rxdb';
 
 import { useAuthenticationAction } from '../contexts';
 
 export const useAuthenticateEffect = (): void => {
-  const { enqueueSnackbar } = useSnackbar();
   const authenticationAction = useAuthenticationAction();
 
-  const firebaseService = FirebaseService.getInstance();
+  const userService = UserService.getInstance();
 
   const authenticate = async (): Promise<void> => {
     authenticationAction.startAuthentication();
 
     try {
-      const user = await firebaseService.authenticate();
+      const user = await userService.authenticate();
 
-      authenticationAction.setUser(user ? { name: user.uid } : null);
+      authenticationAction.setUser(user);
     } catch (e) {
-      enqueueSnackbar({ message: e.message, variant: 'error' });
+      authenticationAction.setUser(null);
     }
   };
 

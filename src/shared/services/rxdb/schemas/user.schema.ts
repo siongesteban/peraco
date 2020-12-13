@@ -4,9 +4,9 @@ type DocType = {
   id: string;
 };
 
-type UserDocType = DocType & {
-  firstName: string;
-  lastName: string;
+export type UserDocType = DocType & {
+  name: string;
+  email: string;
   authProvider: 'facebook' | 'google';
   authId: string;
 };
@@ -24,10 +24,10 @@ export const userSchema: RxJsonSchema<UserDocType> = {
       type: 'string',
       primary: true,
     },
-    firstName: {
+    name: {
       type: 'string',
     },
-    lastName: {
+    email: {
       type: 'string',
     },
     authProvider: {

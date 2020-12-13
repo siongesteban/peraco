@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { FirebaseService } from 'shared/services/firebase';
+import { UserService } from 'shared/services/rxdb';
 import { AuthProvider } from 'shared/types';
 import { useSnackbar } from 'modules/app/hooks';
 
@@ -12,6 +13,7 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
   const authenticationAction = useAuthenticationAction();
 
   const firebaseService = FirebaseService.getInstance();
+  const userService = UserService.getInstance();
 
   const signIn = async (): Promise<void> => {
     authenticationAction.startSignin();
@@ -21,15 +23,28 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
         throw new Error('Auth provider is not provided.');
       }
 
-      const user = await firebaseService.signIn({ with: provider });
+      const userFromFirebase = await firebaseService.signIn({ with: provider });
 
-      if (!user) {
-        authenticationAction.setUser(null);
-        enqueueSnackbar({ message: 'User was not found.', variant: 'error' });
-        return;
+      if (!userFromFirebase) {
+        throw new Error('Something went wrong with the authentication.');
       }
 
-      authenticationAction.setUser({ name: user.uid });
+      const userFromDb = await userService.getUserByAuthId(
+        userFromFirebase.uid,
+      );
+
+      if (userFromDb) {
+        authenticationAction.setUser(userFromDb);
+      } else {
+        const newUser = await userService.createUser({
+          name: userFromFirebase.displayName as string,
+          email: userFromFirebase.email as string,
+          authId: userFromFirebase.uid,
+          authProvider: provider,
+        });
+
+        authenticationAction.setUser(newUser);
+      }
 
       navigate('/');
     } catch (e) {

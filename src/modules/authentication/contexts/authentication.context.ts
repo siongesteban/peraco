@@ -1,15 +1,13 @@
 import * as React from 'react';
 
-type User = {
-  name: string;
-};
+import { UserDocType } from 'shared/services/rxdb/schemas';
 
 export type AuthenticationStateContext = {
   isAuthenticating: boolean;
   isAuthenticated: boolean;
   isSigningIn: boolean;
   message: string | null;
-  user: User | null;
+  user: UserDocType | null;
 };
 
 export const AuthenticationStateContext = React.createContext<
@@ -19,7 +17,7 @@ export const AuthenticationStateContext = React.createContext<
 export type AuthenticationActionContext = {
   startAuthentication: () => void;
   startSignin: () => void;
-  setUser: (user: User | null) => void;
+  setUser: (user: UserDocType | null) => void;
 };
 
 export const AuthenticationActionContext = React.createContext<

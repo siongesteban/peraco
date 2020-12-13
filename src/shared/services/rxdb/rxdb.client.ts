@@ -2,11 +2,8 @@ import { createRxDatabase, addRxPlugin } from 'rxdb';
 import pouchDbAdapterIdb from 'pouchdb-adapter-idb';
 import { container } from 'tsyringe';
 
-import { UserCollection, userSchema } from './schemas';
-
-type DbCollections = {
-  user: UserCollection;
-};
+import { userSchema } from './schemas';
+import { DbCollections } from './types';
 
 addRxPlugin(pouchDbAdapterIdb);
 
