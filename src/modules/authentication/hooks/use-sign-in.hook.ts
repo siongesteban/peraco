@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-
 import { FirebaseService } from 'shared/services/firebase';
 import { UserService } from 'shared/services/rxdb';
 import { AuthProvider } from 'shared/types';
@@ -9,7 +7,6 @@ import { useAuthenticationAction } from '../contexts';
 
 export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
   const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
   const authenticationAction = useAuthenticationAction();
 
   const firebaseService = FirebaseService.getInstance();
@@ -35,18 +32,18 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
 
       if (userFromDb) {
         authenticationAction.setUser(userFromDb);
-      } else {
-        const newUser = await userService.createUser({
-          name: userFromFirebase.displayName as string,
-          email: userFromFirebase.email as string,
-          authId: userFromFirebase.uid,
-          authProvider: provider,
-        });
 
-        authenticationAction.setUser(newUser);
+        return;
       }
 
-      navigate('/');
+      const newUser = await userService.createUser({
+        name: userFromFirebase.displayName as string,
+        email: userFromFirebase.email as string,
+        authId: userFromFirebase.uid,
+        authProvider: provider,
+      });
+
+      authenticationAction.setUser(newUser);
     } catch (e) {
       authenticationAction.setUser(null);
       enqueueSnackbar({ message: e.message, variant: 'error' });
