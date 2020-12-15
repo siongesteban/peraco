@@ -21,7 +21,16 @@ const customRender = (
 
   const Wrapper: React.FC = ({ children }) => (
     <SnackbarProvider>
-      <AuthenticationProvider {...authentication}>
+      <AuthenticationProvider
+        value={{
+          isAuthenticating: false,
+          isAuthenticated: false,
+          isSigningIn: false,
+          message: null,
+          user: null,
+          ...authentication?.value,
+        }}
+      >
         {children}
       </AuthenticationProvider>
     </SnackbarProvider>
