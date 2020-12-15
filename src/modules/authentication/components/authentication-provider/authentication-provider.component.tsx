@@ -12,17 +12,13 @@ type UseValues = (
   action: AuthenticationActionContext;
 };
 
-const initialValues: AuthenticationStateContext = {
-  isAuthenticating: false,
-  isAuthenticated: false,
-  isSigningIn: false,
-  message: null,
-  user: null,
-};
-
 const useValues: UseValues = (customValues) => {
   const [state, setState] = React.useState<AuthenticationStateContext>({
-    ...initialValues,
+    isAuthenticating: true,
+    isAuthenticated: false,
+    isSigningIn: false,
+    message: null,
+    user: null,
     ...customValues,
   });
 
