@@ -1,16 +1,12 @@
-import { FirebaseService } from 'shared/services/firebase';
-import { UserService } from 'shared/services/rxdb';
 import { AuthProvider } from 'shared/types';
-import { useSnackbar } from 'modules/app/hooks';
+import { useService, useSnackbar } from 'modules/app/hooks';
 
 import { useAuthenticationAction } from '../contexts';
 
 export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
   const { enqueueSnackbar } = useSnackbar();
   const authenticationAction = useAuthenticationAction();
-
-  const firebaseService = FirebaseService.getInstance();
-  const userService = UserService.getInstance();
+  const { firebaseService, userService } = useService();
 
   const signIn = async (): Promise<void> => {
     authenticationAction.startSignin();

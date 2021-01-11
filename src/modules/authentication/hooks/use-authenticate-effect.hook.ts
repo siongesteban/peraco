@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 
-import { UserService } from 'shared/services/rxdb';
+import { useService } from 'modules/app/hooks';
 
 import { useAuthenticationAction } from '../contexts';
 
 export const useAuthenticateEffect = (): void => {
   const authenticationAction = useAuthenticationAction();
-
-  const userService = UserService.getInstance();
+  const { userService } = useService();
 
   const authenticate = async (): Promise<void> => {
     authenticationAction.startAuthentication();

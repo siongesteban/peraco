@@ -7,18 +7,21 @@ import { AuthenticationProvider } from 'modules/authentication/components';
 import { ThemeProvider } from 'modules/theme/components';
 
 import { Router } from '../router';
+import { ServiceProvider } from '../service-provider';
 
 export const Root: React.FC = () => (
   <React.StrictMode>
-    <ThemeProvider>
-      <CssBaseline />
-      <SnackbarProvider
-        anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
-      >
-        <AuthenticationProvider>
-          <Router />
-        </AuthenticationProvider>
-      </SnackbarProvider>
-    </ThemeProvider>
+    <ServiceProvider>
+      <ThemeProvider>
+        <CssBaseline />
+        <SnackbarProvider
+          anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+        >
+          <AuthenticationProvider>
+            <Router />
+          </AuthenticationProvider>
+        </SnackbarProvider>
+      </ThemeProvider>
+    </ServiceProvider>
   </React.StrictMode>
 );

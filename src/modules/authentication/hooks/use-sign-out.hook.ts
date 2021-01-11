@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { FirebaseService } from 'shared/services/firebase';
-import { useSnackbar } from 'modules/app/hooks';
+import { useService, useSnackbar } from 'modules/app/hooks';
 
 import { useAuthenticationAction } from '../contexts';
 
@@ -9,8 +8,7 @@ export const useSignOut = (): (() => Promise<void>) => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const authenticationAction = useAuthenticationAction();
-
-  const firebaseService = FirebaseService.getInstance();
+  const { firebaseService } = useService();
 
   const signOut = async (): Promise<void> => {
     try {
