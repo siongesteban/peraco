@@ -3,8 +3,8 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 import { createDb } from 'shared/services/rxdb';
-import { Root } from 'modules/app/components';
-import 'modules/app/css/app.css';
+import { Root } from 'app/root';
+import 'app/root/root.css';
 
 (async (): Promise<void> => {
   await createDb();
