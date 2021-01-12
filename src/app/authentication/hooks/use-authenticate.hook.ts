@@ -2,21 +2,21 @@ import { useEffect } from 'react';
 
 import { useService } from 'app/service';
 
-import { useAuthentication } from './use-authentication.hook';
+import { useAuthentication } from '../authentication.context';
 
 export const useAuthenticate = (): void => {
-  const { authenticationAction } = useAuthentication();
+  const { authenticationDispatch } = useAuthentication();
   const { userService } = useService();
 
   const authenticate = async (): Promise<void> => {
-    authenticationAction.startAuthentication();
+    authenticationDispatch({ type: 'START_AUTH' });
 
     try {
       const user = await userService.authenticate();
 
-      authenticationAction.setUser(user);
+      authenticationDispatch({ type: 'SET_USER', payload: { user } });
     } catch (e) {
-      authenticationAction.setUser(null);
+      authenticationDispatch({ type: 'SET_USER', payload: { user: null } });
     }
   };
 

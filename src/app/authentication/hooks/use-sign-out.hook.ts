@@ -3,19 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { useService } from 'app/service';
 import { useSnackbar } from 'app/snackbar';
 
-import { useAuthentication } from './use-authentication.hook';
+import { useAuthentication } from '../authentication.context';
 
 export const useSignOut = (): (() => Promise<void>) => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  const { authenticationAction } = useAuthentication();
+  const { authenticationDispatch } = useAuthentication();
   const { firebaseService } = useService();
 
   const signOut = async (): Promise<void> => {
     try {
       await firebaseService.signOut();
 
-      authenticationAction.setUser(null);
+      authenticationDispatch({ type: 'SET_USER', payload: { user: null } });
 
       navigate('/welcome');
     } catch (e) {

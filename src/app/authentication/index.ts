@@ -1,4 +1,4 @@
 export * from './components';
-export type { AuthenticationProviderProps } from './components';
-export { useAuthenticate, useAuthentication, useSignOut } from './hooks';
+export { useAuthenticate, useSignOut } from './hooks';
+export * from './authentication.context';
 export * from './signin.page';

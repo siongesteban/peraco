@@ -2,15 +2,15 @@ import { AuthProvider } from 'shared/types';
 import { useService } from 'app/service';
 import { useSnackbar } from 'app/snackbar';
 
-import { useAuthentication } from './use-authentication.hook';
+import { useAuthentication } from '../authentication.context';
 
 export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { authenticationAction } = useAuthentication();
+  const { authenticationDispatch } = useAuthentication();
   const { firebaseService, userService } = useService();
 
   const signIn = async (): Promise<void> => {
-    authenticationAction.startSignin();
+    authenticationDispatch({ type: 'START_SIGNIN' });
 
     try {
       if (!provider) {
@@ -28,7 +28,10 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
       );
 
       if (userFromDb) {
-        authenticationAction.setUser(userFromDb);
+        authenticationDispatch({
+          type: 'SET_USER',
+          payload: { user: userFromDb },
+        });
 
         return;
       }
@@ -40,9 +43,15 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
         authProvider: provider,
       });
 
-      authenticationAction.setUser(newUser);
+      authenticationDispatch({
+        type: 'SET_USER',
+        payload: { user: newUser },
+      });
     } catch (e) {
-      authenticationAction.setUser(null);
+      authenticationDispatch({
+        type: 'SET_USER',
+        payload: { user: null },
+      });
       enqueueSnackbar({ message: e.message, variant: 'error' });
     }
   };
