@@ -37,7 +37,7 @@ const authenticationReducer: Reducer<State, Action> = (state, action) => {
       return {
         ...state,
         isSigningIn: true,
-        message: 'Waiting for response...',
+        message: 'Signing in...',
       };
     case 'SET_USER': {
       const { user } = action.payload;
