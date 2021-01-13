@@ -48,7 +48,7 @@ export const WalletCard: React.FC<WalletCardProps> = ({
       Icon = CardIcon;
     }
 
-    return <Icon className={classes.icon} color="primary" />;
+    return <Icon className={classes.icon} color="secondary" />;
   };
 
   const renderName = (): React.ReactNode => (

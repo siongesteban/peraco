@@ -22,9 +22,10 @@ export const BASE_THEME: ThemeOptions = {
     },
     secondary: {
       // dark: '##1bbb77',
-      dark: '#1cea93',
+      // dark: '#1cea93',
+      dark: '#3be09b',
       light: '#5bf9b6',
-      main: '#1cea93',
+      main: '#3be09b',
     },
   },
   typography: {
