@@ -3,7 +3,6 @@ import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { BottomNavigation } from './bottom-navigation.component';
-import { Header } from './header.component';
 
 const useStyles = makeStyles({
   container: {
@@ -19,17 +18,12 @@ const useStyles = makeStyles({
   },
 });
 
-export type MainLayoutProps = {
-  title: string;
-};
-
-export const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
+export const Layout: React.FC = ({ children }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      <Header title={title} />
-      <div>{children}</div>
+      {children}
       <BottomNavigation />
     </div>
   );

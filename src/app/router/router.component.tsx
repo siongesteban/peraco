@@ -2,7 +2,7 @@ import * as React from 'react';
 import { BrowserRouter, Navigate, Routes } from 'react-router-dom';
 
 import { SigninPage, useAuthenticate } from 'app/authentication';
-import { WalletsPage } from 'app/wallets';
+import { MainPage } from 'app/main';
 
 import { AppRoute, AppRouteProps } from './app-route.component';
 
@@ -13,9 +13,9 @@ const routes: AppRouteProps[] = [
     element: <SigninPage />,
   },
   {
-    path: '/',
+    path: '/*',
     isPrivate: true,
-    element: <WalletsPage />,
+    element: <MainPage />,
   },
   {
     path: '*',

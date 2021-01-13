@@ -2,12 +2,15 @@ import * as React from 'react';
 
 import { Container } from '@material-ui/core';
 
-import { MainLayout } from 'app/layout';
+import { MainPageContainer } from 'app/main';
 
 export const WalletsPage: React.FC = () => (
-  <MainLayout title="Wallets">
-    <Container>
-      <p>Wallets page here...</p>
-    </Container>
-  </MainLayout>
+  <MainPageContainer>
+    <MainPageContainer.Header title="Wallets" />
+    <MainPageContainer.Content>
+      <Container>
+        <p>Wallets page here...</p>
+      </Container>
+    </MainPageContainer.Content>
+  </MainPageContainer>
 );
