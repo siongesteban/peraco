@@ -1,16 +1,14 @@
 import * as React from 'react';
 
-import { Container } from '@material-ui/core';
-
 import { MainPageContainer } from 'app/main';
+
+import { Wallets } from './wallets.component';
 
 export const WalletsPage: React.FC = () => (
   <MainPageContainer>
     <MainPageContainer.Header title="Wallets" />
-    <MainPageContainer.Content>
-      <Container>
-        <p>Wallets page here...</p>
-      </Container>
+    <MainPageContainer.Content subdued>
+      <Wallets />
     </MainPageContainer.Content>
   </MainPageContainer>
 );
