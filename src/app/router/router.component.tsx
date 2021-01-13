@@ -2,6 +2,7 @@ import * as React from 'react';
 import { BrowserRouter, Navigate, Routes } from 'react-router-dom';
 
 import { SigninPage, useAuthenticate, useSignOut } from 'app/authentication';
+import { MainLayout } from 'app/layout';
 
 import { AppRoute, AppRouteProps } from './app-route.component';
 
@@ -34,6 +35,7 @@ const routes: AppRouteProps[] = [
     path: '/',
     isPrivate: true,
     element: <Index />,
+    layout: MainLayout,
   },
   {
     path: '*',

@@ -41,5 +41,10 @@ export const BASE_THEME: ThemeOptions = {
         borderRadius: 2,
       },
     },
+    MuiBottomNavigationAction: {
+      label: {
+        fontWeight: 700,
+      },
+    },
   },
 };

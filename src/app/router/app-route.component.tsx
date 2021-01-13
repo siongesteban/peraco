@@ -10,11 +10,13 @@ import { SplashScreen } from '../splash-screen';
 export type AppRouteProps = {
   isPrivate?: boolean;
   isGuestOnly?: boolean;
+  layout?: React.FC;
 } & RouteProps;
 
 export const AppRoute: React.FC<AppRouteProps> = ({
   isPrivate,
   isGuestOnly,
+  layout: Layout,
   ...restProps
 }) => {
   const { authenticationState } = useAuthentication();
@@ -39,6 +41,12 @@ export const AppRoute: React.FC<AppRouteProps> = ({
 
   if (isGuestOnly && isAuthenticated) {
     return <Navigate to="/" />;
+  }
+
+  if (Layout) {
+    return (
+      <Route {...restProps} element={<Layout>{restProps.element}</Layout>} />
+    );
   }
 
   return <Route {...restProps} />;
