@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import { Header } from './header.component';
+import { PageContent } from 'shared/components';
 
-const Content: React.FC = ({ children }) => <div>{children}</div>;
+import { Header } from './header.component';
 
 type MainPageContainer = React.FC & {
   Header: typeof Header;
-  Content: typeof Content;
+  Content: typeof PageContent;
 };
 
 export const MainPageContainer: MainPageContainer = ({ children }) => (
@@ -14,4 +14,4 @@ export const MainPageContainer: MainPageContainer = ({ children }) => (
 );
 
 MainPageContainer.Header = Header;
-MainPageContainer.Content = Content;
+MainPageContainer.Content = PageContent;
