@@ -1,10 +1,19 @@
-import { ThemeOptions } from '@material-ui/core';
+import { ThemeOptions } from '@material-ui/core/styles';
 
 export const BASE_THEME: ThemeOptions = {
   props: {
     MuiButton: {
       disableElevation: true,
       variant: 'contained',
+    },
+    MuiButtonBase: {
+      disableRipple: true,
+    },
+    MuiCard: {
+      elevation: 1,
+    },
+    MuiTypography: {
+      color: 'textPrimary',
     },
   },
   palette: {
@@ -42,8 +51,29 @@ export const BASE_THEME: ThemeOptions = {
       },
     },
     MuiBottomNavigationAction: {
+      root: {
+        color: '#3f3d56',
+      },
       label: {
         fontWeight: 700,
+      },
+    },
+    MuiPaper: {
+      elevation1: {
+        boxShadow: '0px 3px 6px -1px rgba(0, 0, 0, 0.12)',
+      },
+    },
+    MuiCardContent: {
+      root: {
+        padding: 12,
+        '&:last-child': {
+          paddingBottom: undefined,
+        },
+      },
+    },
+    MuiTypography: {
+      colorTextPrimary: {
+        color: '#3f3d56',
       },
     },
   },
