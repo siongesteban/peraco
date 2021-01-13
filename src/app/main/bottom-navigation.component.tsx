@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   BottomNavigation as MuiBottomNavigation,
@@ -14,13 +15,17 @@ import {
 } from '@material-ui/icons';
 
 export const BottomNavigation: React.FC = () => {
-  const [value, setValue] = React.useState('wallets');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const initialValue = location.pathname.split('/')[1] || 'wallets';
+  const [value, setValue] = React.useState(initialValue);
 
   const handleChange = (
     _: React.ChangeEvent<Record<string, never>>,
     newValue: string,
   ): void => {
     setValue(newValue);
+    navigate(newValue === 'wallets' ? '/' : `/${newValue}`);
   };
 
   const items: BottomNavigationActionProps[] = [
