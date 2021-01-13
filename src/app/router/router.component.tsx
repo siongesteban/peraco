@@ -1,29 +1,10 @@
 import * as React from 'react';
 import { BrowserRouter, Navigate, Routes } from 'react-router-dom';
 
-import { SigninPage, useAuthenticate, useSignOut } from 'app/authentication';
-import { MainLayout } from 'app/layout';
+import { SigninPage, useAuthenticate } from 'app/authentication';
+import { WalletsPage } from 'app/wallets';
 
 import { AppRoute, AppRouteProps } from './app-route.component';
-
-const Index: React.FC = () => {
-  const signOut = useSignOut();
-
-  return (
-    <MainLayout title="Wallets">
-      Hey there!
-      <div>
-        <button
-          onClick={(): void => {
-            signOut();
-          }}
-        >
-          Sign Out
-        </button>
-      </div>
-    </MainLayout>
-  );
-};
 
 const routes: AppRouteProps[] = [
   {
@@ -34,7 +15,7 @@ const routes: AppRouteProps[] = [
   {
     path: '/',
     isPrivate: true,
-    element: <Index />,
+    element: <WalletsPage />,
   },
   {
     path: '*',
