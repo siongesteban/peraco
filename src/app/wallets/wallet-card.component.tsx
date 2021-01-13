@@ -91,7 +91,7 @@ export const WalletCard: React.FC<WalletCardProps> = ({
       {!number ? null : (
         <Typography component="span">
           <Box fontWeight={700}>Account Number</Box>
-          <Box fontSize={21} fontWeight={800}>
+          <Box fontSize={21} fontWeight={700}>
             {number}
           </Box>
         </Typography>
