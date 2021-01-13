@@ -13,7 +13,7 @@ const WALLETS: WalletCardProps[] = [
     type: 'card',
     name: 'Personal',
     bank: 'UnionBank',
-    number: '0118 1000 7540',
+    number: '011810007540',
     balance: 56848.63,
     subwalletCount: 4,
   },
@@ -21,7 +21,7 @@ const WALLETS: WalletCardProps[] = [
     type: 'card',
     name: 'Helpful Human',
     bank: 'Banco de Oro',
-    number: '4256 9403 9380',
+    number: '425694039380',
     balance: 38940.24,
   },
   {

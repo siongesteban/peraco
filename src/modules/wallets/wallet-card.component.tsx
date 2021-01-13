@@ -9,6 +9,8 @@ import {
 } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { NumberFormat } from 'modules/app/number-format';
+
 type WalletType = 'cash' | 'card';
 
 export type WalletCardProps = {
@@ -92,7 +94,7 @@ export const WalletCard: React.FC<WalletCardProps> = ({
         <Typography component="span">
           <Box fontWeight={700}>Account Number</Box>
           <Box fontSize={21} fontWeight={700}>
-            {number}
+            <NumberFormat value={number} format="#### #### ####" />
           </Box>
         </Typography>
       )}
@@ -106,7 +108,7 @@ export const WalletCard: React.FC<WalletCardProps> = ({
           Total Balance
         </Box>
         <Box fontSize={21} fontWeight={800} textAlign="right">
-          ₱{balance}
+          <NumberFormat value={balance} />
         </Box>
       </Typography>
     </Grid>
