@@ -19,12 +19,16 @@ const useStyles = makeStyles({
   },
 });
 
-export const MainLayout: React.FC = ({ children }) => {
+export type MainLayoutProps = {
+  title: string;
+};
+
+export const MainLayout: React.FC<MainLayoutProps> = ({ children, title }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.container}>
-      <Header />
+      <Header title={title} />
       <div>{children}</div>
       <BottomNavigation />
     </div>

@@ -15,7 +15,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Header: React.FC = () => {
+export type HeaderProps = {
+  title: string;
+};
+
+export const Header: React.FC<HeaderProps> = ({ title }) => {
   const classes = useStyles();
 
   return (
@@ -33,7 +37,7 @@ export const Header: React.FC = () => {
           </Grid>
           <Grid item>
             <Typography variant="h6" component="h1">
-              Wallets
+              {title}
             </Typography>
           </Grid>
         </Grid>

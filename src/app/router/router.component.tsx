@@ -10,7 +10,7 @@ const Index: React.FC = () => {
   const signOut = useSignOut();
 
   return (
-    <div>
+    <MainLayout title="Wallets">
       Hey there!
       <div>
         <button
@@ -21,7 +21,7 @@ const Index: React.FC = () => {
           Sign Out
         </button>
       </div>
-    </div>
+    </MainLayout>
   );
 };
 
@@ -35,7 +35,6 @@ const routes: AppRouteProps[] = [
     path: '/',
     isPrivate: true,
     element: <Index />,
-    layout: MainLayout,
   },
   {
     path: '*',
