@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { MainPageContainer } from 'app/main';
+import { MainPageContainer } from 'modules/app/main';
 
 import { Wallets } from './wallets.component';
 

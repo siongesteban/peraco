@@ -1,6 +1,6 @@
 import { AuthProvider } from 'shared/types';
-import { useService } from 'app/service';
-import { useSnackbar } from 'app/snackbar';
+import { useService } from 'modules/app/service';
+import { useSnackbar } from 'modules/app/snackbar';
 
 import { useAuthentication } from '../authentication.context';
 

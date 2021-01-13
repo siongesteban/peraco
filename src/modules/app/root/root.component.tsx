@@ -3,8 +3,8 @@ import { SnackbarProvider } from 'notistack';
 
 import { CssBaseline } from '@material-ui/core';
 
-import { AuthenticationProvider } from 'app/authentication';
-import { ThemeProvider } from 'app/theme';
+import { AuthenticationProvider } from 'modules/authentication';
+import { ThemeProvider } from 'modules/app/theme';
 
 import { Router } from '../router';
 import { ServiceProvider } from '../service';

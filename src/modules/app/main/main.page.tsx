@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { AccountPage } from 'app/account';
-import { WalletsPage } from 'app/wallets';
+import { AccountPage } from 'modules/account';
+import { WalletsPage } from 'modules/wallets';
 
 import { Layout } from './layout.component';
 

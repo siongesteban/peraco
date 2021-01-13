@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { BrowserRouter, Navigate, Routes } from 'react-router-dom';
 
-import { SigninPage, useAuthenticate } from 'app/authentication';
-import { MainPage } from 'app/main';
+import { SigninPage, useAuthenticate } from 'modules/authentication';
+import { MainPage } from 'modules/app/main';
 
 import { AppRoute } from './app-route.component';
 

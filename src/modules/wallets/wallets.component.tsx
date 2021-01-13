@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Button, Grid } from '@material-ui/core';
 import { AddCircleTwoTone as AddIcon } from '@material-ui/icons';
 
-import { EmptyState } from 'app/main';
+import { EmptyState } from 'modules/app/main';
 
 import { EmptyWalletListIllustration } from './assets';
 import { WalletCard, WalletCardProps } from './wallet-card.component';

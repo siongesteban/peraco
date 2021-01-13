@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useService } from 'app/service';
+import { useService } from 'modules/app/service';
 
 import { useAuthentication } from '../authentication.context';
 

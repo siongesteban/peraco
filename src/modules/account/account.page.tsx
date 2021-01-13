@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { Button, Container } from '@material-ui/core';
 
-import { useAuthentication, useSignOut } from 'app/authentication';
-import { MainPageContainer } from 'app/main';
+import { useAuthentication, useSignOut } from 'modules/authentication';
+import { MainPageContainer } from 'modules/app/main';
 
 export const AccountPage: React.FC = () => {
   const signOut = useSignOut();

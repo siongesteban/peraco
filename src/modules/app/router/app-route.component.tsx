@@ -3,7 +3,7 @@ import { Route, Navigate } from 'react-router-dom';
 import { RouteProps } from 'react-router';
 
 import { PageLoader } from 'shared/components';
-import { useAuthentication } from 'app/authentication';
+import { useAuthentication } from 'modules/authentication';
 
 import { SplashScreen } from '../splash-screen';
 

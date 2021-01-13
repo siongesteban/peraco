@@ -7,7 +7,7 @@ import { SnackbarProvider } from 'notistack';
 import {
   AuthenticationProvider,
   AuthenticationProviderProps,
-} from 'app/authentication';
+} from 'modules/authentication';
 
 type CustomRenderOptions = {
   authentication?: AuthenticationProviderProps;
