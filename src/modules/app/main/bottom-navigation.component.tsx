@@ -33,8 +33,8 @@ export const BottomNavigation: React.FC = () => {
     _: React.ChangeEvent<Record<string, never>>,
     newValue: string,
   ): void => {
-    setValue(newValue);
     navigate(newValue === 'wallets' ? '/' : `/${newValue}`);
+    setValue(newValue);
   };
 
   const items: BottomNavigationActionProps[] = [
