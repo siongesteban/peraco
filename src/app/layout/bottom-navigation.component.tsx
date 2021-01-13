@@ -50,7 +50,7 @@ export const BottomNavigation: React.FC = () => {
     items.map((item) => <BottomNavigationAction key={item.value} {...item} />);
 
   return (
-    <Paper square elevation={3} variant="outlined">
+    <Paper square variant="outlined">
       <MuiBottomNavigation
         value={value}
         showLabels={true}
