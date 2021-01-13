@@ -2,7 +2,11 @@ import * as React from 'react';
 import { capitalize } from 'lodash';
 
 import { Box, Card, CardContent, Grid, Typography } from '@material-ui/core';
-import { PaymentTwoTone as CardIcon } from '@material-ui/icons';
+import {
+  PaymentTwoTone as CardIcon,
+  MoneyTwoTone as CashIcon,
+  SvgIconComponent,
+} from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
 type WalletType = 'cash' | 'card';
@@ -37,9 +41,15 @@ export const WalletCard: React.FC<WalletCardProps> = ({
 }) => {
   const classes = useStyles();
 
-  const renderIcon = (): React.ReactNode => (
-    <CardIcon className={classes.icon} color="primary" />
-  );
+  const renderIcon = (): React.ReactNode => {
+    let Icon: SvgIconComponent = CashIcon;
+
+    if (type === 'card') {
+      Icon = CardIcon;
+    }
+
+    return <Icon className={classes.icon} color="primary" />;
+  };
 
   const renderName = (): React.ReactNode => (
     <Grid item>
@@ -65,24 +75,27 @@ export const WalletCard: React.FC<WalletCardProps> = ({
     </Grid>
   );
 
-  const renderSubwalletCount = (): React.ReactNode => (
-    <Grid item>
-      <Typography component="span">
-        <Box fontStyle="italic" fontWeight={100} textAlign="right">
-          {subwalletCount} Subwallets
-        </Box>
-      </Typography>
-    </Grid>
-  );
+  const renderSubwalletCount = (): React.ReactNode =>
+    !subwalletCount ? null : (
+      <Grid item>
+        <Typography component="span">
+          <Box fontStyle="italic" fontWeight={100} textAlign="right">
+            {subwalletCount} Subwallets
+          </Box>
+        </Typography>
+      </Grid>
+    );
 
   const renderNumber = (): React.ReactNode => (
     <Grid item>
-      <Typography component="span">
-        <Box fontWeight={700}>Account Number</Box>
-        <Box fontSize={21} fontWeight={800}>
-          {number}
-        </Box>
-      </Typography>
+      {!number ? null : (
+        <Typography component="span">
+          <Box fontWeight={700}>Account Number</Box>
+          <Box fontSize={21} fontWeight={800}>
+            {number}
+          </Box>
+        </Typography>
+      )}
     </Grid>
   );
 
@@ -106,15 +119,25 @@ export const WalletCard: React.FC<WalletCardProps> = ({
           <Grid item>
             <Grid container justify="space-between" alignItems="flex-start">
               {renderName()}
-              {renderSubwalletCount()}
+              {number ? null : (
+                <Grid item>
+                  <Grid container direction="column" spacing={1}>
+                    {renderSubwalletCount()}
+                    {renderBalance()}
+                  </Grid>
+                </Grid>
+              )}
+              {!number ? null : renderSubwalletCount()}
             </Grid>
           </Grid>
-          <Grid item>
-            <Grid container justify="space-between" alignItems="flex-start">
-              {renderNumber()}
-              {renderBalance()}
+          {!number ? null : (
+            <Grid item>
+              <Grid container justify="space-between" alignItems="flex-start">
+                {renderNumber()}
+                {renderBalance()}
+              </Grid>
             </Grid>
-          </Grid>
+          )}
         </Grid>
       </CardContent>
     </Card>
