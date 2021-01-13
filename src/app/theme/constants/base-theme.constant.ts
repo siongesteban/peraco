@@ -6,9 +6,6 @@ export const BASE_THEME: ThemeOptions = {
       disableElevation: true,
       variant: 'contained',
     },
-    MuiButtonBase: {
-      disableRipple: true,
-    },
     MuiCard: {
       elevation: 1,
     },
