@@ -13,10 +13,19 @@ import {
   DonutSmallTwoTone as BudgetIcon,
   AccountCircleTwoTone as AccountIcon,
 } from '@material-ui/icons';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    minWidth: '100%',
+  },
+});
 
 export const BottomNavigation: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const classes = useStyles();
+
   const initialValue = location.pathname.split('/')[1] || 'wallets';
   const [value, setValue] = React.useState(initialValue);
 
@@ -55,7 +64,7 @@ export const BottomNavigation: React.FC = () => {
     items.map((item) => <BottomNavigationAction key={item.value} {...item} />);
 
   return (
-    <Paper square variant="outlined">
+    <Paper className={classes.root} square variant="outlined">
       <MuiBottomNavigation
         value={value}
         showLabels={true}
