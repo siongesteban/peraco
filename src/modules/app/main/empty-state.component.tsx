@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { Box, Button, Grid, Typography } from '@material-ui/core';
-import { AddCircleTwoTone as AddIcon } from '@material-ui/icons';
+import { Box, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 export type EmptyStateProps = {
@@ -41,13 +40,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
           <Box textAlign="center">{message}</Box>
         </Typography>
       </Grid>
-      {!action ? null : (
-        <Grid item>
-          <Button color="secondary" startIcon={<AddIcon />}>
-            Add wallet
-          </Button>
-        </Grid>
-      )}
+      {action ? action : null}
     </Grid>
   );
 };
