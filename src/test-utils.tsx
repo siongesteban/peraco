@@ -5,14 +5,16 @@ import userEvent from '@testing-library/user-event';
 import { Provider as GlobalStateProvider } from 'jotai';
 import { SnackbarProvider } from 'notistack';
 
-import { loaderMessageAtom, LoaderMessageAtom } from 'modules/app/loader';
-import { currencyAtom, CurrencyAtom } from 'modules/app/settings';
 import {
   authenticationStatusAtom,
   AuthenticationStatusAtom,
+  currencyAtom,
+  CurrencyAtom,
+  loaderMessageAtom,
+  LoaderMessageAtom,
   userAtom,
   UserAtom,
-} from 'modules/authentication';
+} from 'shared/atoms';
 
 type CustomRenderOptions = RenderOptions & {
   initialState?: Partial<{

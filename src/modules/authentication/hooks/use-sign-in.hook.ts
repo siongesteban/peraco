@@ -1,11 +1,13 @@
 import { useUpdateAtom } from 'jotai/utils';
 
+import {
+  authenticationStatusAtom,
+  loaderMessageAtom,
+  setUserAtom,
+} from 'shared/atoms';
 import { AuthProvider } from 'shared/types';
-import { loaderMessageAtom } from 'modules/app/loader';
 import { useService } from 'modules/app/service';
 import { useSnackbar } from 'modules/app/snackbar';
-
-import { authenticationStatusAtom, setUserAtom } from '../atoms';
 
 export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
   const { enqueueSnackbar } = useSnackbar();

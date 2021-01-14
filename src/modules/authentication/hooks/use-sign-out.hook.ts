@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useUpdateAtom } from 'jotai/utils';
 
+import { setUserAtom } from 'shared/atoms';
 import { useService } from 'modules/app/service';
 import { useSnackbar } from 'modules/app/snackbar';
-
-import { setUserAtom } from '../atoms';
 
 export const useSignOut = (): (() => Promise<void>) => {
   const { enqueueSnackbar } = useSnackbar();
