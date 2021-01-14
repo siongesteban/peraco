@@ -4,6 +4,7 @@ import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { SnackbarProvider } from 'notistack';
 
+import { SettingsProvider } from 'modules/app/settings';
 import {
   AuthenticationProvider,
   AuthenticationProviderProps,
@@ -31,7 +32,7 @@ const customRender = (
           ...authentication?.value,
         }}
       >
-        {children}
+        <SettingsProvider>{children}</SettingsProvider>
       </AuthenticationProvider>
     </SnackbarProvider>
   );

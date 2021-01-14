@@ -50,7 +50,9 @@ export const WalletCard: React.FC<WalletCardProps> = ({
       Icon = CardIcon;
     }
 
-    return <Icon className={classes.icon} color="secondary" />;
+    return (
+      <Icon className={classes.icon} color="secondary" titleAccess={type} />
+    );
   };
 
   const renderName = (): React.ReactNode => (
@@ -65,7 +67,7 @@ export const WalletCard: React.FC<WalletCardProps> = ({
         </Box>
       </Typography>
       {!bank ? null : (
-        <Typography component="span">
+        <Typography data-testid="bank-name" component="span">
           <Box display="inline" fontWeight={100}>
             &nbsp;|
           </Box>
