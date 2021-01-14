@@ -4,9 +4,9 @@ import { RouteProps } from 'react-router';
 import { useAtomValue } from 'jotai/utils';
 
 import { authenticationStatusAtom } from 'shared/atoms';
-import { SplashScreen } from 'modules/app/splash-screen';
 
 import { Loader } from './loader.component';
+import { SplashScreen } from './splash-screen.component';
 
 export type AppRouteProps = {
   isPrivate?: boolean;
