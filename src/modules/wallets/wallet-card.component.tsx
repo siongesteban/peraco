@@ -9,7 +9,7 @@ import {
 } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { NumberFormat } from 'modules/app/number-format';
+import { NumberFormat } from 'shared/components';
 
 type WalletType = 'cash' | 'card';
 
