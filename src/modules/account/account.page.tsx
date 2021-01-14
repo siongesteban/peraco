@@ -1,16 +1,15 @@
 import * as React from 'react';
+import { useAtomValue } from 'jotai/utils';
 
 import { Button, Container } from '@material-ui/core';
 
 import { PageTitle } from 'shared/components';
 import { MainPageContainer } from 'modules/app/main';
-import { useAuthentication, useSignOut } from 'modules/authentication';
+import { useSignOut, userAtom } from 'modules/authentication';
 
 export const AccountPage: React.FC = () => {
   const signOut = useSignOut();
-  const {
-    authenticationState: { user },
-  } = useAuthentication();
+  const user = useAtomValue(userAtom);
 
   const handleClick = (): void => {
     signOut();
