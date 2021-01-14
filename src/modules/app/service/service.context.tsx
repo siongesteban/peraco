@@ -1,9 +1,10 @@
 import * as React from 'react';
 
 import { FirebaseService } from 'shared/services/firebase';
-import { UserService } from 'shared/services';
+import { CurrencyService, UserService } from 'shared/services';
 
 type State = {
+  currencyService: CurrencyService;
   firebaseService: FirebaseService;
   userService: UserService;
 };
@@ -19,6 +20,7 @@ export const ServiceProvider: React.FC<ServiceProviderProps> = ({
   service,
 }) => {
   const value: State = service || {
+    currencyService: CurrencyService.getInstance(),
     firebaseService: FirebaseService.getInstance(),
     userService: UserService.getInstance(),
   };

@@ -14,6 +14,7 @@ type State = {
 type Action =
   | BaseAction<'START_AUTH'>
   | BaseAction<'START_SIGNIN'>
+  | BaseAction<'SET_MESSAGE', { message: string }>
   | BaseAction<'SET_USER', { user: UserDocType | null }>;
 
 type Dispatch = (action: Action) => void;
@@ -38,6 +39,11 @@ const authenticationReducer: Reducer<State, Action> = (state, action) => {
         ...state,
         isSigningIn: true,
         message: 'Signing in...',
+      };
+    case 'SET_MESSAGE':
+      return {
+        ...state,
+        message: action.payload.message,
       };
     case 'SET_USER': {
       const { user } = action.payload;

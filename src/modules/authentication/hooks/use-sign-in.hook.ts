@@ -7,7 +7,7 @@ import { useAuthentication } from '../authentication.context';
 export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
   const { enqueueSnackbar } = useSnackbar();
   const { authenticationDispatch } = useAuthentication();
-  const { firebaseService, userService } = useService();
+  const { currencyService, firebaseService, userService } = useService();
 
   const signIn = async (): Promise<void> => {
     authenticationDispatch({ type: 'START_SIGNIN' });
@@ -23,29 +23,27 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
         throw new Error('Something went wrong with the authentication.');
       }
 
-      const userFromDb = await userService.getUserByAuthId(
-        userFromFirebase.uid,
-      );
+      let user = await userService.getUserByAuthId(userFromFirebase.uid);
 
-      if (userFromDb) {
-        authenticationDispatch({
-          type: 'SET_USER',
-          payload: { user: userFromDb },
+      if (!user) {
+        user = await userService.createUser({
+          name: userFromFirebase.displayName as string,
+          email: userFromFirebase.email as string,
+          authId: userFromFirebase.uid,
+          authProvider: provider,
         });
-
-        return;
       }
 
-      const newUser = await userService.createUser({
-        name: userFromFirebase.displayName as string,
-        email: userFromFirebase.email as string,
-        authId: userFromFirebase.uid,
-        authProvider: provider,
+      authenticationDispatch({
+        type: 'SET_MESSAGE',
+        payload: { message: 'Loading data...' },
       });
+
+      await currencyService.loadCurrencies();
 
       authenticationDispatch({
         type: 'SET_USER',
-        payload: { user: newUser },
+        payload: { user },
       });
     } catch (e) {
       authenticationDispatch({
