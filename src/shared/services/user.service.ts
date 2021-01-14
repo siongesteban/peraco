@@ -3,9 +3,9 @@ import { v4 as uuid } from 'uuid';
 
 import { FirebaseService } from 'shared/services/firebase';
 
-import { UserDocument, UserDocType } from './schemas';
-import { Database } from './types';
-import { DB_TOKEN } from './rxdb.client';
+import { UserDocument, UserDocType } from './rxdb/schemas';
+import { Database } from './rxdb/types';
+import { DB_TOKEN } from './rxdb/rxdb.client';
 
 @injectable()
 export class UserService {

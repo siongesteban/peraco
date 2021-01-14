@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { FirebaseService } from 'shared/services/firebase';
-import { UserService } from 'shared/services/rxdb';
+import { UserService } from 'shared/services';
 
 type State = {
   firebaseService: FirebaseService;
