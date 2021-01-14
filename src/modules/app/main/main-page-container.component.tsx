@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { PageContent } from 'shared/components';
 
-import { Header } from './header.component';
+import { Header } from 'modules/app/layout';
 
 type MainPageContainer = React.FC & {
   Header: typeof Header;
