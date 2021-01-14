@@ -6,7 +6,7 @@ import { Provider as GlobalStateProvider } from 'jotai';
 import { SnackbarProvider } from 'notistack';
 
 import { loaderMessageAtom, LoaderMessageAtom } from 'modules/app/loader';
-import { SettingsProvider } from 'modules/app/settings';
+import { currencyAtom, CurrencyAtom } from 'modules/app/settings';
 import {
   authenticationStatusAtom,
   AuthenticationStatusAtom,
@@ -17,6 +17,7 @@ import {
 type CustomRenderOptions = RenderOptions & {
   initialState?: Partial<{
     authenticationStatus: AuthenticationStatusAtom;
+    currency: CurrencyAtom;
     loaderMessage: LoaderMessageAtom;
     user: UserAtom;
   }>;
@@ -29,17 +30,19 @@ const customRender = (
   const { initialState, ...restOptions } = options || {};
 
   const initialValues = [
-    [authenticationStatusAtom, initialState?.authenticationStatus],
-    [loaderMessageAtom, initialState?.loaderMessage],
-    [userAtom, initialState?.user],
+    [
+      authenticationStatusAtom,
+      initialState?.authenticationStatus ?? authenticationStatusAtom.init,
+    ],
+    [currencyAtom, initialState?.currency ?? currencyAtom.init],
+    [loaderMessageAtom, initialState?.loaderMessage ?? loaderMessageAtom.init],
+    [userAtom, initialState?.user ?? userAtom.init],
   ];
 
   const Wrapper: React.FC = ({ children }) => (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <GlobalStateProvider initialValues={initialValues as any}>
-      <SnackbarProvider>
-        <SettingsProvider>{children}</SettingsProvider>
-      </SnackbarProvider>
+      <SnackbarProvider>{children}</SnackbarProvider>
     </GlobalStateProvider>
   );
 

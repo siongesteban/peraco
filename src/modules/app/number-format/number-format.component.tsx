@@ -1,12 +1,13 @@
 import * as React from 'react';
+import { useAtomValue } from 'jotai/utils';
 import ReactNumberFormat, { NumberFormatProps } from 'react-number-format';
 
-import { useSettings } from 'modules/app/settings';
+import { currencyAtom } from 'modules/app/settings';
 
 export const NumberFormat: React.FC<NumberFormatProps> = (props) => {
-  const { currency } = useSettings();
+  const currency = useAtomValue(currencyAtom);
 
-  return <ReactNumberFormat prefix={currency.symbol} {...props} />;
+  return <ReactNumberFormat prefix={currency?.symbol} {...props} />;
 };
 
 NumberFormat.defaultProps = {
