@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { render, screen } from 'test-utils';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { render, screen } from 'test-utils';
 
 import { AppRoute } from './app-route.component';
 
@@ -26,11 +26,9 @@ test('Displays page loader with the correct message when signing in', () => {
       <AppRoute path="/page" element={<TestPage />} />
     </Wrapper>,
     {
-      authentication: {
-        value: {
-          isSigningIn: true,
-          message: 'Signing in...',
-        },
+      initialState: {
+        authenticationStatus: 'signingIn',
+        loaderMessage: 'Signing in...',
       },
     },
   );
@@ -45,10 +43,8 @@ test('Displays splash screen when authenticating', () => {
       <AppRoute path="/page" element={<TestPage />} />
     </Wrapper>,
     {
-      authentication: {
-        value: {
-          isAuthenticating: true,
-        },
+      initialState: {
+        authenticationStatus: 'authenticating',
       },
     },
   );
@@ -76,10 +72,8 @@ test('Redirects to index page if the route is for guests only and the user is au
       <AppRoute isGuestOnly path="/page" element={<TestPage />} />
     </Wrapper>,
     {
-      authentication: {
-        value: {
-          isAuthenticated: true,
-        },
+      initialState: {
+        authenticationStatus: 'authenticated',
       },
     },
   );
@@ -94,10 +88,8 @@ test('Shows page when it is private and the user is authenticated', () => {
       <AppRoute isPrivate path="/page" element={<TestPage />} />
     </Wrapper>,
     {
-      authentication: {
-        value: {
-          isAuthenticated: true,
-        },
+      initialState: {
+        authenticationStatus: 'authenticated',
       },
     },
   );
@@ -111,10 +103,8 @@ test('Shows page when it is for guests only and the user is unauthenticated', ()
       <AppRoute isGuestOnly path="/page" element={<TestPage />} />
     </Wrapper>,
     {
-      authentication: {
-        value: {
-          isAuthenticated: false,
-        },
+      initialState: {
+        authenticationStatus: 'unauthenticated',
       },
     },
   );

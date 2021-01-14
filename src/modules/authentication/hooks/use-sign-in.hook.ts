@@ -1,16 +1,23 @@
+import { useUpdateAtom } from 'jotai/utils';
+
 import { AuthProvider } from 'shared/types';
+import { loaderMessageAtom } from 'modules/app/loader';
 import { useService } from 'modules/app/service';
 import { useSnackbar } from 'modules/app/snackbar';
 
-import { useAuthentication } from '../authentication.context';
+import { authenticationStatusAtom, setUserAtom } from '../atoms';
 
 export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
   const { enqueueSnackbar } = useSnackbar();
-  const { authenticationDispatch } = useAuthentication();
   const { currencyService, firebaseService, userService } = useService();
 
+  const setLoaderMessage = useUpdateAtom(loaderMessageAtom);
+  const setAuthenticationStatus = useUpdateAtom(authenticationStatusAtom);
+  const setUser = useUpdateAtom(setUserAtom);
+
   const signIn = async (): Promise<void> => {
-    authenticationDispatch({ type: 'START_SIGNIN' });
+    setAuthenticationStatus('signingIn');
+    setLoaderMessage('Signing in...');
 
     try {
       if (!provider) {
@@ -34,22 +41,11 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
         });
       }
 
-      authenticationDispatch({
-        type: 'SET_MESSAGE',
-        payload: { message: 'Loading data...' },
-      });
-
       await currencyService.loadCurrencies();
 
-      authenticationDispatch({
-        type: 'SET_USER',
-        payload: { user },
-      });
+      setUser(user);
     } catch (e) {
-      authenticationDispatch({
-        type: 'SET_USER',
-        payload: { user: null },
-      });
+      setUser(null);
       enqueueSnackbar({ message: e.message, variant: 'error' });
     }
   };

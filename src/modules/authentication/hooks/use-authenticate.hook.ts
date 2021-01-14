@@ -1,22 +1,24 @@
 import { useEffect } from 'react';
+import { useUpdateAtom } from 'jotai/utils';
 
 import { useService } from 'modules/app/service';
 
-import { useAuthentication } from '../authentication.context';
+import { authenticationStatusAtom, setUserAtom } from '../atoms';
 
 export const useAuthenticate = (): void => {
-  const { authenticationDispatch } = useAuthentication();
   const { userService } = useService();
+  const setAuthenticationStatus = useUpdateAtom(authenticationStatusAtom);
+  const setUser = useUpdateAtom(setUserAtom);
 
   const authenticate = async (): Promise<void> => {
-    authenticationDispatch({ type: 'START_AUTH' });
+    setAuthenticationStatus('authenticating');
 
     try {
       const user = await userService.authenticate();
 
-      authenticationDispatch({ type: 'SET_USER', payload: { user } });
+      setUser(user);
     } catch (e) {
-      authenticationDispatch({ type: 'SET_USER', payload: { user: null } });
+      setUser(null);
     }
   };
 

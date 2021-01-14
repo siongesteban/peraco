@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Route, Navigate } from 'react-router-dom';
 import { RouteProps } from 'react-router';
+import { useAtomValue } from 'jotai/utils';
 
-import { PageLoader } from 'shared/components';
-import { useAuthentication } from 'modules/authentication';
+import { authenticationStatusAtom } from 'modules/authentication';
+import { Loader } from 'modules/app/loader';
 
 import { SplashScreen } from '../splash-screen';
 
@@ -17,27 +18,23 @@ export const AppRoute: React.FC<AppRouteProps> = ({
   isGuestOnly,
   ...restProps
 }) => {
-  const { authenticationState } = useAuthentication();
-  const {
-    isAuthenticated,
-    isAuthenticating,
-    isSigningIn,
-    message,
-  } = authenticationState;
+  const authenticationStatus = useAtomValue(authenticationStatusAtom);
 
-  if (isSigningIn) {
-    return <PageLoader message={message} />;
+  if (authenticationStatus === 'signingIn') {
+    return <Loader />;
   }
 
-  if (isAuthenticating) {
+  if (authenticationStatus === 'authenticating') {
     return <SplashScreen />;
   }
 
-  if (isPrivate && !isAuthenticated) {
+  const authenticated = authenticationStatus === 'authenticated';
+
+  if (isPrivate && !authenticated) {
     return <Navigate to="/welcome" />;
   }
 
-  if (isGuestOnly && isAuthenticated) {
+  if (isGuestOnly && authenticated) {
     return <Navigate to="/" />;
   }
 

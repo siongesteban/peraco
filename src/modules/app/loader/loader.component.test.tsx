@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { render, screen } from 'test-utils';
 
-import { PageLoader } from './page-loader.component';
+import { Loader } from './loader.component';
 
 test('Displays default message', () => {
-  render(<PageLoader />);
+  render(<Loader />);
   expect(screen.getByRole('heading')).toHaveTextContent('Just a moment...');
 });
 
 test('Displays provided message instead of the default', () => {
   const message = 'Loading...';
 
-  render(<PageLoader message={message} />);
+  render(<Loader />, { initialState: { loaderMessage: message } });
 
   expect(screen.getByRole('heading')).toHaveTextContent(message);
 });
