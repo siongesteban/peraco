@@ -1,5 +1,6 @@
 {
   "plugins": [
+    ["react-remove-properties", { "properties": ["data-testid"] }],
     "babel-plugin-transform-typescript-metadata",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
