@@ -3,13 +3,13 @@ import * as React from 'react';
 import { Box, Grid, Typography } from '@material-ui/core';
 
 import { Logo } from 'shared/assets';
-import { PageTitle, VerticalCenter } from 'shared/components';
+import { Head, VerticalCenter } from 'shared/components';
 
 import { FacebookAuthButton, GoogleAuthButton } from './components';
 
 export const SigninPage: React.FC = () => (
   <>
-    <PageTitle title="Welcome" />
+    <Head title="Welcome" />
     <VerticalCenter>
       <VerticalCenter.Item>
         <Grid container justify="center">

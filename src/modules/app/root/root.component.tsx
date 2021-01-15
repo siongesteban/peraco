@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import { CssBaseline } from '@material-ui/core';
 
+import { Head } from 'shared/components';
 import { ThemeProvider } from 'modules/app/theme';
 import { Snackbar } from 'modules/app/snackbar';
 
@@ -17,6 +18,7 @@ export const Root: React.FC = () => (
         <ThemeProvider>
           <CssBaseline />
           <HelmetProvider>
+            <Head themeColor="#fff" />
             <Router />
             <Snackbar />
           </HelmetProvider>

@@ -1,4 +1,4 @@
-export * from './page-content';
-export * from './page-title';
+export * from './head';
 export * from './number-format';
+export * from './page-content';
 export * from './vertical-center';
