@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useLocation, Route, Navigate } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import { RouteProps } from 'react-router';
 import { useAtomValue } from 'jotai/utils';
 
@@ -19,7 +19,6 @@ export const AppRoute: React.FC<AppRouteProps> = ({
   ...restProps
 }) => {
   const authenticationStatus = useAtomValue(authenticationStatusAtom);
-  const location = useLocation();
 
   if (authenticationStatus === 'signingIn') {
     return <Loader />;
@@ -37,10 +36,6 @@ export const AppRoute: React.FC<AppRouteProps> = ({
 
   if (isGuestOnly && authenticated) {
     return <Navigate to="/" />;
-  }
-
-  if (location.pathname === '/') {
-    return <Navigate to="/wallets" />;
   }
 
   return <Route {...restProps} />;
