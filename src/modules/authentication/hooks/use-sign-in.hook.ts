@@ -4,17 +4,17 @@ import {
   authenticationStatusAtom,
   loaderMessageAtom,
   setUserAtom,
+  setSnackbarMessageAtom,
 } from 'shared/atoms';
 import { AuthProvider } from 'shared/types';
 import { useService } from 'modules/app/service';
-import { useSnackbar } from 'modules/app/snackbar';
 
 export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
-  const { enqueueSnackbar } = useSnackbar();
   const { currencyService, firebaseService, userService } = useService();
 
   const setLoaderMessage = useUpdateAtom(loaderMessageAtom);
   const setAuthenticationStatus = useUpdateAtom(authenticationStatusAtom);
+  const setSnackbarMessage = useUpdateAtom(setSnackbarMessageAtom);
   const setUser = useUpdateAtom(setUserAtom);
 
   const signIn = async (): Promise<void> => {
@@ -29,7 +29,7 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
       const userFromFirebase = await firebaseService.signIn({ with: provider });
 
       if (!userFromFirebase) {
-        throw new Error('Something went wrong with the authentication.');
+        throw new Error('User does not exist in firebase.');
       }
 
       let user = await userService.getUserByAuthId(userFromFirebase.uid);
@@ -48,7 +48,10 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
       setUser(user);
     } catch (e) {
       setUser(null);
-      enqueueSnackbar({ message: e.message, variant: 'error' });
+      setSnackbarMessage({
+        message: `Can't sign in. Please try again.`,
+        error: e.message,
+      });
     }
   };
 

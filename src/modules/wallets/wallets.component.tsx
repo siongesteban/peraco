@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useUpdateAtom } from 'jotai/utils';
 
 import { Button, Grid } from '@material-ui/core';
 import { AddCircleTwoTone as AddIcon } from '@material-ui/icons';
 
+import { setSnackbarMessageAtom } from 'shared/atoms';
 import { EmptyState } from 'modules/app/main';
 
 import { EmptyWalletListIllustration } from './assets';
@@ -45,6 +47,8 @@ const WALLETS: WalletCardProps[] = [
 ];
 
 export const Wallets: React.FC = () => {
+  const setSnackbarMessage = useUpdateAtom(setSnackbarMessageAtom);
+
   if (!WALLETS.length) {
     return (
       <EmptyState
@@ -57,7 +61,18 @@ export const Wallets: React.FC = () => {
           </>
         }
         action={
-          <Button color="secondary" startIcon={<AddIcon />}>
+          <Button
+            color="secondary"
+            startIcon={<AddIcon />}
+            onClick={() => {
+              setSnackbarMessage({
+                message: `Adding of wallet isn't implemented yet.`,
+                appearance: {
+                  overBottomNavigation: true,
+                },
+              });
+            }}
+          >
             Add wallet
           </Button>
         }

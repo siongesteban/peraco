@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useAtom } from 'jotai';
+import { useAtomValue } from 'jotai/utils';
 
 import { Typography } from '@material-ui/core';
 
@@ -8,7 +8,7 @@ import { loaderMessageAtom } from 'shared/atoms';
 import { VerticalCenter } from 'shared/components';
 
 export const Loader: React.FC = () => {
-  const [message] = useAtom(loaderMessageAtom);
+  const message = useAtomValue(loaderMessageAtom);
 
   return (
     <VerticalCenter>

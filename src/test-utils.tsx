@@ -3,7 +3,7 @@ import * as React from 'react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider as GlobalStateProvider } from 'jotai';
-import { SnackbarProvider } from 'notistack';
+import { HelmetProvider } from 'react-helmet-async';
 
 import {
   authenticationStatusAtom,
@@ -12,6 +12,8 @@ import {
   CurrencyAtom,
   loaderMessageAtom,
   LoaderMessageAtom,
+  snackbarAtom,
+  SnackbarAtom,
   userAtom,
   UserAtom,
 } from 'shared/atoms';
@@ -21,6 +23,7 @@ type CustomRenderOptions = RenderOptions & {
     authenticationStatus: AuthenticationStatusAtom;
     currency: CurrencyAtom;
     loaderMessage: LoaderMessageAtom;
+    snackbar: SnackbarAtom;
     user: UserAtom;
   }>;
 };
@@ -38,14 +41,17 @@ const customRender = (
     ],
     [currencyAtom, initialState?.currency ?? currencyAtom.init],
     [loaderMessageAtom, initialState?.loaderMessage ?? loaderMessageAtom.init],
+    [snackbarAtom, initialState?.snackbar ?? snackbarAtom.init],
     [userAtom, initialState?.user ?? userAtom.init],
   ];
 
   const Wrapper: React.FC = ({ children }) => (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    <GlobalStateProvider initialValues={initialValues as any}>
-      <SnackbarProvider>{children}</SnackbarProvider>
-    </GlobalStateProvider>
+    <HelmetProvider>
+      <GlobalStateProvider initialValues={initialValues as any}>
+        {children}
+      </GlobalStateProvider>
+    </HelmetProvider>
   );
 
   return render(ui, { ...restOptions, wrapper: Wrapper });

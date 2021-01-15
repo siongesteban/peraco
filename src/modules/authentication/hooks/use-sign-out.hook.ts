@@ -1,15 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useUpdateAtom } from 'jotai/utils';
 
-import { setUserAtom } from 'shared/atoms';
+import { setUserAtom, setSnackbarMessageAtom } from 'shared/atoms';
 import { useService } from 'modules/app/service';
-import { useSnackbar } from 'modules/app/snackbar';
 
 export const useSignOut = (): (() => Promise<void>) => {
-  const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const { firebaseService } = useService();
   const setUser = useUpdateAtom(setUserAtom);
+  const setSnackbarMessage = useUpdateAtom(setSnackbarMessageAtom);
 
   const signOut = async (): Promise<void> => {
     try {
@@ -18,7 +17,7 @@ export const useSignOut = (): (() => Promise<void>) => {
       setUser(null);
       navigate('/welcome');
     } catch (e) {
-      enqueueSnackbar({ message: e.message, variant: 'error' });
+      setSnackbarMessage({ message: e.message });
     }
   };
 

@@ -1,1 +1,1 @@
-export * from './use-snackbar.hook';
+export * from './snackbar.component';
