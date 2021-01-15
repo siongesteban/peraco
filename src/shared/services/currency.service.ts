@@ -1,10 +1,10 @@
 import LocalForage from 'localforage';
 import { container, inject, injectable } from 'tsyringe';
-import { uniqBy } from 'lodash';
+import { sortBy, uniqBy } from 'lodash';
 
 import { LOCAL_DB_TOKEN } from './localforage';
 
-type Currency = {
+export type Currency = {
   code: string;
   name: string;
   symbol: string;
@@ -27,6 +27,16 @@ export class CurrencyService {
 
   public static getInstance(): CurrencyService {
     return container.resolve(CurrencyService);
+  }
+
+  public async getCurrencies(): Promise<Currency[]> {
+    const currencies = await this.localDb.getItem<Currency[]>(this.localDbKey);
+
+    if (!currencies) {
+      return [];
+    }
+
+    return currencies;
   }
 
   public async loadCurrencies(): Promise<Currency[]> {
@@ -55,24 +65,41 @@ export class CurrencyService {
       [],
     );
 
-    return uniqBy(currencies, 'code');
+    return sortBy(uniqBy(currencies, 'code'), 'code');
   }
 
   private getCurrenciesFromCountry(country: Country): Currency[] {
     return country.currencies.reduce<Currency[]>(
       (currentCurrencies, currency) => {
-        if (currency.name?.startsWith?.('[')) {
+        if (this.skipCurrency(currency)) {
           return currentCurrencies;
         }
 
         const newCurrency: Currency = {
           ...currency,
-          code: currency.code === '(none)' ? '' : currency.code,
         };
+
+        newCurrency.code = this.cleanCurrencyCode(newCurrency.code);
 
         return [...currentCurrencies, newCurrency];
       },
       [],
     );
+  }
+
+  private skipCurrency(currency: Currency): boolean {
+    return (
+      currency.name?.startsWith?.('[') ||
+      !currency.code ||
+      currency.code === '(none)'
+    );
+  }
+
+  private cleanCurrencyCode(code: string): string {
+    if (!code.endsWith(']')) {
+      return code;
+    }
+
+    return code.split('').slice(0, 3).join('');
   }
 }
