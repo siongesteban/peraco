@@ -10,7 +10,7 @@ export const WalletsPage: React.FC = () => (
     <Head title="Wallets" />
     <MainPageContainer>
       <MainPageContainer.Header title="Wallets" />
-      <MainPageContainer.Content subdued>
+      <MainPageContainer.Content>
         <Wallets />
       </MainPageContainer.Content>
     </MainPageContainer>

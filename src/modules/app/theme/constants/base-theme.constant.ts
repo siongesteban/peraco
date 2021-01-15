@@ -61,7 +61,7 @@ export const BASE_THEME: ThemeOptions = {
     },
     MuiPaper: {
       elevation1: {
-        boxShadow: '0px 3px 6px -1px rgba(0, 0, 0, 0.12)',
+        boxShadow: '0px 2px 6px -1px rgba(0, 0, 0, 0.12)',
       },
     },
     MuiCardContent: {

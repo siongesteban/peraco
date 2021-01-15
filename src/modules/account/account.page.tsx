@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useAtomValue } from 'jotai/utils';
 
-import { Button, Container } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 import { userAtom } from 'shared/atoms';
 import { Head } from 'shared/components';
@@ -22,9 +22,7 @@ export const AccountPage: React.FC = () => {
       <MainPageContainer>
         <MainPageContainer.Header title="Account" />
         <MainPageContainer.Content>
-          <Container>
-            <Button onClick={handleClick}>Sign Out: {user?.name}</Button>
-          </Container>
+          <Button onClick={handleClick}>Sign Out: {user?.name}</Button>
         </MainPageContainer.Content>
       </MainPageContainer>
     </>
