@@ -26,8 +26,12 @@ export const BottomNavigation: React.FC = () => {
   const location = useLocation();
   const classes = useStyles();
 
-  const initialValue = location.pathname.split('/')[1] || 'wallets';
-  const [value, setValue] = React.useState(initialValue);
+  const pathname = location.pathname.split('/')[1];
+  const [value, setValue] = React.useState(pathname);
+
+  React.useEffect(() => {
+    setValue(pathname);
+  }, [pathname]);
 
   const handleChange = (
     _: React.ChangeEvent<Record<string, never>>,
