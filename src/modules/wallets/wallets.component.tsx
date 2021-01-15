@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { useUpdateAtom } from 'jotai/utils';
 
 import { Button, Grid } from '@material-ui/core';
 import { AddCircleTwoTone as AddIcon } from '@material-ui/icons';
 
-import { setSnackbarMessageAtom } from 'shared/atoms';
+import { Currency } from 'shared/services';
 import { EmptyState } from 'modules/app/main';
 
 import { EmptyWalletListIllustration } from './assets';
 import { WalletCard, WalletCardProps } from './wallet-card.component';
+import { CurrencySelectionDialog } from './currency-selection-dialog.component';
 
 const WALLETS: WalletCardProps[] = [
   // {
@@ -46,11 +46,26 @@ const WALLETS: WalletCardProps[] = [
   // },
 ];
 
-export const Wallets: React.FC = () => {
-  const setSnackbarMessage = useUpdateAtom(setSnackbarMessageAtom);
+const Empty: React.FC = () => {
+  const [currencySelectionOpen, setCurrencySelectionOpen] = React.useState(
+    false,
+  );
+  const [, setSelectedCurrency] = React.useState<Currency | null>(null);
 
-  if (!WALLETS.length) {
-    return (
+  const handleAddWalletClick = (): void => {
+    setCurrencySelectionOpen(true);
+  };
+
+  const handleCurrencySelectionClose = (): void => {
+    setCurrencySelectionOpen(false);
+  };
+
+  const handleCurrencySelectionSubmit = (currency: Currency): void => {
+    setSelectedCurrency(currency);
+  };
+
+  return (
+    <>
       <EmptyState
         illustration={EmptyWalletListIllustration}
         message={
@@ -64,20 +79,24 @@ export const Wallets: React.FC = () => {
           <Button
             color="secondary"
             startIcon={<AddIcon />}
-            onClick={() => {
-              setSnackbarMessage({
-                message: `Adding of wallet isn't implemented yet.`,
-                appearance: {
-                  overBottomNavigation: true,
-                },
-              });
-            }}
+            onClick={handleAddWalletClick}
           >
             Add wallet
           </Button>
         }
       />
-    );
+      <CurrencySelectionDialog
+        open={currencySelectionOpen}
+        onClose={handleCurrencySelectionClose}
+        onSubmit={handleCurrencySelectionSubmit}
+      />
+    </>
+  );
+};
+
+export const Wallets: React.FC = () => {
+  if (!WALLETS.length) {
+    return <Empty />;
   }
 
   return (
