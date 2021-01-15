@@ -60,6 +60,11 @@ test('Redirects to /welcome page if the route is private and the user is unauthe
     <Wrapper path="/page">
       <AppRoute isPrivate path="/page" element={<TestPage />} />
     </Wrapper>,
+    {
+      initialState: {
+        authenticationStatus: 'unauthenticated',
+      },
+    },
   );
 
   expect(screen.queryByText(/welcome/)).toBeInTheDocument();

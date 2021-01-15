@@ -7,5 +7,5 @@ export type AuthenticationStatusAtom =
   | 'signingIn';
 
 export const authenticationStatusAtom = atom<AuthenticationStatusAtom>(
-  'unauthenticated',
+  'authenticating',
 );

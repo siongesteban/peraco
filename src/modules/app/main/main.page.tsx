@@ -8,7 +8,7 @@ import { WalletsPage } from 'modules/wallets';
 export const MainPage: React.FC = () => (
   <Layout>
     <Routes>
-      <Route path="/" element={<WalletsPage />} />
+      <Route path="/wallets" element={<WalletsPage />} />
       <Route path="/account" element={<AccountPage />} />
     </Routes>
   </Layout>
