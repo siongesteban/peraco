@@ -13,6 +13,15 @@ test('Renders all the details correctly', () => {
       balance={56848.63}
       subwalletCount={4}
     />,
+    {
+      initialState: {
+        currency: {
+          code: 'PHP',
+          symbol: '₱',
+          name: 'Philippine peso',
+        },
+      },
+    },
   );
 
   expect(container.querySelector('h4 > svg > title')).toHaveTextContent('card');
