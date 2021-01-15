@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Provider as GlobalStateProvider } from 'jotai';
+import { HelmetProvider } from 'react-helmet-async';
 import { SnackbarProvider } from 'notistack';
 
 import { CssBaseline } from '@material-ui/core';
@@ -18,7 +19,9 @@ export const Root: React.FC = () => (
           <SnackbarProvider
             anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
           >
-            <Router />
+            <HelmetProvider>
+              <Router />
+            </HelmetProvider>
           </SnackbarProvider>
         </ThemeProvider>
       </GlobalStateProvider>

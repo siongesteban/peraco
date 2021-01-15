@@ -17,7 +17,7 @@
     "pouchdb-adapter-idb": "^7.2.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-helmet": "^6.1.0",
+    "react-helmet-async": "^1.0.7",
     "react-number-format": "^4.4.4",
     "react-router-dom": "^6.0.0-beta.0",
     "react-scripts": "4.0.1",
