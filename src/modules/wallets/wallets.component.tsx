@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { useAtom } from 'jotai';
 
 import { Button, Grid } from '@material-ui/core';
 import { AddCircleTwoTone as AddIcon } from '@material-ui/icons';
 
+import { currencyAtom } from 'shared/atoms';
 import { Currency } from 'shared/services';
 import { EmptyState } from 'modules/app/main';
 
 import { EmptyWalletListIllustration } from './assets';
 import { WalletCard, WalletCardProps } from './wallet-card.component';
 import { CurrencySelectionDialog } from './currency-selection-dialog.component';
+import { NewWalletDialog } from './new-wallet-dialog.component';
 
 const WALLETS: WalletCardProps[] = [
   // {
@@ -47,21 +50,33 @@ const WALLETS: WalletCardProps[] = [
 ];
 
 const Empty: React.FC = () => {
-  const [currencySelectionOpen, setCurrencySelectionOpen] = React.useState(
-    false,
-  );
-  const [, setSelectedCurrency] = React.useState<Currency | null>(null);
+  const [currentCurrency, setCurrency] = useAtom(currencyAtom);
+  const [
+    currencySelectionDialogOpen,
+    setCurrencySelectionDialogOpen,
+  ] = React.useState(false);
+  const [newWalletDialogOpen, setNewWalletDialogOpen] = React.useState(false);
 
   const handleAddWalletClick = (): void => {
-    setCurrencySelectionOpen(true);
+    if (!currentCurrency) {
+      setCurrencySelectionDialogOpen(true);
+      return;
+    }
+
+    setNewWalletDialogOpen(true);
   };
 
-  const handleCurrencySelectionClose = (): void => {
-    setCurrencySelectionOpen(false);
+  const handleCurrencySelectionDialogClose = (): void => {
+    setCurrencySelectionDialogOpen(false);
   };
 
-  const handleCurrencySelectionSubmit = (currency: Currency): void => {
-    setSelectedCurrency(currency);
+  const handleCurrencySelectionDialogSubmit = (currency: Currency): void => {
+    setCurrency(currency);
+    setNewWalletDialogOpen(true);
+  };
+
+  const handleNewWalletDialogClose = (): void => {
+    setNewWalletDialogOpen(false);
   };
 
   return (
@@ -86,9 +101,13 @@ const Empty: React.FC = () => {
         }
       />
       <CurrencySelectionDialog
-        open={currencySelectionOpen}
-        onClose={handleCurrencySelectionClose}
-        onSubmit={handleCurrencySelectionSubmit}
+        open={currencySelectionDialogOpen}
+        onClose={handleCurrencySelectionDialogClose}
+        onSubmit={handleCurrencySelectionDialogSubmit}
+      />
+      <NewWalletDialog
+        open={newWalletDialogOpen}
+        onClose={handleNewWalletDialogClose}
       />
     </>
   );

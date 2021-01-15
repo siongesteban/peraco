@@ -27,6 +27,9 @@ export const BASE_THEME: ThemeOptions = {
       light: '#5bf9b6',
       main: '#3be09b',
     },
+    text: {
+      primary: '#3f3d56',
+    },
   },
   typography: {
     h6: {
@@ -67,11 +70,6 @@ export const BASE_THEME: ThemeOptions = {
         '&:last-child': {
           paddingBottom: undefined,
         },
-      },
-    },
-    MuiTypography: {
-      colorTextPrimary: {
-        color: '#3f3d56',
       },
     },
   },
