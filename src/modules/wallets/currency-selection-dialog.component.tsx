@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { useSearchParams } from 'modules/app/router';
 import { useService } from 'modules/app/service';
+import { Head } from 'shared/components';
 import { Currency } from 'shared/services';
 
 const useCurrencies = () => {
@@ -77,43 +78,46 @@ export const CurrencySelectionDialog: React.FC<CurrencySelectionDialogProps> = (
   const open = searchParams.dialog === 'set-currency';
 
   return (
-    <Dialog fullWidth open={open} onClose={handleClose}>
-      <DialogTitle>Select currency</DialogTitle>
-      <DialogContent
-        dividers
-        classes={{
-          dividers: classes.dividers,
-        }}
-      >
-        <List
-          height={300}
-          width="100%"
-          itemData={{
-            selectedCurrency,
-            currencies,
-            selectedStyleClass: classes.selected,
-            onSelect: handleSelect,
+    <>
+      {open ? <Head title="Select Currency" /> : null}
+      <Dialog fullWidth open={open} onClose={handleClose}>
+        <DialogTitle>Select currency</DialogTitle>
+        <DialogContent
+          dividers
+          classes={{
+            dividers: classes.dividers,
           }}
-          itemCount={currencies.length}
-          itemSize={45}
         >
-          {Item}
-        </List>
-      </DialogContent>
-      <DialogActions>
-        <Button color="primary" variant="text" onClick={handleClose}>
-          Cancel
-        </Button>
-        <Button
-          color="primary"
-          disabled={!selectedCurrency}
-          variant="text"
-          onClick={handleNextClick}
-        >
-          Next
-        </Button>
-      </DialogActions>
-    </Dialog>
+          <List
+            height={300}
+            width="100%"
+            itemData={{
+              selectedCurrency,
+              currencies,
+              selectedStyleClass: classes.selected,
+              onSelect: handleSelect,
+            }}
+            itemCount={currencies.length}
+            itemSize={45}
+          >
+            {Item}
+          </List>
+        </DialogContent>
+        <DialogActions>
+          <Button color="primary" variant="text" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button
+            color="primary"
+            disabled={!selectedCurrency}
+            variant="text"
+            onClick={handleNextClick}
+          >
+            Next
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
 };
 
