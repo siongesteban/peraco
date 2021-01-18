@@ -40,12 +40,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export type CurrencySelectionDialogProps = {
+export type SelectCurrencyDialogProps = {
   onClose?: () => void;
   onSubmit: (currency: Currency) => void;
 };
 
-export const CurrencySelectionDialog: React.FC<CurrencySelectionDialogProps> = ({
+export const SelectCurrencyDialog: React.FC<SelectCurrencyDialogProps> = ({
   onClose,
   onSubmit,
 }) => {

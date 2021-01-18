@@ -34,11 +34,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export type NewWalletDialog = {
+export type CreateWalletDialogProps = {
   onClose?: () => void;
 };
 
-export const NewWalletDialog: React.FC<NewWalletDialog> = ({ onClose }) => {
+export const CreateWalletDialog: React.FC<CreateWalletDialogProps> = ({
+  onClose,
+}) => {
   const { searchParams, navigate } = useSearchParams();
   const classes = useStyles();
 
@@ -60,13 +62,13 @@ export const NewWalletDialog: React.FC<NewWalletDialog> = ({ onClose }) => {
       >
         <AppBar className={classes.appBar} color="transparent" elevation={0}>
           <Toolbar>
-            <IconButton color="inherit" edge="start" onClick={onClose}>
+            <IconButton color="inherit" edge="start" onClick={handleClose}>
               <CloseIcon />
             </IconButton>
             <Typography variant="h6" className={classes.title}>
               Create wallet
             </Typography>
-            <Button color="primary" variant="text" onClick={onClose}>
+            <Button color="primary" variant="text" onClick={handleClose}>
               Save
             </Button>
           </Toolbar>

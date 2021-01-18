@@ -11,8 +11,8 @@ import { useSearchParams } from 'modules/app/router';
 
 import { EmptyWalletListIllustration } from './assets';
 import { WalletCard, WalletCardProps } from './wallet-card.component';
-import { CurrencySelectionDialog } from './currency-selection-dialog.component';
-import { NewWalletDialog } from './new-wallet-dialog.component';
+import { SelectCurrencyDialog } from './select-currency-dialog.component';
+import { CreateWalletDialog } from './create-wallet-dialog.component';
 
 const WALLETS: WalletCardProps[] = [
   // {
@@ -84,7 +84,7 @@ const WALLETS: WalletCardProps[] = [
 ];
 
 const Empty: React.FC = () => {
-  const { setSearchParams, navigate } = useSearchParams();
+  const { setSearchParams } = useSearchParams();
   const [currentCurrency, setCurrency] = useAtom(currencyAtom);
 
   const handleAddWalletClick = (): void => {
@@ -99,10 +99,6 @@ const Empty: React.FC = () => {
   const handleCurrencySelectionDialogSubmit = (currency: Currency): void => {
     setCurrency(currency);
     setSearchParams({ dialog: 'new-wallet' }, { replace: true });
-  };
-
-  const handleNewWalletDialogClose = (): void => {
-    navigate(-1);
   };
 
   return (
@@ -126,8 +122,8 @@ const Empty: React.FC = () => {
           </Button>
         }
       />
-      <CurrencySelectionDialog onSubmit={handleCurrencySelectionDialogSubmit} />
-      <NewWalletDialog onClose={handleNewWalletDialogClose} />
+      <SelectCurrencyDialog onSubmit={handleCurrencySelectionDialogSubmit} />
+      <CreateWalletDialog />
     </>
   );
 };
