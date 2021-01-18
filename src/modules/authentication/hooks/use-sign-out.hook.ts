@@ -15,7 +15,7 @@ export const useSignOut = (): (() => Promise<void>) => {
       await firebaseService.signOut();
 
       setUser(null);
-      navigate('/welcome');
+      navigate('/welcome', { replace: true });
     } catch (e) {
       setSnackbarMessage({ message: e.message });
     }

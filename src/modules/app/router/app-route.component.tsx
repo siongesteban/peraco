@@ -31,11 +31,11 @@ export const AppRoute: React.FC<AppRouteProps> = ({
   const authenticated = authenticationStatus === 'authenticated';
 
   if (isPrivate && !authenticated) {
-    return <Navigate to="/welcome" />;
+    return <Navigate replace to="/welcome" />;
   }
 
   if (isGuestOnly && authenticated) {
-    return <Navigate to="/" />;
+    return <Navigate replace to="/" />;
   }
 
   return <Route {...restProps} />;

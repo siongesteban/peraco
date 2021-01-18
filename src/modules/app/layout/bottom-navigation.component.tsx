@@ -37,8 +37,7 @@ export const BottomNavigation: React.FC = () => {
     _: React.ChangeEvent<Record<string, never>>,
     newValue: string,
   ): void => {
-    navigate(`/${newValue}`);
-    setValue(newValue);
+    navigate(`/${newValue}`, { replace: true });
   };
 
   const items: BottomNavigationActionProps[] = [
