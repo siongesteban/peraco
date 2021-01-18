@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { Close as CloseIcon } from '@material-ui/icons';
 
+import { useSearchParams } from 'modules/app/router';
+
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children?: React.ReactElement },
   ref: React.Ref<unknown>,
@@ -32,23 +34,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export type NewWalletDialog = {
-  open: boolean;
-  onClose: () => void;
-  // onSubmit: (currency: Currency) => void;
+  onClose?: () => void;
 };
 
-export const NewWalletDialog: React.FC<NewWalletDialog> = ({
-  open,
-  onClose,
-}) => {
+export const NewWalletDialog: React.FC<NewWalletDialog> = ({ onClose }) => {
+  const { searchParams, navigate } = useSearchParams();
   const classes = useStyles();
+
+  const handleClose = (): void => {
+    navigate(-1);
+    onClose?.();
+  };
+
+  const open = searchParams.dialog === 'new-wallet';
 
   return (
     <Dialog
       fullScreen
       open={open}
       TransitionComponent={Transition}
-      onClose={onClose}
+      onClose={handleClose}
     >
       <AppBar className={classes.appBar} color="transparent" elevation={0}>
         <Toolbar>

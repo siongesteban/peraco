@@ -12,6 +12,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useSearchParams } from 'modules/app/router';
 import { useService } from 'modules/app/service';
 import { Currency } from 'shared/services';
 
@@ -39,16 +40,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export type CurrencySelectionDialogProps = {
-  open: boolean;
-  onClose: () => void;
+  onClose?: () => void;
   onSubmit: (currency: Currency) => void;
 };
 
 export const CurrencySelectionDialog: React.FC<CurrencySelectionDialogProps> = ({
-  open,
   onClose,
   onSubmit,
 }) => {
+  const { searchParams, navigate } = useSearchParams();
   const currencies = useCurrencies();
   const classes = useStyles();
   const [
@@ -62,7 +62,8 @@ export const CurrencySelectionDialog: React.FC<CurrencySelectionDialogProps> = (
 
   const handleClose = (): void => {
     setSelectedCurrency(null);
-    onClose();
+    navigate(-1);
+    onClose?.();
   };
 
   const handleNextClick = (): void => {
@@ -71,8 +72,9 @@ export const CurrencySelectionDialog: React.FC<CurrencySelectionDialogProps> = (
     }
 
     onSubmit(selectedCurrency);
-    handleClose();
   };
+
+  const open = searchParams.dialog === 'set-currency';
 
   return (
     <Dialog fullWidth open={open} onClose={handleClose}>
