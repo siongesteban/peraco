@@ -18,6 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   root: {
     minWidth: '100%',
+    zIndex: 1,
   },
 });
 
@@ -67,12 +68,8 @@ export const BottomNavigation: React.FC = () => {
     items.map((item) => <BottomNavigationAction key={item.value} {...item} />);
 
   return (
-    <Paper className={classes.root} square variant="outlined">
-      <MuiBottomNavigation
-        value={value}
-        showLabels={true}
-        onChange={handleChange}
-      >
+    <Paper className={classes.root} square elevation={3}>
+      <MuiBottomNavigation showLabels value={value} onChange={handleChange}>
         {renderItems()}
       </MuiBottomNavigation>
     </Paper>

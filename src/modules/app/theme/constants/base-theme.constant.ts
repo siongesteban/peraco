@@ -15,20 +15,15 @@ export const BASE_THEME: ThemeOptions = {
   },
   palette: {
     primary: {
-      // dark: '#cb2675',
       dark: '#ea1c7f',
       light: '#f858a5',
       main: '#ea1c7f',
     },
     secondary: {
-      // dark: '##1bbb77',
-      // dark: '#1cea93',
       dark: '#3be09b',
       light: '#5bf9b6',
       main: '#3be09b',
-    },
-    text: {
-      primary: '#3f3d56',
+      contrastText: '#201f27',
     },
   },
   typography: {
@@ -52,9 +47,6 @@ export const BASE_THEME: ThemeOptions = {
       },
     },
     MuiBottomNavigationAction: {
-      root: {
-        color: '#3f3d56',
-      },
       label: {
         fontWeight: 700,
       },

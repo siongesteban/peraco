@@ -6,5 +6,20 @@ export const LIGHT_THEME = createTheme({
     background: {
       default: '#fff',
     },
+    text: {
+      primary: '#3f3d56',
+    },
+  },
+  overrides: {
+    MuiBottomNavigationAction: {
+      root: {
+        color: '#3f3d56',
+      },
+    },
+    MuiCard: {
+      root: {
+        backgroundColor: '#fff',
+      },
+    },
   },
 });
