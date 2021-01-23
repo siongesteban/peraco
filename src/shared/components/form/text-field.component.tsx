@@ -92,7 +92,7 @@ export const TextField: React.FC<TextFieldProps> = ({
         text={currentValue}
         onClick={handleDisplayFieldClick}
       />
-      <Dialog fullWidth open={open}>
+      <Dialog fullWidth data-testid="text-field-dialog" open={open}>
         <DialogTitle>{placeholder}</DialogTitle>
         <DialogContent className={classes.dialogContent}>
           <MuiTextField

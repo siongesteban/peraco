@@ -45,10 +45,11 @@ export const CreateWalletDialog: React.FC = () => {
 
   const handleClose = (): void => {
     navigate(-1);
+    form.reset(undefined, { isDirty: false, isValid: false });
   };
 
   const handleSubmit = (data: Fields): void => {
-    console.log('data', data);
+    data;
     handleClose();
   };
 
@@ -59,6 +60,7 @@ export const CreateWalletDialog: React.FC = () => {
       {open ? <Head title="Create wallet" /> : null}
       <Dialog
         fullScreen
+        data-testid="create-wallet-dialog"
         open={open}
         TransitionComponent={Transition}
         onClose={handleClose}
@@ -70,10 +72,15 @@ export const CreateWalletDialog: React.FC = () => {
         >
           <AppBar className={classes.appBar} color="transparent" elevation={0}>
             <Toolbar>
-              <IconButton color="inherit" edge="start" onClick={handleClose}>
+              <IconButton
+                data-testid="close-button"
+                color="inherit"
+                edge="start"
+                onClick={handleClose}
+              >
                 <CloseIcon />
               </IconButton>
-              <Typography variant="h6" className={classes.title}>
+              <Typography variant="h6" component="h2" className={classes.title}>
                 Create wallet
               </Typography>
               <Button

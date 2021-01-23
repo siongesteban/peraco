@@ -33,6 +33,7 @@ export const useSearchParams = (): {
 
     navigate(
       {
+        pathname: location.pathname,
         search: search ? `?${search}` : '',
       },
       options,

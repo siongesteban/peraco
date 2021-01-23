@@ -31,6 +31,7 @@ type CustomRenderOptions = RenderOptions &
       snackbar: SnackbarAtom;
       user: UserAtom;
     }>;
+    router: boolean;
     browserRouter: boolean;
     memoryRouter: Partial<{
       initialEntries: InitialEntry[];
@@ -41,8 +42,13 @@ const customRender = (
   ui: React.ReactElement,
   options?: CustomRenderOptions,
 ): RenderResult => {
-  const { initialState, browserRouter, memoryRouter, ...restOptions } =
-    options || {};
+  const {
+    initialState,
+    router = true,
+    browserRouter,
+    memoryRouter,
+    ...restOptions
+  } = options || {};
 
   const initialValues = [
     [
@@ -63,7 +69,7 @@ const customRender = (
           initialValues as any
         }
       >
-        {browserRouter ? (
+        {!router ? null : browserRouter ? (
           <BrowserRouter>{children}</BrowserRouter>
         ) : (
           <MemoryRouter {...memoryRouter}>{children}</MemoryRouter>
