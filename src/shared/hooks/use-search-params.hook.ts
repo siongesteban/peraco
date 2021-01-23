@@ -2,6 +2,8 @@ import { NavigateFunction } from 'react-router';
 import { useLocation, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 
+import { parseSearchString } from 'shared/utils';
+
 export type SearchParams = Partial<{
   dialog: 'set-currency' | 'new-wallet' | null;
   subdialog: 'field' | null;
@@ -43,6 +45,3 @@ export const useSearchParams = (): {
     navigate,
   };
 };
-
-const parseSearchString = (searchString: string): qs.ParsedQs =>
-  qs.parse(searchString.split('?')[1]);

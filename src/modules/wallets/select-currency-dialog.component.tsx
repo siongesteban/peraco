@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
+import { useUpdateAtom } from 'jotai/utils';
 
 import {
   Button,
@@ -12,10 +13,11 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useService } from 'modules/app/service';
+import { currencyAtom } from 'shared/atoms';
 import { Head } from 'shared/components';
 import { useSearchParams } from 'shared/hooks';
 import { Currency } from 'shared/services';
+import { useService } from 'modules/app/service';
 
 const useCurrencies = () => {
   const { currencyService } = useService();
@@ -40,16 +42,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export type SelectCurrencyDialogProps = {
-  onClose?: () => void;
-  onSubmit: (currency: Currency) => void;
-};
-
-export const SelectCurrencyDialog: React.FC<SelectCurrencyDialogProps> = ({
-  onClose,
-  onSubmit,
-}) => {
-  const { searchParams, navigate } = useSearchParams();
+export const SelectCurrencyDialog: React.FC = () => {
+  const { searchParams, setSearchParams, navigate } = useSearchParams();
+  const setCurrency = useUpdateAtom(currencyAtom);
   const currencies = useCurrencies();
   const classes = useStyles();
   const [
@@ -64,7 +59,6 @@ export const SelectCurrencyDialog: React.FC<SelectCurrencyDialogProps> = ({
   const handleClose = (): void => {
     setSelectedCurrency(null);
     navigate(-1);
-    onClose?.();
   };
 
   const handleOkClick = (): void => {
@@ -72,7 +66,8 @@ export const SelectCurrencyDialog: React.FC<SelectCurrencyDialogProps> = ({
       return;
     }
 
-    onSubmit(selectedCurrency);
+    setCurrency(selectedCurrency);
+    setSearchParams({ dialog: 'new-wallet' }, { replace: true });
   };
 
   const open = searchParams.dialog === 'set-currency';

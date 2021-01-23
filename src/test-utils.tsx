@@ -2,10 +2,11 @@ import 'reflect-metadata';
 import * as React from 'react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import qs from 'qs';
 import { Provider as GlobalStateProvider } from 'jotai';
 import { HelmetProvider } from 'react-helmet-async';
 import { InitialEntry } from 'history';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, BrowserRouter } from 'react-router-dom';
 
 import {
   authenticationStatusAtom,
@@ -19,25 +20,29 @@ import {
   userAtom,
   UserAtom,
 } from 'shared/atoms';
+import { parseSearchString } from 'shared/utils';
 
-type CustomRenderOptions = RenderOptions & {
-  initialState?: Partial<{
-    authenticationStatus: AuthenticationStatusAtom;
-    currency: CurrencyAtom;
-    loaderMessage: LoaderMessageAtom;
-    snackbar: SnackbarAtom;
-    user: UserAtom;
+type CustomRenderOptions = RenderOptions &
+  Partial<{
+    initialState: Partial<{
+      authenticationStatus: AuthenticationStatusAtom;
+      currency: CurrencyAtom;
+      loaderMessage: LoaderMessageAtom;
+      snackbar: SnackbarAtom;
+      user: UserAtom;
+    }>;
+    browserRouter: boolean;
+    memoryRouter: Partial<{
+      initialEntries: InitialEntry[];
+    }>;
   }>;
-  memoryRouter?: Partial<{
-    initialEntries: InitialEntry[];
-  }>;
-};
 
 const customRender = (
   ui: React.ReactElement,
   options?: CustomRenderOptions,
 ): RenderResult => {
-  const { initialState, memoryRouter, ...restOptions } = options || {};
+  const { initialState, browserRouter, memoryRouter, ...restOptions } =
+    options || {};
 
   const initialValues = [
     [
@@ -58,7 +63,11 @@ const customRender = (
           initialValues as any
         }
       >
-        <MemoryRouter {...memoryRouter}>{children}</MemoryRouter>
+        {browserRouter ? (
+          <BrowserRouter>{children}</BrowserRouter>
+        ) : (
+          <MemoryRouter {...memoryRouter}>{children}</MemoryRouter>
+        )}
       </GlobalStateProvider>
     </HelmetProvider>
   );
@@ -66,6 +75,10 @@ const customRender = (
   return render(ui, { ...restOptions, wrapper: Wrapper });
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getSearchParams = (): Record<string, any> =>
+  parseSearchString(window.location.href);
+
 export * from '@testing-library/react';
 
-export { customRender as render, userEvent };
+export { customRender as render, getSearchParams, userEvent };
