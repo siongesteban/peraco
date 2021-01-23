@@ -79,6 +79,8 @@ const customRender = (
 const getSearchParams = (): Record<string, any> =>
   parseSearchString(window.location.href);
 
+const getDocumentTitle = (): string => document.title.split(' – ')[0];
+
 export * from '@testing-library/react';
 
-export { customRender as render, getSearchParams, userEvent };
+export { customRender as render, userEvent, getSearchParams, getDocumentTitle };
