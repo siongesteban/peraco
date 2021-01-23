@@ -4,6 +4,8 @@ import qs from 'qs';
 
 export type SearchParams = Partial<{
   dialog: 'set-currency' | 'new-wallet' | null;
+  subdialog: 'field' | null;
+  field: string | null;
 }>;
 
 type SetSearchParams = (
@@ -19,9 +21,11 @@ export const useSearchParams = (): {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const currentSearchParams = parseSearchString(location.search);
+
   const setSearchParams: SetSearchParams = (searchParams, options) => {
     const search = qs.stringify(
-      { ...location.state, ...searchParams },
+      { ...currentSearchParams, ...searchParams },
       { skipNulls: true },
     );
 
@@ -34,8 +38,11 @@ export const useSearchParams = (): {
   };
 
   return {
-    searchParams: qs.parse(location.search.split('?')[1]) as SearchParams,
+    searchParams: currentSearchParams as SearchParams,
     setSearchParams,
     navigate,
   };
 };
+
+const parseSearchString = (searchString: string): qs.ParsedQs =>
+  qs.parse(searchString.split('?')[1]);

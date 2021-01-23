@@ -4,6 +4,8 @@ import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Provider as GlobalStateProvider } from 'jotai';
 import { HelmetProvider } from 'react-helmet-async';
+import { InitialEntry } from 'history';
+import { MemoryRouter } from 'react-router-dom';
 
 import {
   authenticationStatusAtom,
@@ -26,13 +28,16 @@ type CustomRenderOptions = RenderOptions & {
     snackbar: SnackbarAtom;
     user: UserAtom;
   }>;
+  memoryRouter?: Partial<{
+    initialEntries: InitialEntry[];
+  }>;
 };
 
 const customRender = (
   ui: React.ReactElement,
   options?: CustomRenderOptions,
 ): RenderResult => {
-  const { initialState, ...restOptions } = options || {};
+  const { initialState, memoryRouter, ...restOptions } = options || {};
 
   const initialValues = [
     [
@@ -46,10 +51,14 @@ const customRender = (
   ];
 
   const Wrapper: React.FC = ({ children }) => (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     <HelmetProvider>
-      <GlobalStateProvider initialValues={initialValues as any}>
-        {children}
+      <GlobalStateProvider
+        initialValues={
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          initialValues as any
+        }
+      >
+        <MemoryRouter {...memoryRouter}>{children}</MemoryRouter>
       </GlobalStateProvider>
     </HelmetProvider>
   );

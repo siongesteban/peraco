@@ -5,9 +5,9 @@ import { Button, Grid } from '@material-ui/core';
 import { AddCircleTwoTone as AddIcon } from '@material-ui/icons';
 
 import { currencyAtom } from 'shared/atoms';
+import { useSearchParams } from 'shared/hooks';
 import { Currency } from 'shared/services';
 import { EmptyState } from 'modules/app/main';
-import { useSearchParams } from 'modules/app/router';
 
 import { EmptyWalletListIllustration } from './assets';
 import { WalletCard, WalletCardProps } from './wallet-card.component';

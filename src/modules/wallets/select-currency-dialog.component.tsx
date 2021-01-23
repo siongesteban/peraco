@@ -12,9 +12,9 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useSearchParams } from 'modules/app/router';
 import { useService } from 'modules/app/service';
 import { Head } from 'shared/components';
+import { useSearchParams } from 'shared/hooks';
 import { Currency } from 'shared/services';
 
 const useCurrencies = () => {
@@ -67,7 +67,7 @@ export const SelectCurrencyDialog: React.FC<SelectCurrencyDialogProps> = ({
     onClose?.();
   };
 
-  const handleNextClick = (): void => {
+  const handleOkClick = (): void => {
     if (!selectedCurrency) {
       return;
     }
@@ -79,7 +79,7 @@ export const SelectCurrencyDialog: React.FC<SelectCurrencyDialogProps> = ({
 
   return (
     <>
-      {open ? <Head title="Select Currency" /> : null}
+      {open ? <Head title="Select currency" /> : null}
       <Dialog fullWidth open={open} onClose={handleClose}>
         <DialogTitle>Select currency</DialogTitle>
         <DialogContent
@@ -111,9 +111,9 @@ export const SelectCurrencyDialog: React.FC<SelectCurrencyDialogProps> = ({
             color="primary"
             disabled={!selectedCurrency}
             variant="text"
-            onClick={handleNextClick}
+            onClick={handleOkClick}
           >
-            Next
+            Ok
           </Button>
         </DialogActions>
       </Dialog>

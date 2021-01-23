@@ -1,34 +1,31 @@
 import * as React from 'react';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { render, screen } from 'test-utils';
 
 import { AppRoute } from './app-route.component';
 
-type WrapperProps = {
-  path?: string;
-};
-
-const Wrapper: React.FC<WrapperProps> = ({ children, path = '/' }) => (
-  <MemoryRouter initialEntries={[path]}>
-    <Routes>
-      <Route path="/" element={<div>home</div>} />
-      <Route path="welcome" element={<div>welcome</div>} />
-      {children}
-    </Routes>
-  </MemoryRouter>
+const Wrapper: React.FC = ({ children }) => (
+  <Routes>
+    <Route path="/" element={<div>home</div>} />
+    <Route path="welcome" element={<div>welcome</div>} />
+    {children}
+  </Routes>
 );
 
 const TestPage: React.FC = () => <p>test page</p>;
 
 test('Displays page loader with the correct message when signing in', () => {
   render(
-    <Wrapper path="/page">
+    <Wrapper>
       <AppRoute path="/page" element={<TestPage />} />
     </Wrapper>,
     {
       initialState: {
         authenticationStatus: 'signingIn',
         loaderMessage: 'Signing in...',
+      },
+      memoryRouter: {
+        initialEntries: ['/page'],
       },
     },
   );
@@ -39,12 +36,15 @@ test('Displays page loader with the correct message when signing in', () => {
 
 test('Displays splash screen when authenticating', () => {
   render(
-    <Wrapper path="/page">
+    <Wrapper>
       <AppRoute path="/page" element={<TestPage />} />
     </Wrapper>,
     {
       initialState: {
         authenticationStatus: 'authenticating',
+      },
+      memoryRouter: {
+        initialEntries: ['/page'],
       },
     },
   );
@@ -57,12 +57,15 @@ test('Displays splash screen when authenticating', () => {
 
 test('Redirects to /welcome page if the route is private and the user is unauthenticated', () => {
   render(
-    <Wrapper path="/page">
+    <Wrapper>
       <AppRoute isPrivate path="/page" element={<TestPage />} />
     </Wrapper>,
     {
       initialState: {
         authenticationStatus: 'unauthenticated',
+      },
+      memoryRouter: {
+        initialEntries: ['/page'],
       },
     },
   );
@@ -73,12 +76,15 @@ test('Redirects to /welcome page if the route is private and the user is unauthe
 
 test('Redirects to index page if the route is for guests only and the user is authenticated', () => {
   render(
-    <Wrapper path="/page">
+    <Wrapper>
       <AppRoute isGuestOnly path="/page" element={<TestPage />} />
     </Wrapper>,
     {
       initialState: {
         authenticationStatus: 'authenticated',
+      },
+      memoryRouter: {
+        initialEntries: ['/page'],
       },
     },
   );
@@ -89,12 +95,15 @@ test('Redirects to index page if the route is for guests only and the user is au
 
 test('Shows page when it is private and the user is authenticated', () => {
   render(
-    <Wrapper path="/page">
+    <Wrapper>
       <AppRoute isPrivate path="/page" element={<TestPage />} />
     </Wrapper>,
     {
       initialState: {
         authenticationStatus: 'authenticated',
+      },
+      memoryRouter: {
+        initialEntries: ['/page'],
       },
     },
   );
@@ -104,12 +113,15 @@ test('Shows page when it is private and the user is authenticated', () => {
 
 test('Shows page when it is for guests only and the user is unauthenticated', () => {
   render(
-    <Wrapper path="/page">
+    <Wrapper>
       <AppRoute isGuestOnly path="/page" element={<TestPage />} />
     </Wrapper>,
     {
       initialState: {
         authenticationStatus: 'unauthenticated',
+      },
+      memoryRouter: {
+        initialEntries: ['/page'],
       },
     },
   );

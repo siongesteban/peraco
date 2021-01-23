@@ -20,7 +20,7 @@ const firebaseConfig: FirebaseConfig = {
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
 };
 
-object<FirebaseConfig>({
+object({
   apiKey: string().required(),
   appId: string().required(),
   authDomain: string().required(),

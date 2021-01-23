@@ -9,6 +9,9 @@ export const BASE_THEME: ThemeOptions = {
     MuiCard: {
       elevation: 1,
     },
+    MuiTextField: {
+      variant: 'outlined',
+    },
     MuiTypography: {
       color: 'textPrimary',
     },

@@ -4,7 +4,7 @@ import {
   AppBar,
   Button,
   Dialog,
-  DialogContent,
+  Grid,
   IconButton,
   Slide,
   Toolbar,
@@ -14,8 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { Close as CloseIcon } from '@material-ui/icons';
 
-import { useSearchParams } from 'modules/app/router';
-import { Head } from 'shared/components';
+import { Head, ParentFormProvider, FormFields } from 'shared/components';
+import { useForm, useSearchParams } from 'shared/hooks';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children?: React.ReactElement },
@@ -34,46 +34,92 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export type CreateWalletDialogProps = {
-  onClose?: () => void;
+type Fields = {
+  name: string;
 };
 
-export const CreateWalletDialog: React.FC<CreateWalletDialogProps> = ({
-  onClose,
-}) => {
+export const CreateWalletDialog: React.FC = () => {
   const { searchParams, navigate } = useSearchParams();
+  const form = useForm<Fields>();
   const classes = useStyles();
 
   const handleClose = (): void => {
     navigate(-1);
-    onClose?.();
+  };
+
+  const handleSubmit = (data: Fields): void => {
+    console.log('data', data);
+    handleClose();
   };
 
   const open = searchParams.dialog === 'new-wallet';
 
   return (
     <>
-      {open ? <Head title="Create Wallet" /> : null}
+      {open ? <Head title="Create wallet" /> : null}
       <Dialog
         fullScreen
         open={open}
         TransitionComponent={Transition}
         onClose={handleClose}
       >
-        <AppBar className={classes.appBar} color="transparent" elevation={0}>
-          <Toolbar>
-            <IconButton color="inherit" edge="start" onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
-            <Typography variant="h6" className={classes.title}>
-              Create wallet
-            </Typography>
-            <Button color="primary" variant="text" onClick={handleClose}>
-              Save
-            </Button>
-          </Toolbar>
-        </AppBar>
-        <DialogContent>Some text</DialogContent>
+        <ParentFormProvider
+          form={form}
+          onSubmit={handleSubmit}
+          registerOptions={{ name: { required: true } }}
+        >
+          <AppBar className={classes.appBar} color="transparent" elevation={0}>
+            <Toolbar>
+              <IconButton color="inherit" edge="start" onClick={handleClose}>
+                <CloseIcon />
+              </IconButton>
+              <Typography variant="h6" className={classes.title}>
+                Create wallet
+              </Typography>
+              <Button
+                disabled={!form.formState.isDirty || !form.formState.isValid}
+                color="primary"
+                size="small"
+                type="submit"
+              >
+                Save
+              </Button>
+            </Toolbar>
+          </AppBar>
+          <Grid container direction="column">
+            <Grid item>
+              <FormFields
+                groups={[
+                  {
+                    title: 'Wallets',
+                    fields: [
+                      {
+                        name: 'name',
+                        label: 'Name',
+                        placeholder: 'Enter name',
+                      },
+                      {
+                        name: 'description',
+                        label: 'Description',
+                        placeholder: 'Add description',
+                      },
+                    ],
+                  },
+                  {
+                    title: 'Balance',
+                    fields: [
+                      {
+                        name: 'totalBalance',
+                        label: 'Total Balance',
+                        placeholder: 'Enter total balance',
+                      },
+                    ],
+                  },
+                ]}
+              />
+            </Grid>
+          </Grid>
+        </ParentFormProvider>
       </Dialog>
     </>
   );
