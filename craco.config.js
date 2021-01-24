@@ -35,5 +35,8 @@ module.exports = {
       addPresets: false,
       addPlugins: false,
     },
+    config: {
+      coverageReporters: ['text', 'lcov'],
+    },
   },
 };
