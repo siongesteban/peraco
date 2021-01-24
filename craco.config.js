@@ -1,4 +1,5 @@
-// eslint-disable-next-line no-undef
+const WorkboxPlugin = require('workbox-webpack-plugin');
+
 module.exports = {
   eslint: {
     mode: 'file',
@@ -37,6 +38,20 @@ module.exports = {
     },
     config: {
       coverageReporters: ['text', 'lcov'],
+    },
+  },
+  webpack: {
+    configure: (webpackConfig, { env }) => {
+      if (env === 'production') {
+        webpackConfig.plugins.push(
+          new WorkboxPlugin.GenerateSW({
+            clientsClaim: true,
+            skipWaiting: true,
+          }),
+        );
+      }
+
+      return webpackConfig;
     },
   },
 };
