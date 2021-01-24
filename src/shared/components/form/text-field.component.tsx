@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { RegisterOptions } from 'react-hook-form';
 
 import {
   Button,
@@ -20,6 +21,7 @@ export type TextFieldProps = {
   name: string;
   label: string;
   placeholder: string;
+  rules?: RegisterOptions;
 };
 
 const useStyles = makeStyles({
@@ -34,18 +36,16 @@ export const TextField: React.FC<TextFieldProps> = ({
   name,
   label,
   placeholder,
+  rules,
 }) => {
   const { searchParams, setSearchParams, navigate } = useSearchParams();
-  const {
-    parentForm: { register, watch, setValue },
-    registerOptions,
-  } = useParentForm();
+  const { register, watch, setValue } = useParentForm();
   const classes = useStyles();
   const [fieldValue, setFieldValue] = React.useState('');
 
   React.useEffect(() => {
-    if (registerOptions[name]) {
-      register({ name }, registerOptions[name]);
+    if (rules) {
+      register({ name }, rules);
       return;
     }
 

@@ -65,11 +65,7 @@ export const CreateWalletDialog: React.FC = () => {
         TransitionComponent={Transition}
         onClose={handleClose}
       >
-        <ParentFormProvider
-          form={form}
-          onSubmit={handleSubmit}
-          registerOptions={{ name: { required: true } }}
-        >
+        <ParentFormProvider form={form} onSubmit={handleSubmit}>
           <AppBar className={classes.appBar} color="transparent" elevation={0}>
             <Toolbar>
               <IconButton
@@ -104,6 +100,7 @@ export const CreateWalletDialog: React.FC = () => {
                         name: 'name',
                         label: 'Name',
                         placeholder: 'Enter name',
+                        rules: { required: true },
                       },
                       {
                         name: 'description',

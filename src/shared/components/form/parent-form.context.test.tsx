@@ -27,11 +27,11 @@ const Wrapper: React.FC<WrapperProps> = ({
 };
 
 const SomeChild: React.FC = () => {
-  const { parentForm } = useParentForm();
+  const form = useParentForm();
 
   return (
     <>
-      <input name="firstName" type="text" ref={parentForm.register} />
+      <input name="firstName" type="text" ref={form.register} />
       <input type="submit" />
     </>
   );

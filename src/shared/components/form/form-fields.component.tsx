@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { RegisterOptions } from 'react-hook-form';
 
 import { List, ListSubheader, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,6 +17,7 @@ type Field = {
   name: string;
   label: string;
   placeholder: string;
+  rules?: RegisterOptions;
 };
 
 type FormGroup = {
