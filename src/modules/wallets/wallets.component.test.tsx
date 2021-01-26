@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { render, screen, fireEvent, getSearchParams } from 'test-utils';
 
 import { useWallets } from './use-wallets.hook';

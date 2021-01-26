@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { render, screen, waitFor, getDocumentTitle } from 'test-utils';
 
 import { WalletsPage } from './wallets.page';

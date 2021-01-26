@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useAtomValue } from 'jotai/utils';
 
 import { themeAtom } from 'shared/atoms';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useAtomValue } from 'jotai/utils';
 import ReactNumberFormat, { NumberFormatProps } from 'react-number-format';
 

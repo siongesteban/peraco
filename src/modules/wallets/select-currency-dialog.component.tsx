@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
 import { useUpdateAtom } from 'jotai/utils';
 

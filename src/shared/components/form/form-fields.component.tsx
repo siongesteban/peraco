@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { RegisterOptions } from 'react-hook-form';
 
 import { List, ListSubheader, Typography } from '@material-ui/core';

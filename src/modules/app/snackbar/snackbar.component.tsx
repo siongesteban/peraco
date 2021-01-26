@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useAtomValue, useUpdateAtom } from 'jotai/utils';
 
 import { Button, Snackbar as MuiSnackbar } from '@material-ui/core';

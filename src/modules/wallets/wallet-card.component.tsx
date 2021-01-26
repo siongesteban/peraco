@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { capitalize } from 'lodash';
 
 import { Box, Card, CardContent, Grid, Typography } from '@material-ui/core';

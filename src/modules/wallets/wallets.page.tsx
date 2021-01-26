@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Head } from 'shared/components';
 import { MainPageContainer } from 'modules/app/main';

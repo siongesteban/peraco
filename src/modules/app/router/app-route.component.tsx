@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Route, Navigate } from 'react-router-dom';
 import { RouteProps } from 'react-router';
 import { useAtomValue } from 'jotai/utils';

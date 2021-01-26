@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { RegisterOptions, UseFormMethods } from 'react-hook-form';
 
 export type RegisterOptionsMap = Record<string, RegisterOptions>;

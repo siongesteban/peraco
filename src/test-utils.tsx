@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import * as React from 'react';
+import React from 'react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import qs from 'qs';

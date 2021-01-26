@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { render, screen, fireEvent, waitFor, userEvent } from 'test-utils';
 
 import { useForm } from 'shared/hooks';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { FirebaseService } from 'shared/services/firebase';
 import { CurrencyService, UserService } from 'shared/services';

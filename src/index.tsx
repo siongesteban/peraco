@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import * as React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { createDb } from 'shared/services/rxdb';

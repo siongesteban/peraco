@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { render, waitFor } from 'test-utils';
 
 import { Head } from './head.component';

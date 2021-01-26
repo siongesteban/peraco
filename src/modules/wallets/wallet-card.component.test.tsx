@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { render, screen } from 'test-utils';
 
 import { WalletCard } from './wallet-card.component';

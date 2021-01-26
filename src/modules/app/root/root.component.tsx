@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Provider as GlobalStateProvider } from 'jotai';
 import { HelmetProvider } from 'react-helmet-async';
 
