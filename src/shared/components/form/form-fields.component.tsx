@@ -51,12 +51,13 @@ export const FormFields: React.FC<FormFieldsProps> = ({ groups }) => {
             </ListSubheader>
           }
         >
-          {group.fields.map(({ name, label, placeholder }) => (
+          {group.fields.map(({ name, label, placeholder, rules }) => (
             <TextField
               key={name}
               name={name}
               label={label}
               placeholder={placeholder}
+              rules={rules}
             />
           ))}
         </List>
