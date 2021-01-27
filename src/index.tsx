@@ -9,7 +9,7 @@ import 'modules/app/root/root.css';
 import { registerServiceWorker } from './registerServiceWorker';
 
 const init = async (): Promise<void> => {
-  registerServiceWorker();
+  await registerServiceWorker();
 
   await createDb();
 

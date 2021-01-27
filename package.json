@@ -30,6 +30,7 @@
     "tsyringe": "^4.4.0",
     "typescript": "4.1.2",
     "uuid": "^8.3.2",
+    "workbox-window": "^6.0.2",
     "yup": "^0.32.8"
   },
   "devDependencies": {
@@ -58,6 +59,8 @@
     "lint-staged": "^10.1.7",
     "prettier": "^2.0.5",
     "serve": "^11.3.2",
+    "workbox-precaching": "^6.0.2",
+    "workbox-routing": "^6.0.2",
     "workbox-webpack-plugin": "^6.0.2"
   },
   "scripts": {

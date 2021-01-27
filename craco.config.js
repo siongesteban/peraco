@@ -44,9 +44,9 @@ module.exports = {
     configure: (webpackConfig, { env }) => {
       if (env === 'production') {
         webpackConfig.plugins.push(
-          new WorkboxPlugin.GenerateSW({
-            clientsClaim: true,
-            skipWaiting: true,
+          new WorkboxPlugin.InjectManifest({
+            swSrc: './service-worker.js',
+            swDest: 'service-worker.js',
           }),
         );
       }
