@@ -8,10 +8,10 @@ import { SocialAuthButton } from './social-auth-button.component';
 
 const useStyles = makeStyles({
   root: {
-    background: '#1877f2',
+    background: '#0b55b7',
     color: '#fff',
     '&:hover': {
-      background: '#1877f2',
+      background: '#0b55b7',
     },
   },
 });
