@@ -1,17 +1,14 @@
 import { useEffect } from 'react';
 import { useUpdateAtom } from 'jotai/utils';
 
-import { authenticationStatusAtom, setUserAtom } from 'shared/atoms';
+import { setUserAtom } from 'shared/atoms';
 import { useService } from 'modules/app/service';
 
 export const useAuthenticate = (): void => {
   const { userService } = useService();
-  const setAuthenticationStatus = useUpdateAtom(authenticationStatusAtom);
   const setUser = useUpdateAtom(setUserAtom);
 
   const authenticate = async (): Promise<void> => {
-    setAuthenticationStatus('authenticating');
-
     try {
       const user = await userService.authenticate();
 
