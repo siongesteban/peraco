@@ -8,16 +8,16 @@ import {
   getDocumentTitle,
 } from 'test-utils';
 
-import { useSearchParams } from 'shared/hooks';
+import { useQueryParams } from 'shared/hooks';
 
 import { CreateWalletDialog } from './create-wallet-dialog.component';
 
 const Wrapper: React.FC = ({ children }) => {
-  const { setSearchParams } = useSearchParams();
+  const { setQueryParams } = useQueryParams();
 
   return (
     <>
-      <button onClick={() => setSearchParams({ dialog: 'new-wallet' })}>
+      <button onClick={() => setQueryParams({ dialog: 'new-wallet' })}>
         open
       </button>
       {children}

@@ -2,32 +2,32 @@ import { NavigateFunction } from 'react-router';
 import { useLocation, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 
-import { parseSearchString } from 'shared/utils';
+import { parseQueryString } from 'shared/utils';
 
-export type SearchParams = Partial<{
+export type QueryParams = Partial<{
   dialog: 'set-currency' | 'new-wallet' | null;
   subdialog: 'field' | null;
   field: string | null;
 }>;
 
-type SetSearchParams = (
-  searchParams: SearchParams,
+type SetQueryParams = (
+  queryParams: QueryParams,
   options?: { replace?: boolean },
 ) => void;
 
-export const useSearchParams = (): {
-  searchParams: SearchParams;
-  setSearchParams: SetSearchParams;
+export const useQueryParams = (): {
+  queryParams: QueryParams;
+  setQueryParams: SetQueryParams;
   navigate: NavigateFunction;
 } => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const currentSearchParams = parseSearchString(location.search);
+  const currentQueryParams = parseQueryString(location.search);
 
-  const setSearchParams: SetSearchParams = (searchParams, options) => {
+  const setQueryParams: SetQueryParams = (queryParams, options) => {
     const search = qs.stringify(
-      { ...currentSearchParams, ...searchParams },
+      { ...currentQueryParams, ...queryParams },
       { skipNulls: true },
     );
 
@@ -41,8 +41,8 @@ export const useSearchParams = (): {
   };
 
   return {
-    searchParams: currentSearchParams as SearchParams,
-    setSearchParams,
+    queryParams: currentQueryParams as QueryParams,
+    setQueryParams,
     navigate,
   };
 };

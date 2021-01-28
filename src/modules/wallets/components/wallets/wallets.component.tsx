@@ -6,7 +6,7 @@ import { AddCircleTwoTone as AddIcon } from '@material-ui/icons';
 
 import { EmptyState } from 'system/main';
 import { currencyAtom } from 'shared/atoms';
-import { useSearchParams } from 'shared/hooks';
+import { useQueryParams } from 'shared/hooks';
 
 import { CreateWalletDialog } from '../create-wallet-dialog';
 import { SelectCurrencyDialog } from '../select-currency-dialog';
@@ -15,16 +15,16 @@ import { EmptyWalletListIllustration } from './assets';
 import { useWallets } from './use-wallets.hook';
 
 const Empty: React.FC = () => {
-  const { setSearchParams } = useSearchParams();
+  const { setQueryParams } = useQueryParams();
   const currentCurrency = useAtomValue(currencyAtom);
 
   const handleAddWalletClick = (): void => {
     if (!currentCurrency) {
-      setSearchParams({ dialog: 'set-currency' });
+      setQueryParams({ dialog: 'set-currency' });
       return;
     }
 
-    setSearchParams({ dialog: 'new-wallet' });
+    setQueryParams({ dialog: 'new-wallet' });
   };
 
   return (

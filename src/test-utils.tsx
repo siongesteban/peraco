@@ -20,7 +20,7 @@ import {
   userAtom,
   UserAtom,
 } from 'shared/atoms';
-import { parseSearchString } from 'shared/utils';
+import { parseQueryString } from 'shared/utils';
 
 type CustomRenderOptions = RenderOptions &
   Partial<{
@@ -83,7 +83,7 @@ const customRender = (
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getSearchParams = (): Record<string, any> =>
-  parseSearchString(window.location.href);
+  parseQueryString(window.location.href);
 
 const getDocumentTitle = (): string => document.title.split(' – ')[0];
 

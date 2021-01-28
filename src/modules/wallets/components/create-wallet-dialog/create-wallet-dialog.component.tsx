@@ -15,7 +15,7 @@ import { TransitionProps } from '@material-ui/core/transitions';
 import { Close as CloseIcon } from '@material-ui/icons';
 
 import { Head, ParentFormProvider, FormFields } from 'shared/components';
-import { useForm, useSearchParams } from 'shared/hooks';
+import { useForm, useQueryParams } from 'shared/hooks';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children?: React.ReactElement },
@@ -39,7 +39,7 @@ type Fields = {
 };
 
 export const CreateWalletDialog: React.FC = () => {
-  const { searchParams, navigate } = useSearchParams();
+  const { queryParams, navigate } = useQueryParams();
   const form = useForm<Fields>();
   const classes = useStyles();
 
@@ -53,7 +53,7 @@ export const CreateWalletDialog: React.FC = () => {
     handleClose();
   };
 
-  const open = searchParams.dialog === 'new-wallet';
+  const open = queryParams.dialog === 'new-wallet';
 
   return (
     <>

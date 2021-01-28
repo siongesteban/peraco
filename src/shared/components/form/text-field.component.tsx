@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useSearchParams } from 'shared/hooks';
+import { useQueryParams } from 'shared/hooks';
 
 import { DisplayField } from './display-field.component';
 import { useParentForm } from './parent-form.context';
@@ -38,7 +38,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   placeholder,
   rules,
 }) => {
-  const { searchParams, setSearchParams, navigate } = useSearchParams();
+  const { queryParams, setQueryParams, navigate } = useQueryParams();
   const { register, watch, setValue } = useParentForm();
   const classes = useStyles();
   const [fieldValue, setFieldValue] = React.useState('');
@@ -52,8 +52,7 @@ export const TextField: React.FC<TextFieldProps> = ({
     register({ name });
   }, []);
 
-  const open =
-    searchParams.subdialog === 'field' && searchParams.field === name;
+  const open = queryParams.subdialog === 'field' && queryParams.field === name;
 
   const currentValue = watch(name);
 
@@ -63,7 +62,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   };
 
   const handleDisplayFieldClick = (): void => {
-    setSearchParams({
+    setQueryParams({
       subdialog: 'field',
       field: name,
     });

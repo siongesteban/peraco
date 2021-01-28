@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useService } from 'system/service';
 import { currencyAtom } from 'shared/atoms';
 import { Head } from 'shared/components';
-import { useSearchParams } from 'shared/hooks';
+import { useQueryParams } from 'shared/hooks';
 import { Currency } from 'shared/services';
 
 const useCurrencies = () => {
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const SelectCurrencyDialog: React.FC = () => {
-  const { searchParams, setSearchParams, navigate } = useSearchParams();
+  const { queryParams, setQueryParams, navigate } = useQueryParams();
   const setCurrency = useUpdateAtom(currencyAtom);
   const currencies = useCurrencies();
   const classes = useStyles();
@@ -67,10 +67,10 @@ export const SelectCurrencyDialog: React.FC = () => {
     }
 
     setCurrency(selectedCurrency);
-    setSearchParams({ dialog: 'new-wallet' }, { replace: true });
+    setQueryParams({ dialog: 'new-wallet' }, { replace: true });
   };
 
-  const open = searchParams.dialog === 'set-currency';
+  const open = queryParams.dialog === 'set-currency';
 
   return (
     <>

@@ -1,1 +1,1 @@
-export * from './parse-search-string.util';
+export * from './parse-query-string.util';
