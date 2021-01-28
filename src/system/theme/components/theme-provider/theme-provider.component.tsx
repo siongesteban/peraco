@@ -10,8 +10,8 @@ import '@fontsource/nunito/800-italic.css';
 
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 
+import { useThemeMode } from 'system/theme';
 import { Head } from 'shared/components';
-import { useThemeMode } from 'shared/hooks';
 
 import { DARK_THEME, LIGHT_THEME } from '../../constants';
 

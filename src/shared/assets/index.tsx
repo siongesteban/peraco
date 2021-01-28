@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useThemeMode } from 'shared/hooks';
+import { useThemeMode } from 'system/theme';
 import { SvgElement } from 'shared/types';
 
 import { ReactComponent as LogoLight } from './logo.svg';
