@@ -1,4 +1,4 @@
-import { WalletCardProps } from './wallet-card.component';
+import { WalletCardProps } from '../wallet-card';
 
 export const useWallets = (): WalletCardProps[] => [
   // {

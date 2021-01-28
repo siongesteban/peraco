@@ -8,16 +8,21 @@ import { SplashScreen } from './splash-screen.component';
 const MainPage = React.lazy(() =>
   import(/* webpackChunkName: "main-page" */ 'modules/app/main'),
 );
+
 const SigninPage = React.lazy(() =>
   import(/* webpackChunkName: "signin-page" */ 'modules/authentication'),
 );
+
 const AccountPage = React.lazy(() =>
   import(
     /* webpackChunkName: "account-page" */ 'modules/account/components/account-page'
   ),
 );
+
 const WalletsPage = React.lazy(() =>
-  import(/* webpackChunkName: "wallets-page" */ 'modules/wallets'),
+  import(
+    /* webpackChunkName: "wallets-page" */ 'modules/wallets/components/wallets-page'
+  ),
 );
 
 export const Router: React.FC = () => {

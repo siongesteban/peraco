@@ -8,11 +8,11 @@ import { currencyAtom } from 'shared/atoms';
 import { useSearchParams } from 'shared/hooks';
 import { EmptyState } from 'modules/app/main';
 
+import { CreateWalletDialog } from '../create-wallet-dialog';
+import { SelectCurrencyDialog } from '../select-currency-dialog';
+import { WalletCard } from '../wallet-card';
 import { EmptyWalletListIllustration } from './assets';
 import { useWallets } from './use-wallets.hook';
-import { WalletCard } from './wallet-card.component';
-import { SelectCurrencyDialog } from './select-currency-dialog.component';
-import { CreateWalletDialog } from './create-wallet-dialog.component';
 
 const Empty: React.FC = () => {
   const { setSearchParams } = useSearchParams();

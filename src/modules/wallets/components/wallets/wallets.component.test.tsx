@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import React from 'react';
 import { render, screen, fireEvent, getSearchParams } from 'test-utils';
 
@@ -5,9 +6,15 @@ import { useWallets } from './use-wallets.hook';
 import { Wallets } from './wallets.component';
 
 jest.mock('./use-wallets.hook');
-jest.mock('./create-wallet-dialog.component');
-jest.mock('./select-currency-dialog.component');
-jest.mock('./wallet-card.component');
+jest.mock('../create-wallet-dialog/create-wallet-dialog.component', () => ({
+  CreateWalletDialog: () => <div>Create wallet dialog</div>,
+}));
+jest.mock('../select-currency-dialog/select-currency-dialog.component', () => ({
+  SelectCurrencyDialog: () => <div>Select currency dialog</div>,
+}));
+jest.mock('../wallet-card/wallet-card.component', () => ({
+  WalletCard: () => <div>Wallet card</div>,
+}));
 
 const mockedUseWallets = useWallets as jest.MockedFunction<typeof useWallets>;
 
