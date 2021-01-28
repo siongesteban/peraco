@@ -1,1 +1,1 @@
-export { AccountPage as default } from './account.page';
+export { AccountPage as default } from './account-page.component';

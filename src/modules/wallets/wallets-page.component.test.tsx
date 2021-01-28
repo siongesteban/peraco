@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, waitFor, getDocumentTitle } from 'test-utils';
 
-import { WalletsPage } from './wallets.page';
+import { WalletsPage } from './wallets-page.component';
 
 jest.mock('./wallets.component');
 

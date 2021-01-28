@@ -1,1 +1,1 @@
-export { WalletsPage as default } from './wallets.page';
+export { WalletsPage as default } from './wallets-page.component';
