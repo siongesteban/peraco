@@ -36,9 +36,11 @@ module.exports = {
       addPresets: false,
       addPlugins: false,
     },
-    config: {
+    configure: (config) => ({
+      ...config,
       coverageReporters: ['text', 'lcov'],
-    },
+      transformIgnorePatterns: ['node_modules/(?!jotai/utils)/'],
+    }),
   },
   webpack: {
     configure: (webpackConfig, { env }) => {

@@ -95,10 +95,5 @@
       "eslint --fix",
       "prettier --write"
     ]
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "node_modules/(?!jotai/utils)/"
-    ]
   }
 }
