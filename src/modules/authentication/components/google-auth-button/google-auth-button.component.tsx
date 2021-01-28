@@ -3,9 +3,9 @@ import React from 'react';
 import { grey } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useSignIn } from '../hooks';
-import { GoogleLogo } from '../assets';
-import { SocialAuthButton } from './social-auth-button.component';
+import { useSignIn } from '../../hooks';
+import { SocialAuthButton } from '../social-auth-button';
+import { GoogleLogo } from './assets';
 
 const useStyles = makeStyles({
   root: {

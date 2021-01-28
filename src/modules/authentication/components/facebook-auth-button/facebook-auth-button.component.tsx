@@ -2,9 +2,9 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { FacebookLogo } from '../assets';
-import { useSignIn } from '../hooks';
-import { SocialAuthButton } from './social-auth-button.component';
+import { useSignIn } from '../../hooks';
+import { SocialAuthButton } from '../social-auth-button';
+import { FacebookLogo } from './assets';
 
 const useStyles = makeStyles({
   root: {
