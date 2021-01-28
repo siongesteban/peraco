@@ -14,8 +14,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { Close as CloseIcon } from '@material-ui/icons';
 
+import { useQueryParams } from 'system/router';
 import { Head, ParentFormProvider, FormFields } from 'shared/components';
-import { useForm, useQueryParams } from 'shared/hooks';
+import { useForm } from 'shared/hooks';
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children?: React.ReactElement },

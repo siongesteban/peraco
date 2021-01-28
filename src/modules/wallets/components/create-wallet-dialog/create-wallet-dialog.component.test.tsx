@@ -8,7 +8,7 @@ import {
   getDocumentTitle,
 } from 'test-utils';
 
-import { useQueryParams } from 'shared/hooks';
+import { useQueryParams } from 'system/router';
 
 import { CreateWalletDialog } from './create-wallet-dialog.component';
 

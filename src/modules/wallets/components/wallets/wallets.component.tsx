@@ -5,8 +5,8 @@ import { Button, Grid } from '@material-ui/core';
 import { AddCircleTwoTone as AddIcon } from '@material-ui/icons';
 
 import { EmptyState } from 'system/main';
+import { useQueryParams } from 'system/router';
 import { currencyAtom } from 'shared/atoms';
-import { useQueryParams } from 'shared/hooks';
 
 import { CreateWalletDialog } from '../create-wallet-dialog';
 import { SelectCurrencyDialog } from '../select-currency-dialog';

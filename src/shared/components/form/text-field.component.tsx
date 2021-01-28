@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useQueryParams } from 'shared/hooks';
+import { useQueryParams } from 'system/router';
 
 import { DisplayField } from './display-field.component';
 import { useParentForm } from './parent-form.context';

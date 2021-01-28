@@ -13,10 +13,10 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useQueryParams } from 'system/router';
 import { useService } from 'system/service';
 import { currencyAtom } from 'shared/atoms';
 import { Head } from 'shared/components';
-import { useQueryParams } from 'shared/hooks';
 import { Currency } from 'shared/services';
 
 const useCurrencies = () => {
