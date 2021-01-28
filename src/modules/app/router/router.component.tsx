@@ -12,7 +12,9 @@ const SigninPage = React.lazy(() =>
   import(/* webpackChunkName: "signin-page" */ 'modules/authentication'),
 );
 const AccountPage = React.lazy(() =>
-  import(/* webpackChunkName: "account-page" */ 'modules/account'),
+  import(
+    /* webpackChunkName: "account-page" */ 'modules/account/components/account-page'
+  ),
 );
 const WalletsPage = React.lazy(() =>
   import(/* webpackChunkName: "wallets-page" */ 'modules/wallets'),
