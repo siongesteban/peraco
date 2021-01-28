@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { useAuthenticate } from 'modules/authentication';
 import { AppRoute } from './app-route.component';
+import { SplashScreen } from './splash-screen.component';
 
 const MainPage = React.lazy(() =>
   import(/* webpackChunkName: "main-page" */ 'modules/app/main'),
@@ -22,7 +23,7 @@ export const Router: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <React.Suspense fallback={<div>Loading...</div>}>
+      <React.Suspense fallback={<SplashScreen />}>
         <Routes>
           <AppRoute isGuestOnly path="welcome" element={<SigninPage />} />
           <AppRoute isPrivate path="/" element={<MainPage />}>
