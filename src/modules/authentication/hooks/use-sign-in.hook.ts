@@ -1,5 +1,6 @@
 import { useUpdateAtom } from 'jotai/utils';
 
+import { useService } from 'system/service';
 import {
   authenticationStatusAtom,
   loaderMessageAtom,
@@ -7,7 +8,6 @@ import {
   setSnackbarMessageAtom,
 } from 'shared/atoms';
 import { AuthProvider } from 'shared/types';
-import { useService } from 'modules/app/service';
 
 export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
   const { currencyService, firebaseService, userService } = useService();

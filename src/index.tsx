@@ -2,8 +2,8 @@ import 'reflect-metadata';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { Root } from 'system/root';
 import { createDb } from 'shared/services/rxdb';
-import { Root } from 'modules/app/root';
 
 import { registerServiceWorker } from './registerServiceWorker';
 

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useUpdateAtom } from 'jotai/utils';
 
+import { useService } from 'system/service';
 import { setUserAtom } from 'shared/atoms';
-import { useService } from 'modules/app/service';
 
 export const useAuthenticate = (): void => {
   const { userService } = useService();

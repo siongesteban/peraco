@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useUpdateAtom } from 'jotai/utils';
 
+import { useService } from 'system/service';
 import { setUserAtom, setSnackbarMessageAtom } from 'shared/atoms';
-import { useService } from 'modules/app/service';
 
 export const useSignOut = (): (() => Promise<void>) => {
   const navigate = useNavigate();

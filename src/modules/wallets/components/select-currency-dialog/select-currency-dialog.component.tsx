@@ -13,11 +13,11 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { useService } from 'system/service';
 import { currencyAtom } from 'shared/atoms';
 import { Head } from 'shared/components';
 import { useSearchParams } from 'shared/hooks';
 import { Currency } from 'shared/services';
-import { useService } from 'modules/app/service';
 
 const useCurrencies = () => {
   const { currencyService } = useService();

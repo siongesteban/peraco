@@ -4,9 +4,9 @@ import { useAtomValue } from 'jotai/utils';
 
 import { Button, useMediaQuery } from '@material-ui/core';
 
+import { Shell } from 'system/shell';
 import { themeAtom, userAtom } from 'shared/atoms';
 import { Head } from 'shared/components';
-import { Shell } from 'modules/app/shell';
 import { useSignOut } from 'modules/authentication';
 
 export const AccountPage: React.FC = () => {

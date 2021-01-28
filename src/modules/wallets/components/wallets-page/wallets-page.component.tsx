@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { Shell } from 'system/shell';
 import { Head } from 'shared/components';
-import { Shell } from 'modules/app/shell';
 
 import { Wallets } from '../wallets';
 

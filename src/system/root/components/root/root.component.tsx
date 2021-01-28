@@ -4,9 +4,9 @@ import { HelmetProvider } from 'react-helmet-async';
 
 import { CssBaseline } from '@material-ui/core';
 
-import { ThemeProvider } from 'modules/app/theme';
-import { Router } from 'modules/app/router';
-import { ServiceProvider } from 'modules/app/service';
+import { ThemeProvider } from 'system/theme';
+import { Router } from 'system/router';
+import { ServiceProvider } from 'system/service';
 
 import { Snackbar } from '../snackbar';
 

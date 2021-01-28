@@ -8,7 +8,7 @@ import { SplashScreen } from '../splash-screen';
 
 const MainPage = React.lazy(() =>
   import(
-    /* webpackChunkName: "main-page" */ 'modules/app/main/components/main-page'
+    /* webpackChunkName: "main-page" */ 'system/main/components/main-page'
   ),
 );
 
