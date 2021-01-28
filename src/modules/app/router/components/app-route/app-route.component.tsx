@@ -5,8 +5,8 @@ import { useAtomValue } from 'jotai/utils';
 
 import { authenticationStatusAtom } from 'shared/atoms';
 
-import { Loader } from './loader.component';
-import { SplashScreen } from './splash-screen.component';
+import { Loader } from '../loader';
+import { SplashScreen } from '../splash-screen';
 
 export type AppRouteProps = {
   isPrivate?: boolean;

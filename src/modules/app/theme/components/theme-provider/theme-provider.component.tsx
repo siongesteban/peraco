@@ -13,7 +13,7 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { Head } from 'shared/components';
 import { useThemeMode } from 'shared/hooks';
 
-import { DARK_THEME, LIGHT_THEME } from './constants';
+import { DARK_THEME, LIGHT_THEME } from '../../constants';
 
 export const ThemeProvider: React.FC = ({ children }) => {
   const themeMode = useThemeMode();

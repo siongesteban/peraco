@@ -1,1 +1,1 @@
-export * from './service.context';
+export * from './components';

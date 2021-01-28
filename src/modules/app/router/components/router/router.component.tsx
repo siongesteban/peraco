@@ -2,11 +2,14 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { useAuthenticate } from 'modules/authentication';
-import { AppRoute } from './app-route.component';
-import { SplashScreen } from './splash-screen.component';
+
+import { AppRoute } from '../app-route';
+import { SplashScreen } from '../splash-screen';
 
 const MainPage = React.lazy(() =>
-  import(/* webpackChunkName: "main-page" */ 'modules/app/main'),
+  import(
+    /* webpackChunkName: "main-page" */ 'modules/app/main/components/main-page'
+  ),
 );
 
 const SigninPage = React.lazy(() =>

@@ -5,10 +5,10 @@ import { HelmetProvider } from 'react-helmet-async';
 import { CssBaseline } from '@material-ui/core';
 
 import { ThemeProvider } from 'modules/app/theme';
-import { Snackbar } from 'modules/app/snackbar';
+import { Router } from 'modules/app/router';
+import { ServiceProvider } from 'modules/app/service';
 
-import { Router } from '../router';
-import { ServiceProvider } from '../service';
+import { Snackbar } from '../snackbar';
 
 export const Root: React.FC = () => (
   <React.StrictMode>

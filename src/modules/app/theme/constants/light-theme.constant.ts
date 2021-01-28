@@ -1,4 +1,4 @@
-import { createTheme } from '../create-theme.util';
+import { createTheme } from '../utils';
 
 export const LIGHT_THEME = createTheme({
   palette: {
