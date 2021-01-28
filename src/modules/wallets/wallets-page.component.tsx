@@ -1,18 +1,18 @@
 import React from 'react';
 
 import { Head } from 'shared/components';
-import { MainPageContainer } from 'modules/app/main';
+import { Shell } from 'modules/app/shell';
 
 import { Wallets } from './wallets.component';
 
 export const WalletsPage: React.FC = () => (
   <>
     <Head title="Wallets" />
-    <MainPageContainer>
-      <MainPageContainer.Header title="Wallets" />
-      <MainPageContainer.Content>
+    <Shell>
+      <Shell.Header title="Wallets" />
+      <Shell.Content>
         <Wallets />
-      </MainPageContainer.Content>
-    </MainPageContainer>
+      </Shell.Content>
+    </Shell>
   </>
 );

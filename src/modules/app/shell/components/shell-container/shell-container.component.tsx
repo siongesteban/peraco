@@ -2,7 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { BottomNavigation } from './bottom-navigation.component';
+import { BottomNavigation } from '../bottom-navigation';
 
 const useStyles = makeStyles({
   root: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const Layout: React.FC = ({ children }) => {
+export const ShellContainer: React.FC = ({ children }) => {
   const classes = useStyles();
 
   return (

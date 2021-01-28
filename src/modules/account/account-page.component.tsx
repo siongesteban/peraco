@@ -6,7 +6,7 @@ import { Button, useMediaQuery } from '@material-ui/core';
 
 import { themeAtom, userAtom } from 'shared/atoms';
 import { Head } from 'shared/components';
-import { MainPageContainer } from 'modules/app/main';
+import { Shell } from 'modules/app/shell';
 import { useSignOut } from 'modules/authentication';
 
 export const AccountPage: React.FC = () => {
@@ -22,9 +22,9 @@ export const AccountPage: React.FC = () => {
   return (
     <>
       <Head title="Account" />
-      <MainPageContainer>
-        <MainPageContainer.Header title="Account" />
-        <MainPageContainer.Content>
+      <Shell>
+        <Shell.Header title="Account" />
+        <Shell.Content>
           <Button
             onClick={() => {
               setTheme((prev) =>
@@ -40,8 +40,8 @@ export const AccountPage: React.FC = () => {
             {theme === 'system' ? ` (dark: ${prefersDarkMode})` : ''}
           </Button>
           <Button onClick={handleClick}>Sign Out: {user?.name}</Button>
-        </MainPageContainer.Content>
-      </MainPageContainer>
+        </Shell.Content>
+      </Shell>
     </>
   );
 };

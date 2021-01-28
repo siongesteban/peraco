@@ -1,10 +1,10 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { Layout } from 'modules/app/layout';
+import { ShellContainer } from 'modules/app/shell';
 
 export const MainPage: React.FC = () => (
-  <Layout>
+  <ShellContainer>
     <Outlet />
-  </Layout>
+  </ShellContainer>
 );
