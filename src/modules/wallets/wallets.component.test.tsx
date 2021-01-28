@@ -14,7 +14,7 @@ const mockedUseWallets = useWallets as jest.MockedFunction<typeof useWallets>;
 test('Displays empty state when there are no wallets', () => {
   mockedUseWallets.mockImplementationOnce(() => []);
 
-  render(<Wallets />, { browserRouter: true });
+  render(<Wallets />);
 
   expect(screen.getByText(/start managing your money by/i)).toBeInTheDocument();
   expect(screen.getByText(/creating your first wallet!/i)).toBeInTheDocument();
@@ -54,7 +54,6 @@ test('Displays wallet cards if there are existing wallets', () => {
   ]);
 
   render(<Wallets />, {
-    browserRouter: true,
     initialState: { currency: { code: 'USD', name: 'US Dollar', symbol: '$' } },
   });
 
