@@ -37,7 +37,7 @@ export class CurrencyService {
 
   public async loadCurrencies(): Promise<Currency[]> {
     const response = await fetch(
-      'https://restcountries.eu/rest/v2/all?fields=name;currencies;flag',
+      'https://restcountries.eu/rest/v2/all?fields=name;currencies',
     );
 
     if (!response.ok) {
