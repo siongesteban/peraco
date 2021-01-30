@@ -9,6 +9,7 @@ test('Sets the correct currency and default config', () => {
       currency: {
         symbol: '$',
         code: 'USD',
+        name: 'US Dollar',
       },
     },
   });

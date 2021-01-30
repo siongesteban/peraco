@@ -14,21 +14,11 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useQueryParams } from 'system/router';
-import { useService } from 'system/service';
 import { currencyAtom } from 'shared/atoms';
 import { Head } from 'shared/components';
 import { Currency } from 'shared/services';
 
-const useCurrencies = () => {
-  const { currencyService } = useService();
-  const [currencies, setCurrencies] = React.useState<Currency[]>([]);
-
-  React.useEffect(() => {
-    currencyService.getCurrencies().then((data) => setCurrencies(data));
-  }, []);
-
-  return currencies;
-};
+import { useCurrencies } from './use-currencies.hook';
 
 const useStyles = makeStyles((theme) => ({
   dividers: {

@@ -32,7 +32,7 @@ const setup = () =>
     </Wrapper>,
   );
 
-test('Only opens if the required query string is set', () => {
+test('Only opens if the required query param is set', () => {
   setup();
 
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
