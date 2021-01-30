@@ -1,5 +1,5 @@
 import LocalForage from 'localforage';
-import { container, inject, injectable } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { sortBy, uniqBy } from 'lodash';
 
 import { LOCAL_DB_TOKEN } from './localforage';
@@ -24,10 +24,6 @@ export class CurrencyService {
     @inject(LOCAL_DB_TOKEN)
     private readonly localDb: LocalForage,
   ) {}
-
-  public static getInstance(): CurrencyService {
-    return container.resolve(CurrencyService);
-  }
 
   public async getCurrencies(): Promise<Currency[]> {
     const currencies = await this.localDb.getItem<Currency[]>(this.localDbKey);

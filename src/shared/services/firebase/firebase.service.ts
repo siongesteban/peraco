@@ -1,4 +1,4 @@
-import { container, inject, injectable } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import firebase from 'firebase/app';
 
 import { AuthProvider } from 'shared/types';
@@ -15,10 +15,6 @@ export class FirebaseService {
     @inject(FIREBASE_CLIENT_TOKEN)
     private readonly firebaseClient: firebase.app.App,
   ) {}
-
-  public static getInstance(): FirebaseService {
-    return container.resolve(FirebaseService);
-  }
 
   public async authenticate(): Promise<firebase.User | null> {
     return new Promise((resolve) => {

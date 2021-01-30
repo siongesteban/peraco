@@ -1,4 +1,4 @@
-import { container, inject, injectable } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { v4 as uuid } from 'uuid';
 
 import { FirebaseService } from 'shared/services/firebase';
@@ -14,10 +14,6 @@ export class UserService {
     private readonly db: Database,
     private readonly firebaseService: FirebaseService,
   ) {}
-
-  public static getInstance(): UserService {
-    return container.resolve(UserService);
-  }
 
   public async getUserByAuthId(authId: string): Promise<UserDocument | null> {
     const user = await this.db.user

@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import React from 'react';
 import { render, RenderOptions, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import qs from 'qs';
 import { Provider as GlobalStateProvider } from 'jotai';
 import { HelmetProvider } from 'react-helmet-async';
 import { InitialEntry } from 'history';
@@ -21,8 +20,13 @@ import {
   UserAtom,
 } from 'shared/atoms';
 import { parseQueryString } from 'shared/utils';
+import { ServiceProvider } from 'system/service';
 
-type CustomRenderOptions = RenderOptions &
+jest.mock('shared/services/currency.service');
+jest.mock('shared/services/firebase/firebase.service');
+jest.mock('shared/services/user.service');
+
+export type CustomRenderOptions = RenderOptions &
   Partial<{
     initialState: Partial<{
       authenticationStatus: AuthenticationStatusAtom;
@@ -62,20 +66,22 @@ const customRender = (
   ];
 
   const Wrapper: React.FC = ({ children }) => (
-    <HelmetProvider>
-      <GlobalStateProvider
-        initialValues={
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          initialValues as any
-        }
-      >
-        {!router ? null : browserRouter ? (
-          <BrowserRouter>{children}</BrowserRouter>
-        ) : (
-          <MemoryRouter {...memoryRouter}>{children}</MemoryRouter>
-        )}
-      </GlobalStateProvider>
-    </HelmetProvider>
+    <ServiceProvider>
+      <HelmetProvider>
+        <GlobalStateProvider
+          initialValues={
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            initialValues as any
+          }
+        >
+          {!router ? null : browserRouter ? (
+            <BrowserRouter>{children}</BrowserRouter>
+          ) : (
+            <MemoryRouter {...memoryRouter}>{children}</MemoryRouter>
+          )}
+        </GlobalStateProvider>
+      </HelmetProvider>
+    </ServiceProvider>
   );
 
   return render(ui, { ...restOptions, wrapper: Wrapper });
