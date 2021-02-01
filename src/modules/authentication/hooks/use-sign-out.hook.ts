@@ -17,7 +17,10 @@ export const useSignOut = (): (() => Promise<void>) => {
       setUser(null);
       navigate('/welcome', { replace: true });
     } catch (e) {
-      setSnackbarMessage({ message: e.message });
+      setSnackbarMessage({
+        message: 'Something went wrong while signing out.',
+        error: e.message,
+      });
     }
   };
 
