@@ -69,6 +69,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
+    "test:coverage": "yarn test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "lint:fix": "eslint './src/**/*.{ts,tsx}'",
     "serve": "serve -s build",
