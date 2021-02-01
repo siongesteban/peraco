@@ -22,10 +22,6 @@ export const useSignIn = (provider: AuthProvider): (() => Promise<void>) => {
     setLoaderMessage('Signing in...');
 
     try {
-      if (!provider) {
-        throw new Error('Auth provider is not provided.');
-      }
-
       const userFromFirebase = await firebaseService.signIn({ with: provider });
 
       if (!userFromFirebase) {
