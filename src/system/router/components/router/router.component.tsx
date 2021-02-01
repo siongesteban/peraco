@@ -31,7 +31,11 @@ const WalletsPage = React.lazy(() =>
 );
 
 export const Router: React.FC = () => {
-  useAuthenticate();
+  const authenticate = useAuthenticate();
+
+  React.useEffect(() => {
+    authenticate();
+  }, []);
 
   return (
     <BrowserRouter>

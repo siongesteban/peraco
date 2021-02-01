@@ -3,6 +3,7 @@ import { createWrapper } from 'test-utils';
 import firebase from 'firebase/app';
 
 import { UserDocument } from 'shared/services/rxdb/schemas';
+
 import { useSignIn } from './use-sign-in.hook';
 
 test('Sets error message if user is not found during firebase auth', async () => {
