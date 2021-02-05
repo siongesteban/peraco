@@ -1,12 +1,17 @@
 import React from 'react';
 
 import { FirebaseService } from 'shared/services/firebase';
-import { CurrencyService, UserService } from 'shared/services';
+import {
+  CurrencyService,
+  TransactionService,
+  UserService,
+} from 'shared/services';
 
 export type ServiceContext = {
   currencyService: CurrencyService;
   firebaseService: FirebaseService;
   userService: UserService;
+  transactionService: TransactionService;
 };
 
 export const ServiceContext = React.createContext<ServiceContext | undefined>(

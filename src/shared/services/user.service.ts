@@ -15,6 +15,11 @@ export class UserService {
     private readonly firebaseService: FirebaseService,
   ) {}
 
+  public async signOut(): Promise<void> {
+    await this.firebaseService.signOut();
+    await this.db.remove();
+  }
+
   public async getUserByAuthId(authId: string): Promise<UserDocument | null> {
     const user = await this.db.user
       .findOne({

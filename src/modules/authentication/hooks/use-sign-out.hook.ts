@@ -6,13 +6,13 @@ import { setUserAtom, setSnackbarMessageAtom } from 'shared/atoms';
 
 export const useSignOut = (): (() => Promise<void>) => {
   const navigate = useNavigate();
-  const { firebaseService } = useService();
+  const { userService } = useService();
   const setUser = useUpdateAtom(setUserAtom);
   const setSnackbarMessage = useUpdateAtom(setSnackbarMessageAtom);
 
   const signOut = async (): Promise<void> => {
     try {
-      await firebaseService.signOut();
+      await userService.signOut();
 
       setUser(null);
       navigate('/welcome', { replace: true });
