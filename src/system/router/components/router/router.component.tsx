@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { useAuthenticate } from 'modules/authentication';
-import { useInitializeTransactions } from 'modules/wallets/components/transactions-page/use-initialize-transactions.hook';
 
 import { AppRoute } from '../app-route';
 import { SplashScreen } from '../splash-screen';
