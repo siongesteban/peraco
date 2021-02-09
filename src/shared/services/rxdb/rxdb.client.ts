@@ -1,5 +1,6 @@
 import { createRxDatabase, addRxPlugin } from 'rxdb/plugins/core';
 import { RxDBKeyCompressionPlugin } from 'rxdb/plugins/key-compression';
+import { RxDBLocalDocumentsPlugin } from 'rxdb/plugins/local-documents';
 import { RxDBValidatePlugin } from 'rxdb/plugins/validate';
 import pouchDbAdapterIdb from 'pouchdb-adapter-idb';
 import { container } from 'tsyringe';
@@ -9,6 +10,7 @@ import { DbCollections } from './types';
 
 addRxPlugin(pouchDbAdapterIdb);
 addRxPlugin(RxDBKeyCompressionPlugin);
+addRxPlugin(RxDBLocalDocumentsPlugin);
 addRxPlugin(RxDBValidatePlugin);
 
 export const DB_TOKEN = 'DB';

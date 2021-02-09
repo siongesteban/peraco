@@ -1,8 +1,8 @@
-import LocalForage from 'localforage';
 import { inject, injectable } from 'tsyringe';
 import { sortBy, uniqBy } from 'lodash';
 
-import { LOCAL_DB_TOKEN } from './localforage';
+import { Database } from './rxdb/types';
+import { DB_TOKEN } from './rxdb/rxdb.client';
 
 export type Currency = {
   code: string;
@@ -21,18 +21,16 @@ export class CurrencyService {
   private readonly localDbKey = 'currencies';
 
   constructor(
-    @inject(LOCAL_DB_TOKEN)
-    private readonly localDb: LocalForage,
+    @inject(DB_TOKEN)
+    private readonly db: Database,
   ) {}
 
   public async getCurrencies(): Promise<Currency[]> {
-    const currencies = await this.localDb.getItem<Currency[]>(this.localDbKey);
+    const result = await this.db.getLocal<{ data: Currency[] }>(
+      this.localDbKey,
+    );
 
-    if (!currencies) {
-      return [];
-    }
-
-    return currencies;
+    return result?.get('data') || [];
   }
 
   public async loadCurrencies(): Promise<Currency[]> {
@@ -47,7 +45,9 @@ export class CurrencyService {
     const countries = (await response.json()) as Country[];
     const currencies = this.getCurrenciesFromCountries(countries);
 
-    await this.localDb.setItem(this.localDbKey, currencies);
+    await this.db.insertLocal(this.localDbKey, {
+      data: currencies,
+    });
 
     return currencies;
   }
