@@ -52,7 +52,6 @@ export const CreateWalletDialog: React.FC = () => {
                 Save
               </Button>
             }
-            onCloseButtonClick={handleClose}
           />
           <Grid container direction="column">
             <Grid item>

@@ -12,6 +12,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { Close as CloseIcon } from '@material-ui/icons';
 
+const Context = React.createContext<{ onClose: () => void } | undefined>(
+  undefined,
+);
+
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children?: React.ReactElement },
   ref: React.Ref<unknown>,
@@ -21,7 +25,7 @@ const Transition = React.forwardRef(function Transition(
 
 export type FullScreenDialogProps = {
   open: boolean;
-  onClose?: () => void;
+  onClose: () => void;
 };
 
 type FullScreenDialogComponent = React.FC<FullScreenDialogProps> & {
@@ -33,15 +37,17 @@ export const FullScreenDialog: FullScreenDialogComponent = ({
   open,
   onClose,
 }) => (
-  <Dialog
-    data-testid="full-screen-dialog"
-    fullScreen
-    open={open}
-    onClose={onClose}
-    TransitionComponent={Transition}
-  >
-    {children}
-  </Dialog>
+  <Context.Provider value={{ onClose }}>
+    <Dialog
+      data-testid="full-screen-dialog"
+      fullScreen
+      open={open}
+      onClose={onClose}
+      TransitionComponent={Transition}
+    >
+      {children}
+    </Dialog>
+  </Context.Provider>
 );
 
 const useTitleBarStyles = makeStyles((theme) => ({
@@ -57,29 +63,26 @@ const useTitleBarStyles = makeStyles((theme) => ({
 export type FullScreenDialogTitleBarProps = {
   actionButton?: React.ReactNode;
   title: string;
-  onCloseButtonClick?: () => void;
 };
 
 const TitleBar: React.FC<FullScreenDialogTitleBarProps> = ({
   actionButton,
   title,
-  onCloseButtonClick,
 }) => {
   const classes = useTitleBarStyles();
+  const context = React.useContext(Context);
 
   return (
     <AppBar className={classes.appBar} color="transparent" elevation={0}>
       <Toolbar>
-        {!onCloseButtonClick ? null : (
-          <IconButton
-            data-testid="full-screen-dialog-close-button"
-            color="inherit"
-            edge="start"
-            onClick={onCloseButtonClick}
-          >
-            <CloseIcon />
-          </IconButton>
-        )}
+        <IconButton
+          data-testid="full-screen-dialog-close-button"
+          color="inherit"
+          edge="start"
+          onClick={context?.onClose}
+        >
+          <CloseIcon />
+        </IconButton>
         <Typography variant="h6" component="h2" className={classes.title}>
           {title}
         </Typography>
