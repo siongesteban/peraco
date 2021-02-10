@@ -39,7 +39,7 @@ test('Only opens if the required query param is set', () => {
 
   fireEvent.click(screen.getByText(/open/i));
 
-  expect(screen.getByTestId('create-wallet-dialog')).toBeInTheDocument();
+  expect(screen.getByTestId('full-screen-dialog')).toBeInTheDocument();
 });
 
 test('Displays the content correctly', async () => {
@@ -54,7 +54,9 @@ test('Displays the content correctly', async () => {
   expect(screen.getByText(/create wallet/i)).toBeInTheDocument();
   expect(screen.getByText(/save/i)).toBeInTheDocument();
   expect(screen.getByText(/save/i)).toBeDisabled();
-  expect(screen.getByTestId('close-button')).toBeInTheDocument();
+  expect(
+    screen.getByTestId('full-screen-dialog-close-button'),
+  ).toBeInTheDocument();
 
   expect(screen.getByText(/wallets/i)).toBeInTheDocument();
   expect(screen.getByText('Name')).toBeInTheDocument();
@@ -72,7 +74,7 @@ test('Closes if close button is clicked', async () => {
 
   fireEvent.click(screen.getByText(/open/i));
 
-  fireEvent.click(screen.getByTestId('close-button'));
+  fireEvent.click(screen.getByTestId('full-screen-dialog-close-button'));
 
   await waitFor(() => {
     expect(
@@ -128,7 +130,7 @@ test('Resets form on cancel', async () => {
 
   await fillName('My Wallet');
 
-  fireEvent.click(screen.getByTestId('close-button'));
+  fireEvent.click(screen.getByTestId('full-screen-dialog-close-button'));
 
   await waitFor(() => {
     expect(
@@ -139,7 +141,7 @@ test('Resets form on cancel', async () => {
   fireEvent.click(screen.getByText(/open/i));
 
   await waitFor(() => {
-    expect(screen.getByTestId('create-wallet-dialog')).toBeInTheDocument();
+    expect(screen.getByTestId('full-screen-dialog')).toBeInTheDocument();
   });
 
   expect(screen.queryByText(/my wallet/i)).not.toBeInTheDocument();
@@ -164,7 +166,7 @@ test('Resets form on save', async () => {
   fireEvent.click(screen.getByText(/open/i));
 
   await waitFor(() => {
-    expect(screen.getByTestId('create-wallet-dialog')).toBeInTheDocument();
+    expect(screen.getByTestId('full-screen-dialog')).toBeInTheDocument();
   });
 
   expect(screen.queryByText(/my wallet/i)).not.toBeInTheDocument();

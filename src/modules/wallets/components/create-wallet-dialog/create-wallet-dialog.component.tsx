@@ -1,39 +1,15 @@
 import React from 'react';
 
-import {
-  AppBar,
-  Button,
-  Dialog,
-  Grid,
-  IconButton,
-  Slide,
-  Toolbar,
-  Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { TransitionProps } from '@material-ui/core/transitions';
-import { Close as CloseIcon } from '@material-ui/icons';
+import { Button, Grid } from '@material-ui/core';
 
 import { useQueryParams } from 'system/router';
-import { Head, ParentFormProvider, FormFields } from 'shared/components';
+import {
+  FullScreenDialog,
+  Head,
+  ParentFormProvider,
+  FormFields,
+} from 'shared/components';
 import { useForm } from 'shared/hooks';
-
-const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & { children?: React.ReactElement },
-  ref: React.Ref<unknown>,
-) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    position: 'relative',
-  },
-  title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
-  },
-}));
 
 type Fields = {
   name: string;
@@ -42,7 +18,6 @@ type Fields = {
 export const CreateWalletDialog: React.FC = () => {
   const { queryParams, navigate } = useQueryParams();
   const form = useForm<Fields>();
-  const classes = useStyles();
 
   const handleClose = (): void => {
     navigate(-1);
@@ -59,27 +34,15 @@ export const CreateWalletDialog: React.FC = () => {
   return (
     <>
       {open ? <Head title="Create wallet" /> : null}
-      <Dialog
-        fullScreen
+      <FullScreenDialog
         data-testid="create-wallet-dialog"
         open={open}
-        TransitionComponent={Transition}
         onClose={handleClose}
       >
         <ParentFormProvider form={form} onSubmit={handleSubmit}>
-          <AppBar className={classes.appBar} color="transparent" elevation={0}>
-            <Toolbar>
-              <IconButton
-                data-testid="close-button"
-                color="inherit"
-                edge="start"
-                onClick={handleClose}
-              >
-                <CloseIcon />
-              </IconButton>
-              <Typography variant="h6" component="h2" className={classes.title}>
-                Create wallet
-              </Typography>
+          <FullScreenDialog.TitleBar
+            title="Create Wallet"
+            actionButton={
               <Button
                 disabled={!form.formState.isDirty || !form.formState.isValid}
                 color="primary"
@@ -88,8 +51,9 @@ export const CreateWalletDialog: React.FC = () => {
               >
                 Save
               </Button>
-            </Toolbar>
-          </AppBar>
+            }
+            onCloseButtonClick={handleClose}
+          />
           <Grid container direction="column">
             <Grid item>
               <FormFields
@@ -125,7 +89,7 @@ export const CreateWalletDialog: React.FC = () => {
             </Grid>
           </Grid>
         </ParentFormProvider>
-      </Dialog>
+      </FullScreenDialog>
     </>
   );
 };
