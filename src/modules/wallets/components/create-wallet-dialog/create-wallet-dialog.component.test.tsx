@@ -77,9 +77,7 @@ test('Closes if close button is clicked', async () => {
   fireEvent.click(screen.getByTestId('full-screen-dialog-close-button'));
 
   await waitFor(() => {
-    expect(
-      screen.queryByTestId('create-wallet-dialog'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('full-screen-dialog')).not.toBeInTheDocument();
   });
 });
 
@@ -87,7 +85,7 @@ const fillName = async (name: string) => {
   fireEvent.click(screen.getByText(/enter name/i));
 
   await waitFor(() => {
-    expect(screen.getByTestId('text-field-dialog')).toBeInTheDocument();
+    expect(screen.getByTestId('input-dialog')).toBeInTheDocument();
   });
 
   userEvent.type(screen.getByRole('textbox'), name);
@@ -117,9 +115,7 @@ test('Enables save button if values are valid and closes modal if clicked', asyn
   fireEvent.click(saveButton);
 
   await waitFor(() => {
-    expect(
-      screen.queryByTestId('create-wallet-dialog'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('full-screen-dialog')).not.toBeInTheDocument();
   });
 });
 
@@ -133,9 +129,7 @@ test('Resets form on cancel', async () => {
   fireEvent.click(screen.getByTestId('full-screen-dialog-close-button'));
 
   await waitFor(() => {
-    expect(
-      screen.queryByTestId('create-wallet-dialog'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('full-screen-dialog')).not.toBeInTheDocument();
   });
 
   fireEvent.click(screen.getByText(/open/i));
@@ -158,9 +152,7 @@ test('Resets form on save', async () => {
   fireEvent.click(screen.getByText(/save/i));
 
   await waitFor(() => {
-    expect(
-      screen.queryByTestId('create-wallet-dialog'),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId('full-screen-dialog')).not.toBeInTheDocument();
   });
 
   fireEvent.click(screen.getByText(/open/i));

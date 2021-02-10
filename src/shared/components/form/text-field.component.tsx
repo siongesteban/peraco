@@ -2,17 +2,12 @@ import React from 'react';
 import { RegisterOptions } from 'react-hook-form';
 
 import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
   TextField as MuiTextField,
   TextFieldProps as MuiTextFieldProps,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { useQueryParams } from 'system/router';
+import { InputDialog } from 'shared/components';
 
 import { DisplayField } from './display-field.component';
 import { useParentForm } from './parent-form.context';
@@ -24,14 +19,6 @@ export type TextFieldProps = {
   rules?: RegisterOptions;
 };
 
-const useStyles = makeStyles({
-  dialogContent: {
-    '&:first-child': {
-      paddingTop: 0,
-    },
-  },
-});
-
 export const TextField: React.FC<TextFieldProps> = ({
   name,
   label,
@@ -40,7 +27,6 @@ export const TextField: React.FC<TextFieldProps> = ({
 }) => {
   const { queryParams, setQueryParams, navigate } = useQueryParams();
   const { register, watch, setValue } = useParentForm();
-  const classes = useStyles();
   const [fieldValue, setFieldValue] = React.useState('');
 
   React.useEffect(() => {
@@ -56,7 +42,7 @@ export const TextField: React.FC<TextFieldProps> = ({
 
   const currentValue = watch(name);
 
-  const handleCancelClick = (): void => {
+  const handleCancel = (): void => {
     setFieldValue(currentValue);
     navigate(-1);
   };
@@ -91,34 +77,23 @@ export const TextField: React.FC<TextFieldProps> = ({
         text={currentValue}
         onClick={handleDisplayFieldClick}
       />
-      <Dialog fullWidth data-testid="text-field-dialog" open={open}>
-        <DialogTitle>{placeholder}</DialogTitle>
-        <DialogContent className={classes.dialogContent}>
-          <MuiTextField
-            autoFocus
-            fullWidth
-            margin="dense"
-            label={label}
-            type="text"
-            defaultValue={currentValue}
-            onChange={handleChange}
-            onKeyPress={handleKeyPress}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCancelClick} variant="text" color="primary">
-            Cancel
-          </Button>
-          <Button
-            variant="text"
-            color="primary"
-            type="submit"
-            onClick={handleSubmit}
-          >
-            Ok
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <InputDialog
+        open={open}
+        title={placeholder}
+        onCancel={handleCancel}
+        onSubmit={handleSubmit}
+      >
+        <MuiTextField
+          autoFocus
+          fullWidth
+          margin="dense"
+          label={label}
+          type="text"
+          defaultValue={currentValue}
+          onChange={handleChange}
+          onKeyPress={handleKeyPress}
+        />
+      </InputDialog>
     </>
   );
 };
