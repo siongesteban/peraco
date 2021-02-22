@@ -1,12 +1,17 @@
 ## **Peraco**
-An offline-first (PWA) personal finance management app that also supports data synchronization.
+An offline-first personal finance management app that supports real-time data
+synchronization across multiple devices.
 
-Being built with:
+![alt text](https://i.ibb.co/Y2tCX0t/peraco-initial-banner.jpg "Peraco - Initial Preview")
+
+-----------
+Being built as Progressive Web App with:
+- Workbox
 - TypeScript
 - React
 - Material UI
 - RxDB
 - Firebase Authentication
-- jotai
-- tsyringe (Dependency Injection)
-- jest/react-testing-library
+- Jotai
+- TSyringe
+- Jest / React Testing Library
